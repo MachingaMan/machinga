@@ -254,22 +254,18 @@ export default function ContrabandPage() {
     <section className="cs-stats-section" style={{borderTop: "none", paddingTop: "6rem", paddingBottom: "4rem"}}>
         <div className="cs-container">
             <div className="cs-content-narrow" style={{marginBottom: "3rem", display: "flex", alignItems: "center", gap: "1rem"}}>
-                <span className="cs-section-label" style={{marginBottom: "0", whiteSpace: "nowrap"}}>06 — The Number</span>
+                <span className="cs-section-label" style={{marginBottom: "0", whiteSpace: "nowrap"}}>06 — The Numbers</span>
                 <div style={{flexGrow: "1", height: "1px", backgroundColor: "#e0e0e0"}}></div>
             </div>
             
-            <div className="cs-stats-grid">
+            <div className="cs-stats-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
                 <div className="cs-stat-item">
                     <h4>88<span style={{fontSize: "inherit", color: "var(--green)"}}>M+</span></h4>
-                    <span>Combined views</span>
+                    <span>Total views</span>
                 </div>
                 <div className="cs-stat-item">
-                    <h4>2 <span style={{fontSize: "inherit", color: "var(--green)"}}>Weeks</span></h4>
-                    <span>Time</span>
-                </div>
-                <div className="cs-stat-item">
-                    <h4>0<span style={{fontSize: "inherit", color: "var(--green)"}}></span></h4>
-                    <span>Human Talent</span>
+                    <h4>1.1<span style={{fontSize: "inherit", color: "var(--green)"}}>M+</span></h4>
+                    <span>Likes on hero film</span>
                 </div>
             </div>
             
@@ -297,12 +293,12 @@ export default function ContrabandPage() {
         <div className="cs-next-content" style={{color: "#1a1a1a", maxWidth: "800px", margin: "0 auto", position: "relative", zIndex: "2"}}>
             <div style={{display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem", marginBottom: "2rem"}}>
                 <div style={{height: "1px", backgroundColor: "#888", width: "60px"}}></div>
-                <span style={{color: "#888", margin: "0", textTransform: "uppercase", fontSize: "12px", letterSpacing: "2px", fontWeight: "700"}}>Ready to build yours</span>
+                <span style={{color: "#888", margin: "0", textTransform: "uppercase", fontSize: "12px", letterSpacing: "2px", fontWeight: "700"}}>READY FOR YOUR LAUNCH</span>
                 <div style={{height: "1px", backgroundColor: "#888", width: "60px"}}></div>
             </div>
-            <h2 className="cs-next-title" style={{color: "#1a1a1a", marginBottom: "3rem"}}>Let's make something<br />that <span style={{color: "var(--green)"}}>appreciates.</span></h2>
+            <h2 className="cs-next-title" style={{color: "#1a1a1a", marginBottom: "3rem"}}>Tell us what’s <span style={{color: "var(--green)"}}>impossible.</span></h2>
             <Link href="/#contact" className="btn-gradient" style={{display: "inline-flex", alignItems: "center", justifyContent: "center", textDecoration: "none", padding: "16px 36px", borderRadius: "30px", fontWeight: "600"}}>
-                Start A Conversation
+                Start the conversation
             </Link>
         </div>
     </section>

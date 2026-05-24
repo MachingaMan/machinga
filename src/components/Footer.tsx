@@ -26,8 +26,8 @@ export default function Footer() {
               <img 
                 src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Machinga logo with text.png`} 
                 alt="Machinga" 
-                width={206} 
-                height={44} 
+                width={288} 
+                height={61} 
                 className="footer-logo-img" 
               />
             </Link>

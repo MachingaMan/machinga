@@ -209,12 +209,12 @@ export default function HamleysPage() {
         <div className="cs-next-content" style={{color: "#1a1a1a", maxWidth: "800px", margin: "0 auto", position: "relative", zIndex: "2"}}>
             <div style={{display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem", marginBottom: "2rem"}}>
                 <div style={{height: "1px", backgroundColor: "#888", width: "60px"}}></div>
-                <span style={{color: "#888", margin: "0", textTransform: "uppercase", fontSize: "12px", letterSpacing: "2px", fontWeight: "700"}}>Ready to build yours</span>
+                <span style={{color: "#888", margin: "0", textTransform: "uppercase", fontSize: "12px", letterSpacing: "2px", fontWeight: "700"}}>READY FOR YOUR SIGNAL</span>
                 <div style={{height: "1px", backgroundColor: "#888", width: "60px"}}></div>
             </div>
-            <h2 className="cs-next-title" style={{color: "#1a1a1a", marginBottom: "3rem"}}>Let's make something<br />that <span style={{color: "var(--green)"}}>appreciates.</span></h2>
+            <h2 className="cs-next-title" style={{color: "#1a1a1a", marginBottom: "3rem"}}>Decode culture,<br />and <span style={{color: "var(--green)"}}>pull the trigger.</span></h2>
             <Link href="/#contact" className="btn-gradient" style={{display: "inline-flex", alignItems: "center", justifyContent: "center", textDecoration: "none", padding: "16px 36px", borderRadius: "30px", fontWeight: "600"}}>
-                Start A Conversation
+                Start the conversation
             </Link>
         </div>
     </section>

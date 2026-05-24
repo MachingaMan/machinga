@@ -229,18 +229,22 @@ export default function AppreciatePage() {
                 <span className="cs-section-label" style={{marginBottom: "0", whiteSpace: "nowrap"}}>06 — The Numbers</span>
                 <div style={{flexGrow: "1", height: "1px", backgroundColor: "#e0e0e0"}}></div>
             </div>
-            <div className="cs-stats-grid">
+            <div className="cs-stats-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}>
                 <div className="cs-stat-item">
-                    <h4>124<span style={{fontSize: "inherit", color: "var(--green)"}}>K+</span></h4>
-                    <span>Instagram followers</span>
+                    <h4>124<span style={{fontSize: "inherit", color: "var(--green)"}}>k+</span></h4>
+                    <span>Instagram followers from 0</span>
                 </div>
                 <div className="cs-stat-item">
-                    <h4>~400<span style={{fontSize: "inherit", color: "var(--green)"}}>K+</span></h4>
-                    <span>Total across platforms</span>
+                    <h4>400<span style={{fontSize: "inherit", color: "var(--green)"}}>k+</span></h4>
+                    <span>Total audience across platforms</span>
                 </div>
                 <div className="cs-stat-item">
-                    <h4>6<span style={{fontSize: "inherit", color: "var(--green)"}}>L</span></h4>
-                    <span>App downloads</span>
+                    <h4>1<span style={{fontSize: "inherit", color: "var(--green)"}}>M+</span></h4>
+                    <span>Views consistently on viral bets</span>
+                </div>
+                <div className="cs-stat-item">
+                    <h4>100<span style={{fontSize: "inherit", color: "var(--green)"}}>M+</span></h4>
+                    <span>Total views over 18 months</span>
                 </div>
             </div>
             <p className="cs-stats-text" style={{maxWidth: "800px", margin: "3rem auto 0", fontSize: "1.2rem", lineHeight: "1.6", textAlign: "center"}}>That's what 18 months of content-first brand building actually produces. Not just an audience, but a warmer market for every paid rupee that follows.</p>
@@ -253,10 +257,9 @@ export default function AppreciatePage() {
             <div className="cs-content-narrow">
                 <span className="cs-section-label">07 — What 18 Months Actually Is</span>
                 <h2 className="cs-section-heading">This isn't a campaign. It's the founding story of a brand's voice.</h2>
-                <p className="cs-section-text">When Appreciate came to us, their social presence didn't exist. What exists now is a community of people who associate investing in US markets with being entertained, with being spoken to in their own language, with a brand that has genuine personality.</p>
-                <p className="cs-section-text">That community influences acquisition costs. It influences conversion rates. It influences how the brand is perceived by the next round of investors and partners who Google it.</p>
-                <p className="cs-section-text">We built the engine. We kept it running. We kept making it better.</p>
-
+                <p className="cs-section-text">A campaign has a budget, a start date, and an end date. It lives on a media plan. It represents a single, focused push to drive a number. When the plan runs out, the push stops. If you want to push again, you need a new campaign.</p>
+                <p className="cs-section-text">A content engine represents a different philosophy. It is a long-term capital investment. You are building an infrastructure. In the early months, the cost of production is high relative to the audience you reach. But as the engine runs, the audience grows, the library of content compounds, and the cost per organic view falls. Over 18 months, the client spent less on media than they would have on a single traditional TV campaign. But they built an asset that they own, that produces views every day, and that continues to recruit users without a media budget.</p>
+                
                 <div style={{borderLeft: "4px solid var(--green)", paddingLeft: "2rem", marginTop: "4rem", marginBottom: "2rem"}}>
                     <p style={{fontSize: "clamp(1.8rem, 5vw, 36px)", fontWeight: "800", lineHeight: "1.2", margin: "0", color: "#1a1a1a"}}>That's the engagement model. Not a project with a start and end date, but a compounding asset that appreciates over time.</p>
                 </div>
@@ -281,12 +284,12 @@ export default function AppreciatePage() {
         <div className="cs-next-content" style={{color: "#1a1a1a", maxWidth: "800px", margin: "0 auto", position: "relative", zIndex: "2"}}>
             <div style={{display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem", marginBottom: "2rem"}}>
                 <div style={{height: "1px", backgroundColor: "#888", width: "60px"}}></div>
-                <span style={{color: "#888", margin: "0", textTransform: "uppercase", fontSize: "12px", letterSpacing: "2px", fontWeight: "700"}}>Ready to build yours</span>
+                <span style={{color: "#888", margin: "0", textTransform: "uppercase", fontSize: "12px", letterSpacing: "2px", fontWeight: "700"}}>READY TO BUILD YOUR ENGINE</span>
                 <div style={{height: "1px", backgroundColor: "#888", width: "60px"}}></div>
             </div>
-            <h2 className="cs-next-title" style={{color: "#1a1a1a", marginBottom: "3rem"}}>Let's make something<br />that <span style={{color: "var(--green)"}}>appreciates.</span></h2>
+            <h2 className="cs-next-title" style={{color: "#1a1a1a", marginBottom: "3rem"}}>Earn your audience,<br />and <span style={{color: "var(--green)"}}>tune in.</span></h2>
             <Link href="/#contact" className="btn-gradient" style={{display: "inline-flex", alignItems: "center", justifyContent: "center", textDecoration: "none", padding: "16px 36px", borderRadius: "30px", fontWeight: "600"}}>
-                Start A Conversation
+                Start the conversation
             </Link>
         </div>
     </section>

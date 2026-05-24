@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useLenis } from 'lenis/react';
 import HomeClientLogic from '@/components/HomeClientLogic';
 
 export default function Home() {
@@ -10,6 +11,41 @@ export default function Home() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const lenis = useLenis();
+
+  // Scroll to open details dropdown
+  useEffect(() => {
+    if (activeDropdown && lenis) {
+      const targetEl = document.getElementById(activeDropdown);
+      if (targetEl) {
+        setTimeout(() => {
+          lenis.scrollTo(targetEl, { offset: -80, duration: 1.2 });
+        }, 150);
+      }
+    }
+  }, [activeDropdown, lenis]);
+
+  // Auto-close active details dropdown when scrolling to another card
+  useEffect(() => {
+    const cards = document.querySelectorAll('.fs-card');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const cardIndex = Array.from(cards).indexOf(entry.target);
+          const targetDetailsId = `details-${cardIndex + 1}`;
+          setActiveDropdown(current => {
+            if (current && current !== targetDetailsId) {
+              return null;
+            }
+            return current;
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    cards.forEach(card => observer.observe(card));
+    return () => observer.disconnect();
+  }, []);
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,11 +76,12 @@ export default function Home() {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Force all videos to play. Next.js router cache sometimes suspends videos on navigation.
-    const videos = document.querySelectorAll('video');
+    // Force all loop/background videos to play, excluding the scroll-locked hero video.
+    // Next.js router cache sometimes suspends videos on navigation.
+    const videos = document.querySelectorAll('video:not(#hero-video)');
     videos.forEach((vid) => {
       // Re-trigger play safely
-      vid.play().catch(err => console.log('Autoplay prevented:', err));
+      (vid as HTMLVideoElement).play().catch((err: any) => console.log('Autoplay prevented:', err));
     });
   }, [pathname]);
 
@@ -53,53 +90,117 @@ export default function Home() {
       {/* Inject the logic component without wrapping */}
       <HomeClientLogic />
 
-      <div id="loader-screen" className="loader-screen">
-        <video className="loader-video" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/PencilBomb_GreenPulse_Loop_Landscape_TrueWhite_4K.mp4`} preload="auto"
-            autoPlay loop muted playsInline disablePictureInPicture></video>
-    </div>
+    <section id="hero-bubble-section" className="hero-bubble-section collapsed">
 
-
-
-    {/*  ═══════════════════════════════════════
-         CANVAS SCROLL SECTION
-         ═══════════════════════════════════════  */}
-    <section id="video-section" className="video-section">
-
-        {/*  Image sequence canvas  */}
-        <canvas id="hero-canvas"></canvas>
-
-        {/*  Wind overlay canvas  */}
-        <canvas id="wind-canvas"></canvas>
-
-        {/*  Progress rail (right) — dots are clickable  */}
-        <div id="progress-rail"></div>
-
-        {/*  Green pulse dots (left — shown during loop/pause)  */}
-        <div id="dwell-indicator">
-            <div className="dwell-dot"></div>
-            <div className="dwell-dot"></div>
-            <div className="dwell-dot"></div>
+      <div className="hero-bubble-container">
+        <div id="hero-headline" className="hero-headline headline-hidden">
+          <h1 className="hero-headline-text">
+            <span className="line-1">We build creative systems &amp; solutions</span>
+            <span className="line-2">for brands with a right to win.</span>
+          </h1>
+          <div className="hero-scroll-cue">
+            <span className="hero-cue-text">SEE THE WORK</span>
+            <div className="hero-cue-line"></div>
+          </div>
         </div>
 
-        {/*  Scroll progress bar (bottom)  */}
-        <div id="continue-wrap">
-            <div id="continue-inner">
-                <span id="continue-label">Scroll to continue</span>
-                <div id="continue-track">
-                    <div id="continue-fill"></div>
-                </div>
-                <span id="continue-arrow">↓</span>
-            </div>
-        </div>
+        {/* Bubble 1: Largest - Lady with headphones (Appreciate) */}
+        <Link href="/appreciate" className="project-bubble bubble-appreciate animate-float-1" data-project="appreciate">
+          <div className="bubble-video-wrap">
+            <video 
+              className="bubble-video" 
+              src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Appreciate.MP4`}
+              preload="metadata" loop muted playsInline autoPlay
+            ></video>
+          </div>
+          <div className="bubble-info">
+            <span className="bubble-title">APPRECIATE</span>
+            <span className="bubble-desc">How a fintech compounds interest</span>
+          </div>
+          <div className="bubble-outer-info">
+            <span className="bubble-outer-headline">How a fintech <br /> compounds interest.</span>
+            <span className="bubble-outer-sub">0 &rarr; 124K followers in 18 months.</span>
+          </div>
+        </Link>
 
-        {/*  Tracking elements required for animation script (Hidden)  */}
-        <div id="chapter-label" style={{ display: 'none' }}></div>
-        <div id="transition-label" style={{ display: 'none' }}></div>
-        <div id="progress-bar-wrap" style={{ display: 'none' }}>
-            <div id="progress-bar-fill"></div>
-        </div>
+        {/* Bubble 2: Medium-small - Mushroom (Contraband) */}
+        <Link href="/contraband" className="project-bubble bubble-contraband animate-float-2" data-project="contraband">
+          <div className="bubble-video-wrap">
+            <video 
+              className="bubble-video" 
+              src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Contraband.MP4`}
+              preload="metadata" loop muted playsInline autoPlay
+            ></video>
+          </div>
+          <div className="bubble-info">
+            <span className="bubble-title">CONTRABAND</span>
+            <span className="bubble-desc">How a stain did what a celebrity couldn't</span>
+          </div>
+          <div className="bubble-outer-info">
+            <span className="bubble-outer-headline">How a stain did <br /> what a celebrity couldn't.</span>
+            <span className="bubble-outer-sub">88 million plus views in two weeks.</span>
+          </div>
+        </Link>
 
+        {/* Bubble 3: Medium - Glass Flower (Aava) */}
+        <Link href="/aava" className="project-bubble bubble-aava animate-float-3" data-project="aava">
+          <div className="bubble-video-wrap">
+            <video 
+              className="bubble-video" 
+              src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/AAva videos/Happy_Accident_Vertical_15 Sec_No Subs.mp4`}
+              preload="metadata" loop muted playsInline autoPlay
+            ></video>
+          </div>
+          <div className="bubble-info">
+            <span className="bubble-title">AAVA</span>
+            <span className="bubble-desc">OG water brand wins category</span>
+          </div>
+          <div className="bubble-outer-info">
+            <span className="bubble-outer-headline">How the OG water brand won <br /> a category flooded with imposters.</span>
+            <span className="bubble-outer-sub">Two words. Uncopyable by design.</span>
+          </div>
+        </Link>
+
+        {/* Bubble 4: Small - Abstract Explosion (Hamleys) */}
+        <Link href="/hamleys" className="project-bubble bubble-hamleys animate-float-4" data-project="hamleys">
+          <div className="bubble-video-wrap">
+            <video 
+              className="bubble-video" 
+              src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/hamleys.mp4`}
+              preload="metadata" loop muted playsInline autoPlay
+            ></video>
+          </div>
+          <div className="bubble-info">
+            <span className="bubble-title">HAMLEYS</span>
+            <span className="bubble-desc">Solving Valentine's for Gen Z</span>
+          </div>
+          <div className="bubble-outer-info">
+            <span className="bubble-outer-headline">How a 265-year-old toy store solved Valentine’s for Gen Z.</span>
+            <span className="bubble-outer-sub">5M+ organic views in one week. Recommissioned year two.</span>
+          </div>
+        </Link>
+
+        {/* Bubble 5: Tiny Decorative Sphere (General Link) */}
+        <Link href="/#work" className="project-bubble bubble-tiny animate-float-1" data-project="decorative">
+          <div className="bubble-video-wrap" style={{ background: 'linear-gradient(135deg, #0FC823, #B0CB1F)' }}>
+            {/* Renders a beautiful small colored pulse loop sphere */}
+            <div className="tiny-sphere-pulse"></div>
+          </div>
+        </Link>
+
+        {/* Central Machinga Logo Button (Placed last for CSS layout layer overlaying) */}
+        <button id="hero-logo-btn" className="hero-logo-btn logo-intro-hidden" aria-label="Explore Machinga Work">
+          <img 
+            src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`}
+            alt="Machinga logo" 
+            className="logo-icon-img"
+          />
+          <div className="logo-btn-ring"></div>
+        </button>
+
+      </div>
     </section>
+
 
 
     {/*  Work Section  */}
@@ -109,11 +210,13 @@ export default function Home() {
             <div className="fs-card-content">
                 <h2 className="fs-card-title">APPRECIATE</h2>
                 <p className="fs-card-sub">How a fintech compounds interest</p>
-                <p className="fs-card-text">0 &rarr; 124K followers in 18 months</p>
+                <p className="fs-card-text">0 &rarr; 124K followers in 18 months.</p>
                 <div className="fs-card-tags">
-                    <span className="fs-tag">Content Engine</span>
-                    <span className="fs-tag">Always - On</span>
-                    <span className="fs-tag">Fintech</span>
+                    <span className="fs-tag">Content Strategy</span>
+                    <span className="fs-tag">Engine Architecture</span>
+                    <span className="fs-tag">Multi-format Production</span>
+                    <span className="fs-tag">Creator Discovery</span>
+                    <span className="fs-tag">Ongoing Optimisation</span>
                 </div>
             </div>
             <div className="scroll-down-indicator">
@@ -133,8 +236,8 @@ export default function Home() {
                         fontFamily: 'inherit'
                     }}
                 >
-                    <span>Details</span>
-                    <span className="arrow">&darr;</span>
+                    <span style={{ fontSize: '0.85rem', fontWeight: 300, letterSpacing: '0.15em', textTransform: 'uppercase' }}>DETAIL</span>
+                    <span className="arrow" style={{ fontSize: '1.2rem', marginTop: '2px' }}>&darr;</span>
                 </button>
             </div>
         </div>
@@ -152,19 +255,19 @@ export default function Home() {
                     <div className="stats-grid">
                         <div className="stat-box">
                             <div className="stat-number">124K+</div>
-                            <div className="stat-label">Followers From Zero</div>
+                            <div className="stat-label">Instagram followers from 0</div>
                         </div>
                         <div className="stat-box">
-                            <div className="stat-number">68%</div>
-                            <div className="stat-label">Lower CPL</div>
+                            <div className="stat-number">400K+</div>
+                            <div className="stat-label">Total audience across platforms</div>
                         </div>
                         <div className="stat-box">
                             <div className="stat-number">1M+</div>
-                            <div className="stat-label">Views Twice Monthly</div>
+                            <div className="stat-label">Views consistently on viral bets</div>
                         </div>
                         <div className="stat-box">
-                            <div className="stat-number">1.5L+</div>
-                            <div className="stat-label">App Installs</div>
+                            <div className="stat-number">100M+</div>
+                            <div className="stat-label">Total views over 18 months</div>
                         </div>
                     </div>
                     <h4 className="details-section-title">Engagement Model</h4>
@@ -177,12 +280,12 @@ export default function Home() {
             <video className="fs-card-bg" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Contraband.MP4`} loop muted playsInline preload="none"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">CONTRABAND</h2>
-                <p className="fs-card-sub">How a stain launched a luxury fragrance to 88 million people</p>
-                <p className="fs-card-text">88M views &middot; 2 weeks &middot; No celebrity</p>
+                <p className="fs-card-sub">How a stain did what a celebrity couldn't.</p>
+                <p className="fs-card-text">88M+ views in 2 weeks.</p>
                 <div className="fs-card-tags">
-                    <span className="fs-tag">Campaign</span>
-                    <span className="fs-tag">Film Production</span>
-                    <span className="fs-tag">Luxury</span>
+                    <span className="fs-tag">Campaign Strategy</span>
+                    <span className="fs-tag">Scripts</span>
+                    <span className="fs-tag">End-to-End DVC Production</span>
                 </div>
             </div>
             <div className="scroll-down-indicator">
@@ -202,8 +305,8 @@ export default function Home() {
                         fontFamily: 'inherit'
                     }}
                 >
-                    <span>Details</span>
-                    <span className="arrow">&darr;</span>
+                    <span style={{ fontSize: '0.85rem', fontWeight: 300, letterSpacing: '0.15em', textTransform: 'uppercase' }}>DETAIL</span>
+                    <span className="arrow" style={{ fontSize: '1.2rem', marginTop: '2px' }}>&darr;</span>
                 </button>
             </div>
         </div>
@@ -212,38 +315,39 @@ export default function Home() {
             <div className="card-details-container">
                 <div className="details-left-side">
                     <h4 className="details-section-title">The Insight</h4>
-                    <p className="details-section-text">You can&apos;t show a smell through a screen. So don&apos;t show the evening show what it left behind. A stain is sillage made visible. Each ruined object is a fragrance note. The mess is the recipe.</p>
+                    <p className="details-section-text">You can't show a smell through a screen. The budget said no humans on camera either. Two constraints. One answer: don't show the evening at all. Show what it left behind. A stain is sillage made visible entirely in the viewer’s imagination. Each ruined object is a fragrance note. The mess is the recipe.</p>
                     <h4 className="details-section-title">The Work</h4>
-                    <p className="details-section-text">Two films. Let It Stain: stained white bedsheets, five stacked curiosity loops, product at 17 seconds. &quot;LET IT STAIN&quot; description, emotional territory, and philosophy in three words. The snackable cut: a luxury bottle dropped into a teapot. Five seconds. 26.4M views on its own.</p>
+                    <p className="details-section-text">Slow-moving, beautiful, and whimsical hero film carefully engineered for virality. Plus a snackable 5 seconder with the same instinct, but completely different velocity. Two films, one creative system, 88M+ views.</p>
                     <Link href="/contraband" className="details-btn">View Full Case Study</Link>
                 </div>
                 <div className="details-right-side">
                     <div className="stats-grid" style={{ gridTemplateColumns: '1fr 1fr' }}>
                         <div className="stat-box">
                             <div className="stat-number">88M+</div>
-                            <div className="stat-label">Combined views</div>
+                            <div className="stat-label">Total views</div>
                         </div>
                         <div className="stat-box">
-                            <div className="stat-number">1.1M</div>
+                            <div className="stat-number">1.1M+</div>
                             <div className="stat-label">Likes on hero film</div>
                         </div>
                     </div>
                     <h4 className="details-section-title">Engagement Model</h4>
-                    <p className="details-section-text">Campaign Concept, Script, Production</p>
+                    <p className="details-section-text">Campaign/Project — Campaign Strategy | Scripts | End-to-End DVC Production</p>
                 </div>
             </div>
         </div>
 
         <div className="fs-card">
-            <video className="fs-card-bg" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/aava.mp4`} loop muted playsInline preload="none"></video>
+            <video className="fs-card-bg" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/AAva videos/Happy_Accident_Vertical_15 Sec_No Subs.mp4`} loop muted playsInline preload="none"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">AAVA</h2>
-                <p className="fs-card-sub">How two words made a 20-year-old water brand uncopyable</p>
-                <p className="fs-card-text">6.5M views &middot; Born Alkaline</p>
+                <p className="fs-card-sub">How the OG water brand won a category flooded with imposters.</p>
+                <p className="fs-card-text">Two words. Uncopyable by design.</p>
                 <div className="fs-card-tags">
                     <span className="fs-tag">Brand Strategy</span>
-                    <span className="fs-tag">Campaign</span>
-                    <span className="fs-tag">FMGC</span>
+                    <span className="fs-tag">Positioning</span>
+                    <span className="fs-tag">Scripts</span>
+                    <span className="fs-tag">End-to-End DVC Production</span>
                 </div>
             </div>
             <div className="scroll-down-indicator">
@@ -263,8 +367,8 @@ export default function Home() {
                         fontFamily: 'inherit'
                     }}
                 >
-                    <span>Details</span>
-                    <span className="arrow">&darr;</span>
+                    <span style={{ fontSize: '0.85rem', fontWeight: 300, letterSpacing: '0.15em', textTransform: 'uppercase' }}>DETAIL</span>
+                    <span className="arrow" style={{ fontSize: '1.2rem', marginTop: '2px' }}>&darr;</span>
                 </button>
             </div>
         </div>
@@ -273,24 +377,24 @@ export default function Home() {
             <div className="card-details-container">
                 <div className="details-left-side">
                     <h4 className="details-section-title">The Insight</h4>
-                    <p className="details-section-text">Every brand claimed &quot;alkaline&quot; — including those stripping water with RO and re ionising it. The word was diluted into meaninglessness. Aava&apos;s water has been naturally alkaline for 20 years. The goal: a line that&apos;s not just true, but structurally uncopyable.</p>
+                    <p className="details-section-text">Every brand was claiming "alkaline," including those stripping water with RO and re-ionising it. The word had been diluted into meaninglessness. Aava's water has been naturally alkaline for 20 years. The goal: find a line that isn't just true, but that an imposter cannot safely steal.</p>
                     <h4 className="details-section-title">The Work</h4>
-                    <p className="details-section-text">Three films, three registers. An earnest brand launch with deliberate understatement. A deadpan anti-ad where every RTB lands as a negative that&apos;s actually a positive. A viral comedy where a fake brand called Generic enacts exactly what competitors do — nothing exaggerated. Reposted by Zepto and Instamart.</p>
+                    <p className="details-section-text">Three films, three registers. An earnest brand launch built on deliberate understatement. A deadpan anti-ad where every RTB lands as a negative that's actually a positive. A viral comedy where a fake brand called Generic enacts exactly what competitors do. Nothing exaggerated. Reposted by Zepto and Instamart.</p>
                     <Link href="/aava" className="details-btn">View Full Case Study</Link>
                 </div>
                 <div className="details-right-side">
                     <div className="stats-grid" style={{ gridTemplateColumns: '1fr 1fr' }}>
                         <div className="stat-box">
-                            <div className="stat-number">6.5M</div>
-                            <div className="stat-label">Views across films</div>
+                            <div className="stat-number">6.5M+</div>
+                            <div className="stat-label">Total Views</div>
                         </div>
                         <div className="stat-box">
-                            <div className="stat-number">0</div>
-                            <div className="stat-label">Competitors copied the line</div>
+                            <div className="stat-number">200K+</div>
+                            <div className="stat-label">Total Likes</div>
                         </div>
                     </div>
                     <h4 className="details-section-title">Engagement Model</h4>
-                    <p className="details-section-text">Brand Strategy, Positioning, Campaign Concept, Film Production</p>
+                    <p className="details-section-text">Creative Strategy | Campaign / Project — Brand Strategy | Positioning | Scripts | End-to-End DVC Production</p>
                 </div>
             </div>
         </div>
@@ -299,13 +403,13 @@ export default function Home() {
             <video className="fs-card-bg" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/hamleys.mp4`} loop muted playsInline preload="none"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">HAMLEYS</h2>
-                <p className="fs-card-sub">How a 250-year-old toy store helped Gen Z defuse a time bomb on Valentine's Day
-                </p>
-                <p className="fs-card-text">2.5M organic views</p>
+                <p className="fs-card-sub">How a 265-year-old toy store solved Valentine’s for Gen Z.</p>
+                <p className="fs-card-text">5M+ organic views in one week. Recommissioned year two.</p>
                 <div className="fs-card-tags">
                     <span className="fs-tag">Campaign Strategy</span>
-                    <span className="fs-tag">On-Ground Activation</span>
-                    <span className="fs-tag">Retail</span>
+                    <span className="fs-tag">On-ground Activation</span>
+                    <span className="fs-tag">Video Production</span>
+                    <span className="fs-tag">Social Media Content</span>
                 </div>
             </div>
             <div className="scroll-down-indicator">
@@ -325,8 +429,8 @@ export default function Home() {
                         fontFamily: 'inherit'
                     }}
                 >
-                    <span>Details</span>
-                    <span className="arrow">&darr;</span>
+                    <span style={{ fontSize: '0.85rem', fontWeight: 300, letterSpacing: '0.15em', textTransform: 'uppercase' }}>DETAIL</span>
+                    <span className="arrow" style={{ fontSize: '1.2rem', marginTop: '2px' }}>&darr;</span>
                 </button>
             </div>
         </div>
@@ -335,16 +439,16 @@ export default function Home() {
             <div className="card-details-container">
                 <div className="details-left-side">
                     <h4 className="details-section-title">The Insight</h4>
-                    <p className="details-section-text">Valentine&apos;s Day is an anxiety event for Gen Z — every gift makes a statement you didn&apos;t intend. The Plush Bear is the only gift where the receiver supplies the meaning. It lets you say everything and nothing. Skip the awkward.</p>
+                    <p className="details-section-text">Hamleys was seeing Valentine's week footfall from an audience it had never marketed to. Gen Z couples. The opportunity was obvious. What wasn't obvious was what to say to them. Valentine's Day for this generation isn't romantic. It's a pressure test of the relationship status.</p>
                     <h4 className="details-section-title">The Work</h4>
-                    <p className="details-section-text">Social content naming Gen Z relationship anxiety — deadpan, accurate, unfiltered. Visual identity: black, white, red while everyone else screamed pink. On-ground: a life-sized bear in mall atriums Feb 12–14, hugs with no labels required.</p>
+                    <p className="details-section-text">A campaign built entirely around naming the anxiety, not selling the product. Social content, a visual identity that went the opposite direction of every other Valentine's brand, and a life-sized bear in mall atriums that let people say something without having to say anything at all.</p>
                     <Link href="/hamleys" className="details-btn">View Full Case Study</Link>
                 </div>
                 <div className="details-right-side">
                     <div className="stats-grid" style={{ gridTemplateColumns: '1fr 1fr' }}>
                         <div className="stat-box">
                             <div className="stat-number">5M+</div>
-                            <div className="stat-label">Organic views in 1 week</div>
+                            <div className="stat-label">Organic views in one week</div>
                         </div>
                         <div className="stat-box">
                             <div className="stat-number">Year 2</div>
@@ -352,7 +456,7 @@ export default function Home() {
                         </div>
                     </div>
                     <h4 className="details-section-title">Engagement Model</h4>
-                    <p className="details-section-text">Campaign Strategy, Creative Ideation, Content Production, On-Ground Activation</p>
+                    <p className="details-section-text">Creative Strategy | Campaign/Project — Campaign Strategy | On-ground Activation | Video Production | Social Media Content</p>
                 </div>
             </div>
         </div>
@@ -392,6 +496,12 @@ export default function Home() {
 
     {/*  Pricing  */}
     <section className="pricing-section reveal-on-scroll" id="pricing">
+        <div className="container" style={{ marginBottom: '4rem', textAlign: 'center' }}>
+            <span className="statement-label" style={{ display: 'block', marginBottom: '1rem' }}>Pricing & Engagement</span>
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 40px)', fontWeight: 800, color: '#ffffff', lineHeight: 1.2, margin: 0, textTransform: 'uppercase', letterSpacing: '-0.5px' }}>
+                One size fits none.<br />Buy to scope. Nothing more. Nothing less.
+            </h2>
+        </div>
         <div className="container pricing-grid">
             <div className="pricing-card">
                 <h3>CONTENT<br />ENGINE</h3>
@@ -404,7 +514,7 @@ export default function Home() {
                     <li>Ongoing production</li>
                     <li>Performance optimisation</li>
                 </ul>
-                <Link href="/appreciate" className="pricing-case-link">LIKE APPRECIATE →</Link>
+                <Link href="/aava" className="pricing-case-link">LIKE AAVA →</Link>
                 <div className="price-box">
                     <span className="label">Starting at</span>
                     <span className="price">₹4L<span>/month</span></span>
@@ -421,7 +531,7 @@ export default function Home() {
                     <li>Scripts & briefs</li>
                     <li>Ongoing strategic counsel</li>
                 </ul>
-                <Link href="/aava" className="pricing-case-link">LIKE AAVA →</Link>
+                <Link href="/appreciate" className="pricing-case-link">LIKE APPRECIATE →</Link>
                 <div className="price-box">
                     <span className="label">Starting at</span>
                     <span className="price">₹1.5L<span>/month</span></span>
@@ -438,7 +548,7 @@ export default function Home() {
                     <li>Creative development</li>
                     <li>Full production</li>
                 </ul>
-                <Link href="/contraband" className="pricing-case-link">LIKE CONTRABAND →</Link>
+                <Link href="/hamleys" className="pricing-case-link">LIKE HAMLEYS →</Link>
                 <div className="price-box">
                     <span className="label">Starting at</span>
                     <span className="price">₹5L<span>/month</span></span>
@@ -474,46 +584,56 @@ export default function Home() {
                 {/* Carousel track — padding lets shadows breathe on all sides */}
                 <div className="testimonials-carousel" id="testimonialsCarousel">
 
-                    {/* Card 1 */}
+                    {/* Card 1 — Appreciate */}
                     <div className="testimonial-card">
+                        <blockquote className="testimonial-text">
+                            “Everyone was trying to teach people finance; Machinga showed us how to make them laugh first. We went from zero to 124K followers with a retention rate we didn't think was possible on social media. They didn't build a calendar; they built a content machine that runs itself.”
+                        </blockquote>
                         <div className="testimonial-author">
-                            <div className="testimonial-avatar">
-                                <img
-                                    src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/testimonialsimg/person1.jpg`}
-                                    alt="Esther Hills"
-                                    width={80}
-                                    height={80}
-                                />
-                            </div>
                             <div className="testimonial-meta">
-                                <span className="testimonial-name">Esther Hills</span>
-                                <span className="testimonial-role">Lead Intranet Technician</span>
+                                <span className="testimonial-name">Avidit Garg</span>
+                                <span className="testimonial-role">Co-founder & Head of Growth, Appreciate</span>
                             </div>
                         </div>
-                        <p className="testimonial-text">
-                            Omnis totam molestiae delectus nemo alias nesciunt harum et. Nobis dolorum excepturi quod vel. Sunt est qui ab non dolores repellat rem impedit dolores. Ut ea rerum cum eum. Alias dolores tempore illo accusantium est et voluptatem voluptas.
-                        </p>
                     </div>
 
-                    {/* Card 2 */}
+                    {/* Card 2 — Contraband */}
                     <div className="testimonial-card">
+                        <blockquote className="testimonial-text">
+                            “How do you convey fragrance through a smartphone screen? Machinga's answer was 'Let it Stain'—a campaign that did the visual unthinkable to white sheets and reached over 80 million people in two weeks. Zero actors, zero traditional copy. Just pure curiosity loops.”
+                        </blockquote>
                         <div className="testimonial-author">
-                            <div className="testimonial-avatar">
-                                <img
-                                    src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/testimonialsimg/person2.jpg`}
-                                    alt="Ethel Johnston"
-                                    width={80}
-                                    height={80}
-                                />
-                            </div>
                             <div className="testimonial-meta">
-                                <span className="testimonial-name">Ethel Johnston</span>
-                                <span className="testimonial-role">Human Directives Director</span>
+                                <span className="testimonial-name">Ananya Birla</span>
+                                <span className="testimonial-role">Founder, Contraband Fragrances</span>
                             </div>
                         </div>
-                        <p className="testimonial-text">
-                            Fuga et debitis numquam omnis sed explicabo rem. Temporibus aut earum harum sint enim quia sit. Odit blanditiis illum amet doloribus adipisci corrupti explicabo. Qui non omnis eum consequatur voluptas aut ut dolor aut.
-                        </p>
+                    </div>
+
+                    {/* Card 3 — Aava */}
+                    <div className="testimonial-card">
+                        <blockquote className="testimonial-text">
+                            “Competitors spent millions engineering temporary pH numbers to catch a trend. Machinga gave us two words: 'Born Alkaline.' It was a line so structurally true to our geography that no competitor could copy it without exposing their own chemical processes. Uncopyable brand positioning.”
+                        </blockquote>
+                        <div className="testimonial-author">
+                            <div className="testimonial-meta">
+                                <span className="testimonial-name">Behram Mehta</span>
+                                <span className="testimonial-role">Managing Director, Aava Mineral Water</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Card 4 — Hamleys */}
+                    <div className="testimonial-card">
+                        <blockquote className="testimonial-text">
+                            “Valentine's Day is an anxiety event for Gen Z. Instead of pushing romantic cliches, Machinga told our customers to 'Skip the Awkward' with plush bears. It turned our stores into viral locations and drove a massive spike in organic foot traffic. We recommissioned it the very next year.”
+                        </blockquote>
+                        <div className="testimonial-author">
+                            <div className="testimonial-meta">
+                                <span className="testimonial-name">Manu Sharma</span>
+                                <span className="testimonial-role">CEO, Hamleys India</span>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -596,7 +716,22 @@ export default function Home() {
 
     {/*  About  */}
     <section className="about-section reveal-on-scroll" id="about">
-        <div className="container" style={{ paddingTop: "80px" }}>
+        <div className="container" style={{ paddingTop: "120px" }}>
+            <div className="about-story" style={{ marginBottom: "6rem", maxWidth: "900px" }}>
+                <p style={{ fontSize: "clamp(1.1rem, 2vw, 1.4rem)", lineHeight: "1.7", color: "#555555", marginBottom: "1.5rem" }}>
+                    A farmer once held a meeting for the fruits in his garden. He needed one of them to handle something important.
+                </p>
+                <p style={{ fontSize: "clamp(1.1rem, 2vw, 1.4rem)", lineHeight: "1.7", color: "#555555", marginBottom: "1.5rem" }}>
+                    The mango brought a deck. The jackfruit brought a methodology with its own acronym. The dragon fruit, uninvited as always, brought three case studies and a mood board. The avocado brought a proprietary framework for measuring creative impact on a scale of one to ten.
+                </p>
+                <p style={{ fontSize: "clamp(1.1rem, 2vw, 1.4rem)", lineHeight: "1.7", color: "#555555", marginBottom: "1.5rem" }}>
+                    A tiny coconut-fruit rolled in. No slides. No acronyms. No framework. Just a twig it had bent into a toy.
+                </p>
+                <p style={{ fontSize: "clamp(1.2rem, 2.2vw, 1.5rem)", lineHeight: "1.7", color: "#1a1a1a", fontWeight: "700" }}>
+                    The farmer hadn't laughed that hard in three days of pitches.
+                </p>
+            </div>
+            
             <div className="about-header">
                 <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/coconut.png`} alt="Coconut" className="about-coconut-img" />
                 <h2 className="name-title">MACHINGA</h2>
@@ -604,12 +739,16 @@ export default function Home() {
             <div className="about-text-grid">
                 <div className="about-left-col">
                     <p className="pronunciation">/MUH - CHIN - GAH/</p>
-                    <p className="definition">A palm-sized coconut fruit used to make innovative handmade toys for kids of all
-                        ages. Crudely translated from Malayalam.</p>
+                    <p className="definition" style={{ fontSize: "1.05rem", lineHeight: "1.6", color: "#555555" }}>
+                        <sup style={{ color: "var(--green)", fontWeight: "bold", marginRight: "4px" }}>1</sup> 
+                        A palm-sized coconut fruit used to make innovative handmade toys for kids of all ages. Crudely translated from Malayalam.
+                    </p>
                 </div>
-                <div className="about-right-col">
-                    <p className="explanation">We liked the word. It's playful. It's crafted. It's distinctly Indian. It makes
-                        people ask. "What does that mean?" And then we get to tell them.</p>
+                <div className="about-right-col" style={{ display: "flex", alignItems: "flex-end" }}>
+                    <p className="explanation" style={{ fontSize: "1.05rem", lineHeight: "1.6", color: "#555555", margin: 0 }}>
+                        <sup style={{ color: "var(--green)", fontWeight: "bold", marginRight: "4px" }}>2</sup> 
+                        An independent creative company based in India. Small team. Short client list. We take a small number of clients at a time. If the timing is right, we tend to know within one conversation.
+                    </p>
                 </div>
             </div>
         </div>
@@ -622,7 +761,7 @@ export default function Home() {
             <div className="contact-card">
                 <div className="contact-info-side">
                     <h2 className="huge-text">LET'S MAKE<br />SOMETHING</h2>
-                    <p className="prompt-text">Got a challenge? A budget? A vague idea you want to explore? We're in.</p>
+                    <p className="prompt-text">Start the conversation. Tell us what you're after. Get a quick read on your brief.</p>
                     <a href="mailto:hello@studiomachinga.com" className="email-link">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0FC823" strokeWidth="2"
                             strokeLinecap="round" strokeLinejoin="round">
@@ -642,14 +781,11 @@ export default function Home() {
                             <div className="form-field">
                                 <input type="email" name="email" placeholder="Email" required />
                             </div>
-                            <div className="form-field">
-                                <input type="text" name="looking_for" placeholder="What are you looking for" required />
-                            </div>
                             <div className="form-field form-field--textarea">
-                                <textarea name="message" placeholder="Tell us more" rows={4} required></textarea>
+                                <textarea name="message" placeholder="Brief / Message" rows={4} required></textarea>
                             </div>
                             <button type="submit" className="btn-gradient" disabled={isSubmitting}>
-                                {isSubmitting ? 'Sending...' : 'Send It'}
+                                {isSubmitting ? 'Sending...' : 'Let’s talk.'}
                             </button>
                         </form>
                     ) : (

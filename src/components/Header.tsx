@@ -27,7 +27,7 @@ export default function Header() {
       </Link>
 
       <button
-        className={`menu-toggle ${isOpen ? "active" : ""}`}
+        className={`menu-toggle ${isOpen ? "open" : ""}`}
         aria-label="Toggle Menu"
         onClick={toggleMenu}
       >
@@ -36,10 +36,13 @@ export default function Header() {
         <span></span>
       </button>
 
-      <nav className={`desktop-nav ${isOpen ? "active" : ""}`}>
+      <nav 
+        className={`desktop-nav ${isOpen ? "open" : ""}`}
+        onMouseLeave={() => setIsOpen(false)}
+      >
         <Link href="/" onClick={() => setIsOpen(false)}>Home</Link>
         <Link href="/#work" onClick={() => setIsOpen(false)}>Work</Link>
-        <Link href="/#statement" onClick={() => setIsOpen(false)}>How we work</Link>
+        <Link href="/#statement" onClick={() => setIsOpen(false)}>How We Work</Link>
         <Link href="/#about" onClick={() => setIsOpen(false)}>About</Link>
         <Link href="/#contact" className="nav-contact" onClick={() => setIsOpen(false)}>Contact Us</Link>
       </nav>

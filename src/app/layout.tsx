@@ -4,10 +4,11 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FadeObserver from "@/components/FadeObserver";
+import LenisProvider from "@/components/LenisProvider";
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "800"],
+  weight: ["300", "400", "500", "600", "800", "900"],
   display: "swap",
   variable: "--font-inter",
 });
@@ -65,10 +66,12 @@ export default function RootLayout({
         <link rel="icon" type="image/png" href={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} />
       </head>
       <body>
-        <FadeObserver />
-        <Header />
-        {children}
-        <Footer />
+        <LenisProvider>
+          <FadeObserver />
+          <Header />
+          {children}
+          <Footer />
+        </LenisProvider>
       </body>
     </html>
   );
