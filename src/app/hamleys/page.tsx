@@ -42,8 +42,44 @@ export default function HamleysPage() {
         </div>
       </section>
 
+      {/*  Editorial Header  */}
+      <section className="cs-hero" id="challenge">
+        <div className="cs-container">
+            <h1 className="cs-title">No Awkwardness <br /><span className="green-text">Here.</span></h1>
+
+            <div className="cs-meta">
+                <div className="meta-item">
+                    <span className="meta-label">Brand</span>
+                    <span className="meta-value" style={{fontWeight: "800", fontSize: "18px"}}>Hamleys India</span>
+                </div>
+                <div className="meta-item">
+                    <span className="meta-label">Campaign</span>
+                    <span className="meta-value" style={{fontWeight: "800", fontSize: "18px"}}>#SkipTheAwkward</span>
+                </div>
+                <div className="meta-item">
+                    <span className="meta-label">Work</span>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "4px" }}>
+                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Campaign Strategy</span>
+                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Creative</span>
+                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>On-Ground Activation</span>
+                    </div>
+                </div>
+                <div className="meta-item">
+                    <span className="meta-label">Result</span>
+                    <span className="meta-value" style={{fontWeight: "800", fontSize: "18px"}}>5M+ organic views.<br />In one week.<br />Before Valentine's Day.</span>
+                </div>
+            </div>
+
+            <div className="cs-hero-image" style={{marginTop: "4rem", display: "flex", justifyContent: "center"}}>
+                <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
+                    <video src={`/assets/hamelys videos/Hamleys Vday Video 25  (1).mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
+                </div>
+            </div>
+        </div>
+      </section>
+
       {/*  01 The Signal  */}
-      <section className="cs-block-section" id="challenge">
+      <section className="cs-block-section">
         <div className="cs-container">
             <div className="cs-content-narrow">
                 <span className="cs-section-label">01 — The Signal</span>

@@ -43,8 +43,44 @@ export default function AppreciatePage() {
         </div>
       </section>
 
+      {/*  Editorial Header  */}
+      <section className="cs-hero" id="challenge">
+        <div className="cs-container">
+            <h1 className="cs-title">A Fintech With <br /><span className="green-text">Keeda.</span></h1>
+
+            <div className="cs-meta">
+                <div className="meta-item">
+                    <span className="meta-label">Brand</span>
+                    <span className="meta-value">Appreciate</span>
+                </div>
+                <div className="meta-item">
+                    <span className="meta-label">Work</span>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "4px" }}>
+                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Content Strategy</span>
+                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Engine Build</span>
+                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Ongoing Production</span>
+                    </div>
+                </div>
+                <div className="meta-item">
+                    <span className="meta-label">Platform</span>
+                    <span className="meta-value">Instagram-first, multi-platform</span>
+                </div>
+                <div className="meta-item">
+                    <span className="meta-label">Duration</span>
+                    <span className="meta-value">18 months+ Ongoing</span>
+                </div>
+            </div>
+
+            <div className="cs-hero-image" style={{ marginBottom: "4rem" }}>
+                <img src={`/assets/Appreciate case studies assets/Appreciate_hero.gif`}
+                    alt="A Fintech With Knack Hero Image"
+                    style={{width: "100%", borderRadius: "12px", maxWidth: "800px", display: "block", margin: "0 auto"}} />
+            </div>
+        </div>
+      </section>
+
       {/*  Challenge Section  */}
-      <section className="cs-block-section" id="challenge">
+      <section className="cs-block-section">
         <div className="cs-container">
             <div className="cs-content-narrow">
                 <span className="cs-section-label">01 — The Category Problem</span>

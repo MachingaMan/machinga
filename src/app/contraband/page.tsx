@@ -41,8 +41,42 @@ export default function ContrabandPage() {
         </div>
       </section>
 
+      {/*  Editorial Header  */}
+      <section className="cs-hero" id="challenge" style={{paddingTop: "180px"}}>
+        <div className="cs-container">
+            <h1 className="cs-title" style={{lineHeight: "1.1", marginBottom: "4rem"}}>Illicit, But <br />Not <span className="green-text">Explicit.</span></h1>
+
+            <div className="cs-meta" style={{marginBottom: "4rem"}}>
+                <div className="meta-item">
+                    <span className="meta-label">Brand</span>
+                    <span className="meta-value" style={{fontWeight: "600"}}>Contraband</span>
+                </div>
+                <div className="meta-item">
+                    <span className="meta-label">Work</span>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "4px" }}>
+                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Campaign Concept</span>
+                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Script</span>
+                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Production</span>
+                    </div>
+                </div>
+                <div className="meta-item">
+                    <span className="meta-label">Platform</span>
+                    <span className="meta-value" style={{fontWeight: "600"}}>Instagram</span>
+                </div>
+                <div className="meta-item">
+                    <span className="meta-label">Result</span>
+                    <span className="meta-value" style={{fontWeight: "600"}}>60M views in two weeks.<br />1.1M likes.</span>
+                </div>
+            </div>
+
+            <div className="cs-hero-image" style={{marginBottom: "6rem"}}>
+                <video src={`/assets/conntraband assets/contraband page video 1.mp4`} autoPlay loop muted playsInline style={{width: "100%", borderRadius: "20px", objectFit: "cover", display: "block", maxHeight: "600px"}}></video>
+            </div>
+        </div>
+      </section>
+
       {/*  Section 01  */}
-      <section className="cs-block-section" id="challenge">
+      <section className="cs-block-section">
         <div className="cs-container">
             <div className="cs-content-narrow">
                 <span className="cs-section-label">01 — The Brief</span>
