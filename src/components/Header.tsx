@@ -53,7 +53,14 @@ export default function Header() {
   }, [pathname, isCaseStudy]);
 
   return (
-    <header className={`site-header ${isTransparent ? "header-transparent" : ""}`}>
+    <header 
+      className={`site-header ${isTransparent ? "header-transparent" : ""}`}
+      style={isTransparent ? {
+        background: 'transparent',
+        backdropFilter: 'none',
+        WebkitBackdropFilter: 'none'
+      } : undefined}
+    >
       <Link href="/" className="logo" onClick={(e) => {
         if (typeof window !== 'undefined' && window.location.pathname === '/') {
           e.preventDefault();
