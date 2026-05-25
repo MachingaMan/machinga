@@ -11,8 +11,37 @@ export const metadata = {
 export default function AavaPage() {
   return (
     <main className="cs-page">
-      {/*  Hero Section  */}
-    <section className="cs-hero">
+      <section className="cs-fs-hero">
+        <video 
+          className="cs-fs-hero-bg" 
+          src={`/assets/AAva videos/Happy_Accident_Vertical_15 Sec_No Subs.mp4`}
+          autoPlay loop muted playsInline
+        ></video>
+        <div className="cs-fs-hero-content">
+          <h1 className="cs-fs-hero-title">AAVA</h1>
+          <p className="cs-fs-hero-sub">OG water brand wins category</p>
+          <p className="cs-fs-hero-text">Two words. Uncopyable by design.</p>
+          <div className="cs-fs-hero-tags">
+            <span className="cs-fs-tag">Brand Positioning</span>
+            <span className="cs-fs-tag">Campaign Strategy</span>
+            <span className="cs-fs-tag">Film Production</span>
+          </div>
+        </div>
+
+        <Link href="/?expanded=true" className="cs-fs-back-btn" style={{ textDecoration: 'none' }} aria-label="Back to Work">
+          ←
+        </Link>
+
+        <div className="cs-fs-scroll-indicator">
+          <a href="#challenge" className="cs-fs-scroll-btn" style={{ textDecoration: 'none' }}>
+            <span>DETAIL</span>
+            <div className="cs-cue-line"></div>
+          </a>
+        </div>
+      </section>
+
+      {/*  Editorial Header  */}
+    <section className="cs-hero" id="challenge">
         <div className="cs-container">
             <h1 className="cs-title" style={{ lineHeight: "1.1", marginBottom: "4rem", display: 'block' }}>
                 <span className="sweep-reveal-text">Alkaline,</span> <br />

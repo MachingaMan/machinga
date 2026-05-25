@@ -12,7 +12,7 @@ export default function Header() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   useEffect(() => {
-    const isCaseStudy = pathname === '/appreciate' || pathname === '/hamleys' || pathname === '/contraband';
+    const isCaseStudy = pathname === '/appreciate' || pathname === '/hamleys' || pathname === '/contraband' || pathname === '/aava';
     
     if (isCaseStudy) {
       setIsHidden(true);

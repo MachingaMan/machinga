@@ -65,10 +65,31 @@ export default function FadeObserver() {
     };
     setupSweepObserver();
 
+    let videoTimeout: NodeJS.Timeout;
+    const syncVideoPlayhead = () => {
+        try {
+            const savedTime = sessionStorage.getItem('transitionVideoTime');
+            if (!savedTime) return;
+
+            const video = document.querySelector('.cs-fs-hero-bg') as HTMLVideoElement;
+            if (!video) {
+                // Poll until the video element is mounted in the DOM
+                videoTimeout = setTimeout(syncVideoPlayhead, 50);
+                return;
+            }
+            video.currentTime = parseFloat(savedTime);
+            sessionStorage.removeItem('transitionVideoTime');
+        } catch (err) {
+            console.error("Failed to sync video playhead:", err);
+        }
+    };
+    syncVideoPlayhead();
+
     return () => {
         fadeObserver.disconnect();
         sweepObserver.disconnect();
         clearTimeout(sweepTimeout);
+        clearTimeout(videoTimeout);
     };
   }, [pathname]);
 

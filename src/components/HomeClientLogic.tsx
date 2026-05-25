@@ -348,6 +348,11 @@ export default function HomeClientLogic() {
         const rect = link.getBoundingClientRect();
         const videoEl = link.querySelector('video') as HTMLVideoElement;
         const videoSrc = videoEl ? videoEl.getAttribute('src') : null;
+        const playheadTime = videoEl ? videoEl.currentTime : 0;
+        
+        try {
+          sessionStorage.setItem('transitionVideoTime', playheadTime.toString());
+        } catch (err) {}
         
         // Calculate center and radius of the clicked bubble relative to the viewport
         const centerX = rect.left + rect.width / 2;
@@ -373,6 +378,7 @@ export default function HomeClientLogic() {
           video.style.width = '100%';
           video.style.height = '100%';
           video.style.objectFit = 'cover';
+          video.currentTime = playheadTime; // Sync playhead!
           overlay.appendChild(video);
         }
         
