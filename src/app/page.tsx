@@ -12,6 +12,9 @@ export default function Home() {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const lenis = useLenis();
+  
+  // Set to true to show the testimonials section on the website
+  const showTestimonials = false;
 
   // Scroll to open details dropdown
   useEffect(() => {
@@ -616,96 +619,98 @@ export default function Home() {
     </section>
 
     {/*  Testimonials  */}
-    <section className="testimonials-section reveal-on-scroll" id="testimonials">
-        <div className="container">
+    {showTestimonials && (
+        <section className="testimonials-section reveal-on-scroll" id="testimonials">
+            <div className="container">
 
-            {/* Quote image — 205×180 from assets */}
-            <img
-                src={`/assets/testimonialsimg/Qotes.png`}
-                alt=""
-                width={205}
-                height={180}
-                className="testimonials-quote-img"
-                aria-hidden="true"
-            />
+                {/* Quote image — 205×180 from assets */}
+                <img
+                    src={`/assets/testimonialsimg/Qotes.png`}
+                    alt=""
+                    width={205}
+                    height={180}
+                    className="testimonials-quote-img"
+                    aria-hidden="true"
+                />
 
-            {/* Carousel wrapper — relative so arrows can be absolutely placed on sides */}
-            <div className="testimonials-carousel-wrapper">
+                {/* Carousel wrapper — relative so arrows can be absolutely placed on sides */}
+                <div className="testimonials-carousel-wrapper">
 
-                {/* LEFT arrow */}
-                <button className="t-arrow t-arrow--prev" id="tPrev" aria-label="Previous testimonial">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="15 18 9 12 15 6"/>
-                    </svg>
-                </button>
+                    {/* LEFT arrow */}
+                    <button className="t-arrow t-arrow--prev" id="tPrev" aria-label="Previous testimonial">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="15 18 9 12 15 6"/>
+                        </svg>
+                    </button>
 
-                {/* Carousel track — padding lets shadows breathe on all sides */}
-                <div className="testimonials-carousel" id="testimonialsCarousel">
+                    {/* Carousel track — padding lets shadows breathe on all sides */}
+                    <div className="testimonials-carousel" id="testimonialsCarousel">
 
-                    {/* Card 1 — Appreciate */}
-                    <div className="testimonial-card">
-                        <blockquote className="testimonial-text">
-                            “Everyone was trying to teach people finance; Machinga showed us how to make them laugh first. We went from zero to 124K followers with a retention rate we didn't think was possible on social media. They didn't build a calendar; they built a content machine that runs itself.”
-                        </blockquote>
-                        <div className="testimonial-author">
-                            <div className="testimonial-meta">
-                                <span className="testimonial-name">A. G.</span>
-                                <span className="testimonial-role">Co-founder & Head of Growth, FinTech Startup</span>
+                        {/* Card 1 — Appreciate */}
+                        <div className="testimonial-card">
+                            <blockquote className="testimonial-text">
+                                “Everyone was trying to teach people finance; Machinga showed us how to make them laugh first. We went from zero to 124K followers with a retention rate we didn't think was possible on social media. They didn't build a calendar; they built a content machine that runs itself.”
+                            </blockquote>
+                            <div className="testimonial-author">
+                                <div className="testimonial-meta">
+                                    <span className="testimonial-name">A. G.</span>
+                                    <span className="testimonial-role">Co-founder & Head of Growth, FinTech Startup</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    {/* Card 2 — Contraband */}
-                    <div className="testimonial-card">
-                        <blockquote className="testimonial-text">
-                            “How do you convey fragrance through a smartphone screen? Machinga's answer was 'Let it Stain'—a campaign that did the visual unthinkable to white sheets and reached over 80 million people in two weeks. Zero actors, zero traditional copy. Just pure curiosity loops.”
-                        </blockquote>
-                        <div className="testimonial-author">
-                            <div className="testimonial-meta">
-                                <span className="testimonial-name">A. B.</span>
-                                <span className="testimonial-role">Founder, Luxury Fragrance Brand</span>
+                        {/* Card 2 — Contraband */}
+                        <div className="testimonial-card">
+                            <blockquote className="testimonial-text">
+                                “How do you convey fragrance through a smartphone screen? Machinga's answer was 'Let it Stain'—a campaign that did the visual unthinkable to white sheets and reached over 80 million people in two weeks. Zero actors, zero traditional copy. Just pure curiosity loops.”
+                            </blockquote>
+                            <div className="testimonial-author">
+                                <div className="testimonial-meta">
+                                    <span className="testimonial-name">A. B.</span>
+                                    <span className="testimonial-role">Founder, Luxury Fragrance Brand</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    {/* Card 3 — Aava */}
-                    <div className="testimonial-card">
-                        <blockquote className="testimonial-text">
-                            “Competitors spent millions engineering temporary pH numbers to catch a trend. Machinga gave us two words: 'Born Alkaline.' It was a line so structurally true to our geography that no competitor could copy it without exposing their own chemical processes. Uncopyable brand positioning.”
-                        </blockquote>
-                        <div className="testimonial-author">
-                            <div className="testimonial-meta">
-                                <span className="testimonial-name">B. M.</span>
-                                <span className="testimonial-role">Managing Director, Beverage Brand</span>
+                        {/* Card 3 — Aava */}
+                        <div className="testimonial-card">
+                            <blockquote className="testimonial-text">
+                                “Competitors spent millions engineering temporary pH numbers to catch a trend. Machinga gave us two words: 'Born Alkaline.' It was a line so structurally true to our geography that no competitor could copy it without exposing their own chemical processes. Uncopyable brand positioning.”
+                            </blockquote>
+                            <div className="testimonial-author">
+                                <div className="testimonial-meta">
+                                    <span className="testimonial-name">B. M.</span>
+                                    <span className="testimonial-role">Managing Director, Beverage Brand</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    {/* Card 4 — Hamleys */}
-                    <div className="testimonial-card">
-                        <blockquote className="testimonial-text">
-                            “Valentine's Day is an anxiety event for Gen Z. Instead of pushing romantic cliches, Machinga told our customers to 'Skip the Awkward' with plush bears. It turned our stores into viral locations and drove a massive spike in organic foot traffic. We recommissioned it the very next year.”
-                        </blockquote>
-                        <div className="testimonial-author">
-                            <div className="testimonial-meta">
-                                <span className="testimonial-name">M. S.</span>
-                                <span className="testimonial-role">CEO, Global Toy Retailer</span>
+                        {/* Card 4 — Hamleys */}
+                        <div className="testimonial-card">
+                            <blockquote className="testimonial-text">
+                                “Valentine's Day is an anxiety event for Gen Z. Instead of pushing romantic cliches, Machinga told our customers to 'Skip the Awkward' with plush bears. It turned our stores into viral locations and drove a massive spike in organic foot traffic. We recommissioned it the very next year.”
+                            </blockquote>
+                            <div className="testimonial-author">
+                                <div className="testimonial-meta">
+                                    <span className="testimonial-name">M. S.</span>
+                                    <span className="testimonial-role">CEO, Global Toy Retailer</span>
+                                </div>
                             </div>
                         </div>
+
                     </div>
+
+                    {/* RIGHT arrow */}
+                    <button className="t-arrow t-arrow--next" id="tNext" aria-label="Next testimonial">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="9 18 15 12 9 6"/>
+                        </svg>
+                    </button>
 
                 </div>
-
-                {/* RIGHT arrow */}
-                <button className="t-arrow t-arrow--next" id="tNext" aria-label="Next testimonial">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="9 18 15 12 9 6"/>
-                    </svg>
-                </button>
-
             </div>
-        </div>
-    </section>
+        </section>
+    )}
 
     {/*  About Machinga & Beliefs  */}
     <section className="about-section reveal-on-scroll" id="about">
