@@ -15,7 +15,7 @@ export default function HamleysPage() {
       <section className="cs-fs-hero">
         <video 
           className="cs-fs-hero-bg" 
-          src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/hamleys.mp4`}
+          src={`/assets/hamleys.mp4`}
           autoPlay loop muted playsInline
         ></video>
         <div className="cs-fs-hero-content">
@@ -56,7 +56,7 @@ export default function HamleysPage() {
 
             <div className="cs-image-center" style={{marginTop: "4rem", display: "flex", justifyContent: "center"}}>
                 <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                    <video src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/hamelys videos/Hamleys_meme_revised_cut.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
+                    <video src={`/assets/hamelys videos/Hamleys_meme_revised_cut.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
                 </div>
             </div>
 
@@ -76,7 +76,7 @@ export default function HamleysPage() {
 
             <div className="cs-image-center" style={{marginTop: "4rem", display: "flex", justifyContent: "center"}}>
                 <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                    <video src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/hamelys videos/30 seconder_first_cut.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
+                    <video src={`/assets/hamelys videos/30 seconder_first_cut.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
                 </div>
             </div>
 
@@ -126,7 +126,7 @@ export default function HamleysPage() {
             <div className="cs-split-grid reverse">
                 <div className="cs-split-image" style={{display: "flex", justifyContent: "center"}}>
                     <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                        <video src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/hamelys videos/Hamleys_1min_first_cut.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
+                        <video src={`/assets/hamelys videos/Hamleys_1min_first_cut.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
                     </div>
                 </div>
                 <div style={{paddingRight: "3rem"}}>

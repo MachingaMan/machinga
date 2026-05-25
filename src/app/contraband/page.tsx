@@ -15,7 +15,7 @@ export default function ContrabandPage() {
       <section className="cs-fs-hero">
         <video 
           className="cs-fs-hero-bg" 
-          src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Contraband.MP4`}
+          src={`/assets/Contraband.MP4`}
           autoPlay loop muted playsInline
         ></video>
         <div className="cs-fs-hero-content">
@@ -93,7 +93,7 @@ export default function ContrabandPage() {
             </div>
 
             <div className="cs-image-center" style={{marginTop: "4rem"}}>
-                <video src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/conntraband assets/contraband page video 1.mp4`} autoPlay loop muted playsInline style={{width: "100%", borderRadius: "20px", objectFit: "cover", display: "block", maxHeight: "600px"}}></video>
+                <video src={`/assets/conntraband assets/contraband page video 1.mp4`} autoPlay loop muted playsInline style={{width: "100%", borderRadius: "20px", objectFit: "cover", display: "block", maxHeight: "600px"}}></video>
             </div>
         </div>
     </section>
@@ -162,7 +162,7 @@ export default function ContrabandPage() {
                 {/*  Video 2  */}
                 <div>
                     <div className="phone-frame">
-                        <video src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/conntraband assets/contraband page video 2.mp4`} autoPlay loop muted playsInline></video>
+                        <video src={`/assets/conntraband assets/contraband page video 2.mp4`} autoPlay loop muted playsInline></video>
                     </div>
                     <p style={{fontSize: "0.85rem", lineHeight: "1.4", color: "#666", marginTop: "1.5rem"}}>Why is someone intentionally ruining a bed?</p>
                     <p style={{fontSize: "0.75rem", fontWeight: "700", color: "var(--green)", marginTop: "0.5rem", textTransform: "uppercase"}}>Opens immediately</p>
@@ -170,7 +170,7 @@ export default function ContrabandPage() {
                 {/*  Video 3  */}
                 <div>
                     <div className="phone-frame">
-                        <video src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/conntraband assets/contraband page video 3.mp4`} autoPlay loop muted playsInline></video>
+                        <video src={`/assets/conntraband assets/contraband page video 3.mp4`} autoPlay loop muted playsInline></video>
                     </div>
                     <p style={{fontSize: "0.85rem", lineHeight: "1.4", color: "#666", marginTop: "1.5rem"}}>What just happened here? Who is involved?</p>
                     <p style={{fontSize: "0.75rem", fontWeight: "700", color: "var(--green)", marginTop: "0.5rem", textTransform: "uppercase"}}>Opens within first few seconds</p>
@@ -178,7 +178,7 @@ export default function ContrabandPage() {
                 {/*  Video 4  */}
                 <div>
                     <div className="phone-frame">
-                        <video src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/conntraband assets/contraband page video 4.mp4`} autoPlay loop muted playsInline></video>
+                        <video src={`/assets/conntraband assets/contraband page video 4.mp4`} autoPlay loop muted playsInline></video>
                     </div>
                     <p style={{fontSize: "0.85rem", lineHeight: "1.4", color: "#666", marginTop: "1.5rem"}}>What do these objects have in common? When the composition becomes clearly deliberate.</p>
                     <p style={{fontSize: "0.75rem", fontWeight: "700", color: "var(--green)", marginTop: "0.5rem", textTransform: "uppercase"}}>Opens at 4 seconds</p>
@@ -186,7 +186,7 @@ export default function ContrabandPage() {
                 {/*  Video 5  */}
                 <div>
                     <div className="phone-frame">
-                        <video src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/conntraband assets/contraband page video 5.mp4`} autoPlay loop muted playsInline></video>
+                        <video src={`/assets/conntraband assets/contraband page video 5.mp4`} autoPlay loop muted playsInline></video>
                     </div>
                     <p style={{fontSize: "0.85rem", lineHeight: "1.4", color: "#666", marginTop: "1.5rem"}}>Whose lipstick is that? Whose phone number? Whatever this is, it didn't begin here.</p>
                     <p style={{fontSize: "0.75rem", fontWeight: "700", color: "var(--green)", marginTop: "0.5rem", textTransform: "uppercase"}}>Opens at 9 seconds</p>
@@ -194,7 +194,7 @@ export default function ContrabandPage() {
                 {/*  Video 6  */}
                 <div>
                     <div className="phone-frame">
-                        <video src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/conntraband assets/contraband page video 6.mp4`} autoPlay loop muted playsInline></video>
+                        <video src={`/assets/conntraband assets/contraband page video 6.mp4`} autoPlay loop muted playsInline></video>
                     </div>
                     <p style={{fontSize: "0.85rem", lineHeight: "1.4", color: "#666", marginTop: "1.5rem"}}>What is that object expanding, and why does it feel like it means something?</p>
                     <p style={{fontSize: "0.75rem", fontWeight: "700", color: "var(--green)", marginTop: "0.5rem", textTransform: "uppercase"}}>Opens at 11 seconds</p>
@@ -215,7 +215,7 @@ export default function ContrabandPage() {
             </div>
 
             <div className="cs-image-center" style={{marginTop: "0", marginBottom: "4rem"}}>
-                <video src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/conntraband assets/contraband page video 1.mp4`} autoPlay loop muted playsInline style={{width: "100%", borderRadius: "20px", objectFit: "cover", display: "block", maxHeight: "600px"}}></video>
+                <video src={`/assets/conntraband assets/contraband page video 1.mp4`} autoPlay loop muted playsInline style={{width: "100%", borderRadius: "20px", objectFit: "cover", display: "block", maxHeight: "600px"}}></video>
             </div>
 
             <div className="cs-content-narrow">
@@ -239,7 +239,7 @@ export default function ContrabandPage() {
                 </div>
                 <div className="cs-split-image" style={{display: "flex", justifyContent: "center"}}>
                     <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex"}}>
-                        <video src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/conntraband assets/contraband page video 7.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
+                        <video src={`/assets/conntraband assets/contraband page video 7.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
                     </div>
                 </div>
             </div>

@@ -63,7 +63,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${manrope.variable} ${inter.className}`}>
       <head>
-        <link rel="icon" type="image/png" href={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} />
+        <link rel="icon" type="image/png" href={`/assets/machinga_logos.png`} />
       </head>
       <body>
         <LenisProvider>

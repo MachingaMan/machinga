@@ -40,7 +40,7 @@ export default function AavaPage() {
             </div>
 
             <div className="cs-hero-image" style={{marginBottom: "6rem"}}>
-                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/AAva videos/hero section.png`} alt="Aava Hero Image"
+                <img src={`/assets/AAva videos/hero section.png`} alt="Aava Hero Image"
                     style={{width: "100%", borderRadius: "20px", display: "block", margin: "0 auto", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}} />
             </div>
         </div>
@@ -119,7 +119,7 @@ export default function AavaPage() {
 
             <div className="cs-image-center" style={{marginTop: "4rem", display: "flex", justifyContent: "center"}}>
                 <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                    <video src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/AAva videos/1777466446827621.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
+                    <video src={`/assets/AAva videos/1777466446827621.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
                 </div>
             </div>
         </div>
@@ -135,13 +135,13 @@ export default function AavaPage() {
 
             <div className="cs-three-screens" style={{marginBottom: "4rem"}}>
                 <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", margin: "0 auto", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                    <video src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/AAva videos/Happy_Accident_Portrait_For CC.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
+                    <video src={`/assets/AAva videos/Happy_Accident_Portrait_For CC.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
                 </div>
                 <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", margin: "0 auto", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                    <video src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/AAva videos/Sip test_Portrait_CC_SUBS (1).mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
+                    <video src={`/assets/AAva videos/Sip test_Portrait_CC_SUBS (1).mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
                 </div>
                 <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", margin: "0 auto", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                    <video src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/AAva videos/1777466243541432.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
+                    <video src={`/assets/AAva videos/1777466243541432.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
                 </div>
             </div>
 
@@ -175,7 +175,7 @@ export default function AavaPage() {
             <div className="cs-split-grid reverse">
                 <div className="cs-split-image" style={{display: "flex", justifyContent: "center"}}>
                     <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                        <video src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/AAva videos/Happy_Accident_Portrait_For CC.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
+                        <video src={`/assets/AAva videos/Happy_Accident_Portrait_For CC.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
                     </div>
                 </div>
                 <div style={{paddingRight: "3rem"}}>

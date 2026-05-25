@@ -109,7 +109,7 @@ export default function Home() {
           <div className="bubble-video-wrap">
             <video 
               className="bubble-video" 
-              src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Appreciate.MP4`}
+              src={`/assets/Appreciate.MP4`}
               preload="metadata" loop muted playsInline autoPlay
             ></video>
           </div>
@@ -128,7 +128,7 @@ export default function Home() {
           <div className="bubble-video-wrap">
             <video 
               className="bubble-video" 
-              src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Contraband.MP4`}
+              src={`/assets/Contraband.MP4`}
               preload="metadata" loop muted playsInline autoPlay
             ></video>
           </div>
@@ -147,7 +147,7 @@ export default function Home() {
           <div className="bubble-video-wrap">
             <video 
               className="bubble-video" 
-              src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/AAva videos/Happy_Accident_Vertical_15 Sec_No Subs.mp4`}
+              src={`/assets/AAva videos/Happy_Accident_Vertical_15 Sec_No Subs.mp4`}
               preload="metadata" loop muted playsInline autoPlay
             ></video>
           </div>
@@ -166,7 +166,7 @@ export default function Home() {
           <div className="bubble-video-wrap">
             <video 
               className="bubble-video" 
-              src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/hamleys.mp4`}
+              src={`/assets/hamleys.mp4`}
               preload="metadata" loop muted playsInline autoPlay
             ></video>
           </div>
@@ -230,14 +230,14 @@ export default function Home() {
             muted
             preload="auto"
           >
-            <source src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Machinga_Full_Sequence_v11_4K.mp4`} type="video/mp4" />
+            <source src={`/assets/Machinga_Full_Sequence_v11_4K.mp4`} type="video/mp4" />
           </video>
         </div>
 
         {/* Central Machinga Logo Button (Placed last for CSS layout layer overlaying) */}
         <button id="hero-logo-btn" className="hero-logo-btn logo-intro-hidden" aria-label="Explore Machinga Work">
           <img 
-            src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`}
+            src={`/assets/machinga_logos.png`}
             alt="Machinga logo" 
             className="logo-icon-img"
           />
@@ -252,7 +252,7 @@ export default function Home() {
     {/*  Work Section  */}
     <section className="fs-cards-section" id="work">
         <div className="fs-card">
-            <video className="fs-card-bg" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Appreciate.MP4`} loop muted playsInline preload="none"></video>
+            <video className="fs-card-bg" src={`/assets/Appreciate.MP4`} loop muted playsInline preload="none"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">APPRECIATE</h2>
                 <p className="fs-card-sub">How a fintech compounds interest</p>
@@ -323,7 +323,7 @@ export default function Home() {
         </div>
 
         <div className="fs-card">
-            <video className="fs-card-bg" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Contraband.MP4`} loop muted playsInline preload="none"></video>
+            <video className="fs-card-bg" src={`/assets/Contraband.MP4`} loop muted playsInline preload="none"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">CONTRABAND</h2>
                 <p className="fs-card-sub">How a stain did what a celebrity couldn't.</p>
@@ -384,7 +384,7 @@ export default function Home() {
         </div>
 
         <div className="fs-card">
-            <video className="fs-card-bg" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/AAva videos/Happy_Accident_Vertical_15 Sec_No Subs.mp4`} loop muted playsInline preload="none"></video>
+            <video className="fs-card-bg" src={`/assets/AAva videos/Happy_Accident_Vertical_15 Sec_No Subs.mp4`} loop muted playsInline preload="none"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">AAVA</h2>
                 <p className="fs-card-sub">How the OG water brand won a category flooded with imposters.</p>
@@ -446,7 +446,7 @@ export default function Home() {
         </div>
 
         <div className="fs-card">
-            <video className="fs-card-bg" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/hamleys.mp4`} loop muted playsInline preload="none"></video>
+            <video className="fs-card-bg" src={`/assets/hamleys.mp4`} loop muted playsInline preload="none"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">HAMLEYS</h2>
                 <p className="fs-card-sub">How a 265-year-old toy store solved Valentine’s for Gen Z.</p>
@@ -512,22 +512,22 @@ export default function Home() {
     <section className="marquee-section" id="home">
         <div className="marquee-content">
             <span>
-                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Content Strategy
-                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Creative Direction
-                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Video Production
-                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Social Media
-                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Campaign Development
-                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Brand Strategy
-                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> AI Filmmaking
+                <img src={`/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Content Strategy
+                <img src={`/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Creative Direction
+                <img src={`/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Video Production
+                <img src={`/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Social Media
+                <img src={`/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Campaign Development
+                <img src={`/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Brand Strategy
+                <img src={`/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> AI Filmmaking
             </span>
             <span>
-                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Content Strategy
-                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Creative Direction
-                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Video Production
-                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Social Media
-                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Campaign Development
-                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Brand Strategy
-                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> AI Filmmaking
+                <img src={`/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Content Strategy
+                <img src={`/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Creative Direction
+                <img src={`/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Video Production
+                <img src={`/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Social Media
+                <img src={`/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Campaign Development
+                <img src={`/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Brand Strategy
+                <img src={`/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> AI Filmmaking
             </span>
         </div>
     </section>
@@ -540,7 +540,7 @@ export default function Home() {
         <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden', backgroundColor: '#ffffff', position: 'relative' }}>
             <video 
                 id="how-we-work-page-video"
-                src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Machinga_Full_Sequence_v11_4K.mp4`}
+                src={`/assets/Machinga_Full_Sequence_v11_4K.mp4`}
                 loop 
                 muted 
                 playsInline
@@ -621,7 +621,7 @@ export default function Home() {
 
             {/* Quote image — 205×180 from assets */}
             <img
-                src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/testimonialsimg/Qotes.png`}
+                src={`/assets/testimonialsimg/Qotes.png`}
                 alt=""
                 width={205}
                 height={180}
@@ -764,7 +764,7 @@ export default function Home() {
             </div>
             
             <div className="about-coconut-wrapper" style={{ position: "relative", height: "112px", marginBottom: "1rem" }}>
-                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/coconut.png`} alt="Coconut" className="about-coconut-img" style={{ top: 0 }} />
+                <img src={`/assets/coconut.png`} alt="Coconut" className="about-coconut-img" style={{ top: 0 }} />
             </div>
             
             <div className="about-text-grid" style={{ marginBottom: "8rem" }}>
