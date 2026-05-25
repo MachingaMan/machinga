@@ -649,7 +649,7 @@ export default function Home() {
                         </blockquote>
                         <div className="testimonial-author">
                             <div className="testimonial-meta">
-                                <span className="testimonial-name">Avidit Garg</span>
+                                <span className="testimonial-name">A. G.</span>
                                 <span className="testimonial-role">Co-founder & Head of Growth, Appreciate</span>
                             </div>
                         </div>
@@ -662,7 +662,7 @@ export default function Home() {
                         </blockquote>
                         <div className="testimonial-author">
                             <div className="testimonial-meta">
-                                <span className="testimonial-name">Ananya Birla</span>
+                                <span className="testimonial-name">A. B.</span>
                                 <span className="testimonial-role">Founder, Contraband Fragrances</span>
                             </div>
                         </div>
@@ -675,7 +675,7 @@ export default function Home() {
                         </blockquote>
                         <div className="testimonial-author">
                             <div className="testimonial-meta">
-                                <span className="testimonial-name">Behram Mehta</span>
+                                <span className="testimonial-name">B. M.</span>
                                 <span className="testimonial-role">Managing Director, Aava Mineral Water</span>
                             </div>
                         </div>
@@ -688,7 +688,7 @@ export default function Home() {
                         </blockquote>
                         <div className="testimonial-author">
                             <div className="testimonial-meta">
-                                <span className="testimonial-name">Manu Sharma</span>
+                                <span className="testimonial-name">M. S.</span>
                                 <span className="testimonial-role">CEO, Hamleys India</span>
                             </div>
                         </div>

@@ -21,11 +21,11 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Machinga | We exist to make the best work in the world",
+  title: "Machinga | We build creative systems & solutions",
   description: "Think clearly. Make decisively. Run smart. Machinga helps you move from scattered idea to running system. We are a creative digital agency building engaging content and campaigns.",
   keywords: ["Digital Agency", "Creative Agency", "Content Strategy", "Campaigns", "Machinga", "Marketing", "Brand Strategy"],
   openGraph: {
-    title: "Machinga | We exist to make the best work in the world",
+    title: "Machinga | We build creative systems & solutions",
     description: "Think clearly. Make decisively. Run smart. Machinga helps you move from scattered idea to running system.",
     url: "https://studiomachinga.com/",
     siteName: "Machinga",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Machinga | We exist to make the best work in the world",
+    title: "Machinga | We build creative systems & solutions",
     description: "Think clearly. Make decisively. Run smart. Machinga helps you move from scattered idea to running system.",
     images: ["https://studiomachinga.com/assets/machinga_logos.png"],
   },
