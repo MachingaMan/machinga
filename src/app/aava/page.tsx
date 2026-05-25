@@ -19,12 +19,12 @@ export default function AavaPage() {
         ></video>
         <div className="cs-fs-hero-content">
           <h1 className="cs-fs-hero-title">AAVA</h1>
-          <p className="cs-fs-hero-sub">How two words made a 20-year-old water brand uncopyable</p>
-          <p className="cs-fs-hero-text">6.5M views · Born Alkaline</p>
+          <p className="cs-fs-hero-sub">How the OG water brand won a category flooded with imposters.</p>
+          <p className="cs-fs-hero-text">Two words. Uncopyable by design.</p>
           <div className="cs-fs-hero-tags">
-            <span className="cs-fs-tag">Brand Strategy</span>
-            <span className="cs-fs-tag">Campaign</span>
-            <span className="cs-fs-tag">FMGC</span>
+            <span className="cs-fs-tag">Brand Positioning</span>
+            <span className="cs-fs-tag">Campaign Strategy</span>
+            <span className="cs-fs-tag">Film Production</span>
           </div>
         </div>
 
