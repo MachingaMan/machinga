@@ -26,7 +26,6 @@ export default function HomeClientLogic() {
       const logoBtn = document.getElementById('hero-logo-btn');
       const bubbles = document.querySelectorAll('.project-bubble');
       const siteHeader = document.querySelector('.site-header');
-      const decorativeBubble = document.querySelector('[data-project="decorative"]');
 
       // If key elements are not ready in the DOM, wait for the next frame
       if (!logoBtn || !heroSection) {
@@ -140,26 +139,6 @@ export default function HomeClientLogic() {
         }
       };
 
-      const handleDecorativeClick = (e: Event) => {
-        e.preventDefault();
-        // Collapse all project bubbles back into the logo bubble
-        heroSection.classList.add('collapsed');
-        // Activate video playing mode immediately
-        heroSection.classList.add('video-playing');
-        
-        // Hide the hero headline
-        const headlineEl = document.getElementById('hero-headline');
-        if (headlineEl) {
-          headlineEl.classList.add('headline-hidden');
-        }
-
-        // Play the video
-        const video = document.getElementById('how-we-work-video') as HTMLVideoElement;
-        if (video) {
-          video.currentTime = 0;
-          video.play().catch(err => console.log("Autoplay failed:", err));
-        }
-      };
 
       const handleLogoClick = (e: Event) => {
         e.preventDefault();
@@ -338,9 +317,7 @@ export default function HomeClientLogic() {
       logoBtn.addEventListener('mouseleave', handleLogoMouseLeave);
       logoBtn.addEventListener('click', handleLogoClick);
 
-      if (decorativeBubble) {
-        decorativeBubble.addEventListener('click', handleDecorativeClick);
-      }
+
 
       // Transition click handler for case studies
       const handleProjectBubbleClick = (e: MouseEvent) => {
@@ -427,7 +404,7 @@ export default function HomeClientLogic() {
         }, 750);
       };
 
-      const projectBubbles = document.querySelectorAll('.project-bubble:not([data-project="decorative"])');
+      const projectBubbles = document.querySelectorAll('.project-bubble:not([data-project="anchor"]):not([data-project="decorative"])');
       projectBubbles.forEach(bubble => {
         bubble.addEventListener('click', handleProjectBubbleClick as EventListener);
       });
@@ -670,9 +647,7 @@ export default function HomeClientLogic() {
         logoBtn.removeEventListener('mouseleave', handleLogoMouseLeave);
         logoBtn.removeEventListener('click', handleLogoClick);
 
-        if (decorativeBubble) {
-          decorativeBubble.removeEventListener('click', handleDecorativeClick);
-        }
+
 
         projectBubbles.forEach(bubble => {
           bubble.removeEventListener('click', handleProjectBubbleClick as EventListener);

@@ -495,8 +495,17 @@ body {
     transition-delay: 180ms; /* Explosion */
 }
 
-.hero-bubble-section:not(.collapsed) .bubble-tiny {
-    transition-delay: 220ms; /* Tiny Sphere */
+.hero-bubble-section:not(.collapsed) .bubble-how-we-work {
+    transition-delay: 220ms;
+}
+.hero-bubble-section:not(.collapsed) .bubble-about {
+    transition-delay: 240ms;
+}
+.hero-bubble-section:not(.collapsed) .bubble-beliefs {
+    transition-delay: 260ms;
+}
+.hero-bubble-section:not(.collapsed) .bubble-contact {
+    transition-delay: 280ms;
 }
 
 /* Cancel delays instantly when collapsing */
@@ -681,12 +690,30 @@ body {
 }
 
 .bubble-tiny {
-    width: 38px; /* Tiny decorative green-yellow sphere */
-    height: 38px;
+    width: 34px !important;
+    height: 34px !important;
+    box-shadow: 0 4px 15px rgba(15, 200, 35, 0.25);
+    background: transparent !important;
+}
+
+.bubble-how-we-work {
     left: calc(50% + 32px);
     bottom: calc(12% + 406px);
-    box-shadow: 0 4px 15px rgba(15, 200, 35, 0.25);
-    background: transparent; /* Remove blue gradient background so it doesn't bleed through the green-yellow video wrap */
+}
+
+.bubble-about {
+    left: calc(50% + 225px);
+    bottom: calc(12% + 280px);
+}
+
+.bubble-beliefs {
+    left: calc(50% + 195px);
+    bottom: calc(12% + 115px);
+}
+
+.bubble-contact {
+    left: calc(50% - 225px);
+    bottom: calc(12% + 390px);
 }
 
 /* Collapsed State Class - centered and nested behind the lower logo button */
@@ -772,10 +799,28 @@ body {
     }
     
     .bubble-tiny {
-        width: 32px;
-        height: 32px;
-        left: calc(50% + 27px);
-        bottom: calc(12% + 356px);
+        width: 30px !important;
+        height: 30px !important;
+    }
+    
+    .bubble-how-we-work {
+        left: calc(50% + 27px) !important;
+        bottom: calc(12% + 356px) !important;
+    }
+
+    .bubble-about {
+        left: calc(50% + 185px) !important;
+        bottom: calc(12% + 245px) !important;
+    }
+
+    .bubble-beliefs {
+        left: calc(50% + 145px) !important;
+        bottom: calc(12% + 115px) !important;
+    }
+
+    .bubble-contact {
+        left: calc(50% - 175px) !important;
+        bottom: calc(12% + 335px) !important;
     }
 }
 
@@ -2955,8 +3000,10 @@ html.lenis, html.lenis body {
     background: #ffffff;
 }
 
-/* Decorative bubble hover text custom layout */
-.bubble-tiny .bubble-outer-info {
+/* Satellite Tiny Bubbles Hover Text Layouts */
+.bubble-how-we-work .bubble-outer-info,
+.bubble-about .bubble-outer-info,
+.bubble-beliefs .bubble-outer-info {
     left: calc(100% + 16px);
     right: auto;
     text-align: left;
@@ -2964,9 +3011,24 @@ html.lenis, html.lenis body {
     width: auto;
 }
 
-.bubble-tiny:hover .bubble-outer-info {
+.bubble-how-we-work:hover .bubble-outer-info,
+.bubble-about:hover .bubble-outer-info,
+.bubble-beliefs:hover .bubble-outer-info {
     opacity: 1;
     left: calc(100% + 32px);
+}
+
+.bubble-contact .bubble-outer-info {
+    right: calc(100% + 16px);
+    left: auto;
+    text-align: right;
+    white-space: nowrap;
+    width: auto;
+}
+
+.bubble-contact:hover .bubble-outer-info {
+    opacity: 1;
+    right: calc(100% + 32px);
 }
 
 .how-we-work-label {
@@ -2995,6 +3057,21 @@ html.lenis, html.lenis body {
 }
 
 @media (max-width: 768px) {
+    .bubble-tiny {
+        width: 44px !important;
+        height: 44px !important;
+        aspect-ratio: 1 / 1 !important;
+        margin: 1.5rem auto !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        left: auto !important;
+        bottom: auto !important;
+        top: auto !important;
+        position: relative !important;
+        transform: none !important;
+        box-shadow: 0 4px 15px rgba(15, 200, 35, 0.2) !important;
+    }
+
     .bubble-tiny .bubble-outer-info {
         position: relative !important;
         left: auto !important;
@@ -3004,8 +3081,9 @@ html.lenis, html.lenis body {
         width: 100% !important;
         text-align: center !important;
         opacity: 1 !important;
-        margin-top: 1.25rem !important;
+        margin-top: 0.5rem !important;
         white-space: normal !important;
+        display: block !important;
     }
 
     /* Video playing overrides on mobile to lock viewport and center video cleanly above logo */

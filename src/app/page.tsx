@@ -180,14 +180,43 @@ export default function Home() {
           </div>
         </Link>
 
-        {/* Bubble 5: Tiny Decorative Sphere (General Link) */}
-        <Link href="/#work" className="project-bubble bubble-tiny animate-float-1" data-project="decorative">
+        {/* Bubble 5: How We Work Anchor */}
+        <Link href="#statement" className="project-bubble bubble-tiny bubble-how-we-work animate-float-1" data-project="anchor">
           <div className="bubble-video-wrap" style={{ background: 'linear-gradient(135deg, #0FC823, #B0CB1F)' }}>
-            {/* Renders a beautiful small colored pulse loop sphere */}
             <div className="tiny-sphere-pulse"></div>
           </div>
           <div className="bubble-outer-info">
             <span className="bubble-outer-headline how-we-work-label">HOW WE WORK</span>
+          </div>
+        </Link>
+
+        {/* Bubble 6: About Machinga Anchor */}
+        <Link href="#about" className="project-bubble bubble-tiny bubble-about animate-float-2" data-project="anchor">
+          <div className="bubble-video-wrap" style={{ background: 'linear-gradient(135deg, #0FC823, #B0CB1F)' }}>
+            <div className="tiny-sphere-pulse"></div>
+          </div>
+          <div className="bubble-outer-info">
+            <span className="bubble-outer-headline how-we-work-label">ABOUT MACHINGA</span>
+          </div>
+        </Link>
+
+        {/* Bubble 7: Things We Believe To Be True Anchor */}
+        <Link href="#beliefs" className="project-bubble bubble-tiny bubble-beliefs animate-float-3" data-project="anchor">
+          <div className="bubble-video-wrap" style={{ background: 'linear-gradient(135deg, #0FC823, #B0CB1F)' }}>
+            <div className="tiny-sphere-pulse"></div>
+          </div>
+          <div className="bubble-outer-info">
+            <span className="bubble-outer-headline how-we-work-label">THINGS WE BELIEVE</span>
+          </div>
+        </Link>
+
+        {/* Bubble 8: Contact Form Anchor */}
+        <Link href="#contact" className="project-bubble bubble-tiny bubble-contact animate-float-4" data-project="anchor">
+          <div className="bubble-video-wrap" style={{ background: 'linear-gradient(135deg, #0FC823, #B0CB1F)' }}>
+            <div className="tiny-sphere-pulse"></div>
+          </div>
+          <div className="bubble-outer-info">
+            <span className="bubble-outer-headline how-we-work-label">CONTACT US</span>
           </div>
         </Link>
 
@@ -756,7 +785,7 @@ export default function Home() {
             </div>
 
             {/* Subsection: Things We Believe to Be True */}
-            <div className="beliefs-subsection" style={{ marginTop: '8rem', paddingTop: '4rem', borderTop: '1px solid #eaeaea' }}>
+            <div id="beliefs" className="beliefs-subsection" style={{ marginTop: '8rem', paddingTop: '4rem', borderTop: '1px solid #eaeaea' }}>
                 <span className="statement-label" style={{ display: 'block', marginBottom: '1.5rem' }}>THINGS WE BELIEVE TO BE TRUE</span>
                 <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 64px)', fontWeight: 800, color: '#1a1a1a', lineHeight: 1.1, margin: '0 0 4rem 0', letterSpacing: '-1px' }}>
                     <span className="sweep-reveal-text">Things we believe to be true.</span>
