@@ -702,22 +702,22 @@ body {
 }
 
 .bubble-about {
-    width: 24px !important;
-    height: 24px !important;
+    width: 14px !important;
+    height: 14px !important;
     left: calc(50% - 240px);
     bottom: calc(12% + 180px);
 }
 
 .bubble-beliefs {
-    width: 30px !important;
-    height: 30px !important;
+    width: 18px !important;
+    height: 18px !important;
     left: calc(50% - 145px);
     bottom: calc(12% + 50px);
 }
 
 .bubble-contact {
-    width: 26px !important;
-    height: 26px !important;
+    width: 16px !important;
+    height: 16px !important;
     left: calc(50% + 115px);
     bottom: calc(12% + 60px);
 }
@@ -817,22 +817,22 @@ body {
     }
 
     .bubble-about {
-        width: 20px !important;
-        height: 20px !important;
+        width: 12px !important;
+        height: 12px !important;
         left: calc(50% - 200px) !important;
         bottom: calc(12% + 155px) !important;
     }
 
     .bubble-beliefs {
-        width: 26px !important;
-        height: 26px !important;
+        width: 15px !important;
+        height: 15px !important;
         left: calc(50% - 125px) !important;
         bottom: calc(12% + 40px) !important;
     }
 
     .bubble-contact {
-        width: 22px !important;
-        height: 22px !important;
+        width: 13px !important;
+        height: 13px !important;
         left: calc(50% + 95px) !important;
         bottom: calc(12% + 50px) !important;
     }
