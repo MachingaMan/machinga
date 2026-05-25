@@ -156,11 +156,11 @@ export default function Home() {
           </div>
           <div className="bubble-info">
             <span className="bubble-title">AAVA</span>
-            <span className="bubble-desc">OG water brand wins category</span>
+            <span className="bubble-desc">How two words made a 20-year-old water brand uncopyable</span>
           </div>
           <div className="bubble-outer-info">
-            <span className="bubble-outer-headline">How the OG water brand won <br /> a category flooded with imposters.</span>
-            <span className="bubble-outer-sub">Two words. Uncopyable by design.</span>
+            <span className="bubble-outer-headline">How two words made a <br /> 20-year-old water brand uncopyable.</span>
+            <span className="bubble-outer-sub">6.5M views · Born Alkaline</span>
           </div>
         </Link>
 
@@ -390,13 +390,12 @@ export default function Home() {
             <video className="fs-card-bg" src={`/assets/aava.mp4`} loop muted playsInline preload="none"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">AAVA</h2>
-                <p className="fs-card-sub">How the OG water brand won a category flooded with imposters.</p>
-                <p className="fs-card-text">Two words. Uncopyable by design.</p>
+                <p className="fs-card-sub">How two words made a 20-year-old water brand uncopyable</p>
+                <p className="fs-card-text">6.5M views · Born Alkaline</p>
                 <div className="fs-card-tags">
                     <span className="fs-tag">Brand Strategy</span>
-                    <span className="fs-tag">Positioning</span>
-                    <span className="fs-tag">Scripts</span>
-                    <span className="fs-tag">End-to-End DVC Production</span>
+                    <span className="fs-tag">Campaign</span>
+                    <span className="fs-tag">FMGC</span>
                 </div>
             </div>
             <div className="scroll-down-indicator">
