@@ -705,14 +705,14 @@ body {
     width: 14px !important;
     height: 14px !important;
     left: calc(50% + 28px);
-    bottom: calc(12% + 441px);
+    bottom: calc(12% + 452px);
 }
 
 .bubble-beliefs {
     width: 8px !important;
     height: 8px !important;
-    left: calc(50% + 82px);
-    bottom: calc(12% + 459px);
+    left: calc(50% + 81px);
+    bottom: calc(12% + 442px);
 }
 
 .bubble-contact {
@@ -820,14 +820,14 @@ body {
         width: 12px !important;
         height: 12px !important;
         left: calc(50% + 22px) !important;
-        bottom: calc(12% + 387px) !important;
+        bottom: calc(12% + 396px) !important;
     }
 
     .bubble-beliefs {
         width: 6px !important;
         height: 6px !important;
-        left: calc(50% + 83px) !important;
-        bottom: calc(12% + 400px) !important;
+        left: calc(50% + 73px) !important;
+        bottom: calc(12% + 388px) !important;
     }
 
     .bubble-contact {
