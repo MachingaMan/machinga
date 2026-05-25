@@ -48,7 +48,7 @@ export default function AppreciatePage() {
         <div className="cs-container">
             <h1 className="cs-title" style={{ display: 'block' }}>
                 <span className="sweep-reveal-text">A Fintech With</span> <br />
-                <span className="sweep-reveal-text green-text">Keeda.</span>
+                <span className="sweep-reveal-text green-text" style={{ transitionDelay: '0.8s' }}>Keeda.</span>
             </h1>
 
             <div className="cs-meta">

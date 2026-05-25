@@ -1520,6 +1520,8 @@ body {
 .sweep-reveal-text.green-text {
     background: linear-gradient(to right, var(--green) 50%, #e5e5e5 50%) !important;
     background-size: 200% 100% !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
 }
 

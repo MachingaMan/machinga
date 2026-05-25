@@ -46,7 +46,7 @@ export default function ContrabandPage() {
         <div className="cs-container">
             <h1 className="cs-title" style={{ lineHeight: "1.1", marginBottom: "4rem", display: 'block' }}>
                 <span className="sweep-reveal-text">Illicit, But</span> <br />
-                <span className="sweep-reveal-text">Not</span> <span className="sweep-reveal-text green-text">Explicit.</span>
+                <span className="sweep-reveal-text" style={{ transitionDelay: '0.8s' }}>Not</span> <span className="sweep-reveal-text green-text" style={{ transitionDelay: '1.0s' }}>Explicit.</span>
             </h1>
 
             <div className="cs-meta" style={{marginBottom: "4rem"}}>
