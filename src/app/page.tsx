@@ -650,7 +650,7 @@ export default function Home() {
                         <div className="testimonial-author">
                             <div className="testimonial-meta">
                                 <span className="testimonial-name">A. G.</span>
-                                <span className="testimonial-role">Co-founder & Head of Growth, Appreciate</span>
+                                <span className="testimonial-role">Co-founder & Head of Growth, FinTech Startup</span>
                             </div>
                         </div>
                     </div>
@@ -663,7 +663,7 @@ export default function Home() {
                         <div className="testimonial-author">
                             <div className="testimonial-meta">
                                 <span className="testimonial-name">A. B.</span>
-                                <span className="testimonial-role">Founder, Contraband Fragrances</span>
+                                <span className="testimonial-role">Founder, Luxury Fragrance Brand</span>
                             </div>
                         </div>
                     </div>
@@ -676,7 +676,7 @@ export default function Home() {
                         <div className="testimonial-author">
                             <div className="testimonial-meta">
                                 <span className="testimonial-name">B. M.</span>
-                                <span className="testimonial-role">Managing Director, Aava Mineral Water</span>
+                                <span className="testimonial-role">Managing Director, Beverage Brand</span>
                             </div>
                         </div>
                     </div>
@@ -689,7 +689,7 @@ export default function Home() {
                         <div className="testimonial-author">
                             <div className="testimonial-meta">
                                 <span className="testimonial-name">M. S.</span>
-                                <span className="testimonial-role">CEO, Hamleys India</span>
+                                <span className="testimonial-role">CEO, Global Toy Retailer</span>
                             </div>
                         </div>
                     </div>
