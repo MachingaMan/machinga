@@ -1982,6 +1982,7 @@ body {
     font-size: 0.9rem;
     color: #888;
     font-weight: 400;
+    white-space: nowrap;
 }
 
 .social-links {
