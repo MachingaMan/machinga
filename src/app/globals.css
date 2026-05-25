@@ -704,15 +704,15 @@ body {
 .bubble-about {
     width: 14px !important;
     height: 14px !important;
-    left: calc(50% + 82px);
-    bottom: calc(12% + 456px);
+    left: calc(50% + 28px);
+    bottom: calc(12% + 441px);
 }
 
 .bubble-beliefs {
     width: 8px !important;
     height: 8px !important;
-    left: calc(50% + 28px);
-    bottom: calc(12% + 444px);
+    left: calc(50% + 82px);
+    bottom: calc(12% + 459px);
 }
 
 .bubble-contact {
@@ -819,15 +819,15 @@ body {
     .bubble-about {
         width: 12px !important;
         height: 12px !important;
-        left: calc(50% + 68px) !important;
-        bottom: calc(12% + 397px) !important;
+        left: calc(50% + 22px) !important;
+        bottom: calc(12% + 387px) !important;
     }
 
     .bubble-beliefs {
         width: 6px !important;
         height: 6px !important;
-        left: calc(50% + 25px) !important;
-        bottom: calc(12% + 388px) !important;
+        left: calc(50% + 83px) !important;
+        bottom: calc(12% + 400px) !important;
     }
 
     .bubble-contact {
