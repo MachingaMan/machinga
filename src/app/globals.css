@@ -1518,19 +1518,13 @@ body {
 }
 
 .sweep-reveal-text.green-text {
-    color: #e5e5e5 !important;
-    background: linear-gradient(to right, var(--green) 50%, #e5e5e5 50%) !important;
-    background-size: 200% 100% !important;
-    background-position: 100% 0 !important;
-    -webkit-background-clip: text !important;
-    background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    transition: background-position 1.2s cubic-bezier(0.16, 1, 0.3, 1), color 1.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    background-image: linear-gradient(to right, var(--green) 50%, #e5e5e5 50%);
+    color: #e5e5e5;
+    transition: background-position 1.2s cubic-bezier(0.16, 1, 0.3, 1), color 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .sweep-reveal-text.green-text.revealed {
-    background-position: 0% 0 !important;
-    color: var(--green) !important;
+    color: var(--green);
 }
 
 .definition {
