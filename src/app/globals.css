@@ -704,22 +704,22 @@ body {
 .bubble-about {
     width: 14px !important;
     height: 14px !important;
-    left: calc(50% + 83px);
-    bottom: calc(12% + 438px);
+    left: calc(50% + 78px);
+    bottom: calc(12% + 450px);
 }
 
 .bubble-beliefs {
     width: 4px !important;
     height: 4px !important;
-    left: calc(50% + 74px);
-    bottom: calc(12% + 446px);
+    left: calc(50% + 104px);
+    bottom: calc(12% + 474px);
 }
 
 .bubble-contact {
     width: 16px !important;
     height: 16px !important;
-    left: calc(50% + 44px);
-    bottom: calc(12% + 462px);
+    left: calc(50% + 118px);
+    bottom: calc(12% + 490px);
 }
 
 /* Collapsed State Class - centered and nested behind the lower logo button */
@@ -819,22 +819,22 @@ body {
     .bubble-about {
         width: 12px !important;
         height: 12px !important;
-        left: calc(50% + 69px) !important;
-        bottom: calc(12% + 383px) !important;
+        left: calc(50% + 65px) !important;
+        bottom: calc(12% + 392px) !important;
     }
 
     .bubble-beliefs {
         width: 3px !important;
         height: 3px !important;
-        left: calc(50% + 62px) !important;
-        bottom: calc(12% + 389px) !important;
+        left: calc(50% + 86px) !important;
+        bottom: calc(12% + 411px) !important;
     }
 
     .bubble-contact {
         width: 13px !important;
         height: 13px !important;
-        left: calc(50% + 38px) !important;
-        bottom: calc(12% + 402px) !important;
+        left: calc(50% + 98px) !important;
+        bottom: calc(12% + 424px) !important;
     }
 }
 
@@ -3016,22 +3016,9 @@ html.lenis, html.lenis body {
 
 /* Satellite Tiny Bubbles Hover Text Layouts */
 .bubble-how-we-work .bubble-outer-info,
-.bubble-contact .bubble-outer-info {
-    right: calc(100% + 16px);
-    left: auto;
-    text-align: right;
-    white-space: nowrap;
-    width: auto;
-}
-
-.bubble-how-we-work:hover .bubble-outer-info,
-.bubble-contact:hover .bubble-outer-info {
-    opacity: 1;
-    right: calc(100% + 32px);
-}
-
 .bubble-about .bubble-outer-info,
-.bubble-beliefs .bubble-outer-info {
+.bubble-beliefs .bubble-outer-info,
+.bubble-contact .bubble-outer-info {
     left: calc(100% + 16px);
     right: auto;
     text-align: left;
@@ -3039,8 +3026,10 @@ html.lenis, html.lenis body {
     width: auto;
 }
 
+.bubble-how-we-work:hover .bubble-outer-info,
 .bubble-about:hover .bubble-outer-info,
-.bubble-beliefs:hover .bubble-outer-info {
+.bubble-beliefs:hover .bubble-outer-info,
+.bubble-contact:hover .bubble-outer-info {
     opacity: 1;
     left: calc(100% + 32px);
 }
