@@ -59,9 +59,13 @@ export default function HomeClientLogic() {
       // Reset any transition leftovers to ensure pages load fully visible
       document.body.style.overflow = '';
       const main = document.querySelector('main');
-      if (main) main.style.opacity = '1';
+      if (main) {
+        main.style.opacity = '';
+        main.style.transition = '';
+      }
       if (siteHeader) {
-        (siteHeader as HTMLElement).style.opacity = '1';
+        (siteHeader as HTMLElement).style.opacity = '';
+        (siteHeader as HTMLElement).style.transition = '';
         siteHeader.classList.remove('header-hidden');
       }
 
@@ -417,8 +421,14 @@ export default function HomeClientLogic() {
                 overlay.parentNode.removeChild(overlay);
               }
               document.body.style.overflow = '';
-              if (main) main.style.opacity = '1';
-              if (header) header.style.opacity = '1';
+              if (main) {
+                main.style.opacity = '';
+                main.style.transition = '';
+              }
+              if (header) {
+                header.style.opacity = '';
+                header.style.transition = '';
+              }
             }, 600);
           }, 400);
         }, 750);

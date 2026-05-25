@@ -18,10 +18,11 @@ export default function Header() {
   const isHidden = isCaseStudy && !isScrolledPast && !isHoveredAtTop && !isOpen;
 
   useEffect(() => {
-    // If not a case study page, we do not handle scroll or mouse movement in this component
+    // Always reset states when pathname changes to prevent transition/mounting flashes
+    setIsScrolledPast(false);
+    setIsHoveredAtTop(false);
+
     if (!isCaseStudy) {
-      setIsScrolledPast(false);
-      setIsHoveredAtTop(false);
       return;
     }
 
@@ -52,12 +53,15 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     
-    // Initial scroll check on mount
-    handleScroll();
+    // Delay the initial scroll check to allow scroll restoration/reset to finish
+    const timer = setTimeout(() => {
+      handleScroll();
+    }, 100);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);
+      clearTimeout(timer);
     };
   }, [pathname, isCaseStudy]);
 
