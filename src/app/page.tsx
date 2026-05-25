@@ -206,7 +206,7 @@ export default function Home() {
             <div className="tiny-sphere-pulse"></div>
           </div>
           <div className="bubble-outer-info">
-            <span className="bubble-outer-headline how-we-work-label">beliefs.</span>
+            <span className="bubble-outer-headline how-we-work-label">beliefs</span>
           </div>
         </Link>
 
