@@ -709,8 +709,8 @@ body {
 }
 
 .bubble-beliefs {
-    width: 18px !important;
-    height: 18px !important;
+    width: 4px !important;
+    height: 4px !important;
     left: calc(50% - 145px);
     bottom: calc(12% + 50px);
 }
@@ -824,8 +824,8 @@ body {
     }
 
     .bubble-beliefs {
-        width: 15px !important;
-        height: 15px !important;
+        width: 3px !important;
+        height: 3px !important;
         left: calc(50% - 125px) !important;
         bottom: calc(12% + 40px) !important;
     }
