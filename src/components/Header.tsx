@@ -11,7 +11,9 @@ export default function Header() {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const isCaseStudy = pathname === '/appreciate' || pathname === '/hamleys' || pathname === '/contraband' || pathname === '/aava';
+  // Normalize pathname to strip trailing slashes
+  const normalizedPath = pathname.replace(/\/$/, "");
+  const isCaseStudy = normalizedPath === '/appreciate' || normalizedPath === '/hamleys' || normalizedPath === '/contraband' || normalizedPath === '/aava';
 
   // On case study pages, the header background is transparent if we have not scrolled past the hero fold AND the menu is closed.
   const isTransparent = isCaseStudy && !isScrolledPast && !isOpen;
@@ -24,37 +26,29 @@ export default function Header() {
       return;
     }
 
-    let observer: IntersectionObserver | null = null;
-    let observerTimeout: NodeJS.Timeout;
-
-    const setupObserver = () => {
-      const hero = document.querySelector('.cs-fs-hero');
-      if (!hero) {
-        // Poll in case of rendering delay
-        observerTimeout = setTimeout(setupObserver, 50);
-        return;
+    const handleScroll = () => {
+      const cur = window.scrollY;
+      const threshold = window.innerHeight * 0.9;
+      // If we are at scroll 0 or very close to top, the header must be transparent
+      if (cur <= 10) {
+        setIsScrolledPast(false);
+      } else {
+        setIsScrolledPast(cur > threshold);
       }
-
-      observer = new IntersectionObserver(
-        ([entry]) => {
-          // If the hero section is intersecting, it means we are scrolled above the fold.
-          // So we should make the header transparent (isScrolledPast = false).
-          // Otherwise, we scrolled past the fold (isScrolledPast = true).
-          setIsScrolledPast(!entry.isIntersecting);
-        },
-        { threshold: 0.1 } // triggers when 10% or less of the hero is visible
-      );
-
-      observer.observe(hero);
     };
 
-    setupObserver();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    
+    // Staggered initial scroll checks to ensure we capture the scroll position after Next.js scroll restoration
+    const t1 = setTimeout(handleScroll, 50);
+    const t2 = setTimeout(handleScroll, 200);
+    const t3 = setTimeout(handleScroll, 500);
 
     return () => {
-      if (observer) {
-        observer.disconnect();
-      }
-      clearTimeout(observerTimeout);
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
     };
   }, [pathname, isCaseStudy]);
 
