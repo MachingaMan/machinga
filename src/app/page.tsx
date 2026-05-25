@@ -784,9 +784,8 @@ export default function Home() {
                 </div>
             </div>
 
-            {/* Subsection: Things We Believe to Be True */}
             <div id="beliefs" className="beliefs-subsection" style={{ marginTop: '8rem', paddingTop: '4rem', borderTop: '1px solid #eaeaea' }}>
-                <span className="statement-label" style={{ display: 'block', marginBottom: '1.5rem' }}>THINGS WE BELIEVE TO BE TRUE</span>
+                <span className="statement-label" style={{ display: 'block', marginBottom: '1.5rem' }}>BELIEFS</span>
                 <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 64px)', fontWeight: 800, color: '#1a1a1a', lineHeight: 1.1, margin: '0 0 4rem 0', letterSpacing: '-1px' }}>
                     <span className="sweep-reveal-text">Things we believe to be true.</span>
                 </h2>
@@ -859,10 +858,10 @@ export default function Home() {
             <div className="contact-card">
                 <div className="contact-info-side">
                     <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 64px)', fontWeight: 800, color: '#1a1a1a', lineHeight: 1.1, margin: '0 0 2rem 0', letterSpacing: '-1px' }}>
-                        <span className="sweep-reveal-text" style={{ display: 'block' }}>Let's make</span>
-                        <span className="sweep-reveal-text" style={{ display: 'block', transitionDelay: '0.2s' }}>something.</span>
+                        <span className="sweep-reveal-text" style={{ display: 'block' }}>Start the</span>
+                        <span className="sweep-reveal-text" style={{ display: 'block', transitionDelay: '0.2s' }}>conversation.</span>
                     </h2>
-                    <p className="prompt-text">Start the conversation. Tell us what you're after. Get a quick read on your brief.</p>
+                    <p className="prompt-text">Tell us what you're after. Get a quick read on your brief.</p>
                     <a href="mailto:hello@studiomachinga.com" className="email-link">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0FC823" strokeWidth="2"
                             strokeLinecap="round" strokeLinejoin="round">
