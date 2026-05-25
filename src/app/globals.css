@@ -718,8 +718,8 @@ body {
 .bubble-contact {
     width: 16px !important;
     height: 16px !important;
-    left: calc(50% + 88px);
-    bottom: calc(12% + 474px);
+    left: calc(50% + 105px);
+    bottom: calc(12% + 105px);
 }
 
 /* Collapsed State Class - centered and nested behind the lower logo button */
@@ -833,8 +833,8 @@ body {
     .bubble-contact {
         width: 13px !important;
         height: 13px !important;
-        left: calc(50% + 74px) !important;
-        bottom: calc(12% + 411px) !important;
+        left: calc(50% + 85px) !important;
+        bottom: calc(12% + 85px) !important;
     }
 }
 
