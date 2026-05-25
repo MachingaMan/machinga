@@ -52,14 +52,23 @@ export default function FadeObserver() {
         fadeObserver.observe(target);
     });
 
-    const sweepElements = document.querySelectorAll('.sweep-reveal-text');
-    sweepElements.forEach(el => {
-        sweepObserver.observe(el);
-    });
+    let sweepTimeout: NodeJS.Timeout;
+    const setupSweepObserver = () => {
+        const sweepElements = document.querySelectorAll('.sweep-reveal-text');
+        if (sweepElements.length === 0) {
+            sweepTimeout = setTimeout(setupSweepObserver, 100);
+            return;
+        }
+        sweepElements.forEach(el => {
+            sweepObserver.observe(el);
+        });
+    };
+    setupSweepObserver();
 
     return () => {
         fadeObserver.disconnect();
         sweepObserver.disconnect();
+        clearTimeout(sweepTimeout);
     };
   }, [pathname]);
 

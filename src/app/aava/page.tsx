@@ -16,7 +16,7 @@ export default function AavaPage() {
         <div className="cs-container">
             <h1 className="cs-title" style={{ lineHeight: "1.1", marginBottom: "4rem", display: 'block' }}>
                 <span className="sweep-reveal-text">Alkaline,</span> <br />
-                <span className="sweep-reveal-text">But</span> <span className="sweep-reveal-text sweep-green">True.</span>
+                <span className="sweep-reveal-text">But</span> <span className="sweep-reveal-text green-text">True.</span>
             </h1>
 
             <div className="cs-meta" style={{marginBottom: "4rem"}}>

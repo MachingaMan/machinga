@@ -1517,9 +1517,10 @@ body {
     background-position: 0% 0;
 }
 
-.sweep-reveal-text.sweep-green {
-    background: linear-gradient(to right, var(--green) 50%, #e5e5e5 50%);
-    background-size: 200% 100%;
+.sweep-reveal-text.green-text {
+    background: linear-gradient(to right, var(--green) 50%, #e5e5e5 50%) !important;
+    background-size: 200% 100% !important;
+    -webkit-text-fill-color: transparent !important;
 }
 
 .definition {

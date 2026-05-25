@@ -47,7 +47,7 @@ export default function HamleysPage() {
         <div className="cs-container">
             <h1 className="cs-title" style={{ display: 'block' }}>
                 <span className="sweep-reveal-text">No Awkwardness</span> <br />
-                <span className="sweep-reveal-text sweep-green">Here.</span>
+                <span className="sweep-reveal-text green-text">Here.</span>
             </h1>
 
             <div className="cs-meta">
