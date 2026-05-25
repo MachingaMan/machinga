@@ -150,7 +150,7 @@ export default function Home() {
           <div className="bubble-video-wrap">
             <video 
               className="bubble-video" 
-              src={`/assets/AAva videos/Happy_Accident_Vertical_15 Sec_No Subs.mp4`}
+              src={`/assets/aava.mp4`}
               preload="metadata" loop muted playsInline autoPlay
             ></video>
           </div>
@@ -387,7 +387,7 @@ export default function Home() {
         </div>
 
         <div className="fs-card">
-            <video className="fs-card-bg" src={`/assets/AAva videos/Happy_Accident_Vertical_15 Sec_No Subs.mp4`} loop muted playsInline preload="none"></video>
+            <video className="fs-card-bg" src={`/assets/aava.mp4`} loop muted playsInline preload="none"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">AAVA</h2>
                 <p className="fs-card-sub">How the OG water brand won a category flooded with imposters.</p>

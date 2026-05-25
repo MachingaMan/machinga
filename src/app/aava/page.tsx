@@ -14,7 +14,7 @@ export default function AavaPage() {
       <section className="cs-fs-hero">
         <video 
           className="cs-fs-hero-bg" 
-          src={`/assets/AAva videos/Happy_Accident_Vertical_15 Sec_No Subs.mp4`}
+          src={`/assets/aava.mp4`}
           autoPlay loop muted playsInline
         ></video>
         <div className="cs-fs-hero-content">
