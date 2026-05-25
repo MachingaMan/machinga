@@ -7,20 +7,18 @@ import { usePathname } from "next/navigation";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolledPast, setIsScrolledPast] = useState(false);
-  const [isHoveredAtTop, setIsHoveredAtTop] = useState(false);
   const pathname = usePathname();
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const isCaseStudy = pathname === '/appreciate' || pathname === '/hamleys' || pathname === '/contraband' || pathname === '/aava';
 
-  // The header should be hidden only on case study pages AND when scroll is not past threshold AND mouse is not hovered near the top AND menu is not open.
-  const isHidden = isCaseStudy && !isScrolledPast && !isHoveredAtTop && !isOpen;
+  // On case study pages, the header background is transparent if we have not scrolled past the hero fold AND the menu is closed.
+  const isTransparent = isCaseStudy && !isScrolledPast && !isOpen;
 
   useEffect(() => {
-    // Always reset states when pathname changes to prevent transition/mounting flashes
+    // Always reset states when pathname changes
     setIsScrolledPast(false);
-    setIsHoveredAtTop(false);
 
     if (!isCaseStudy) {
       return;
@@ -32,26 +30,7 @@ export default function Header() {
       setIsScrolledPast(cur > threshold);
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      const curScroll = window.scrollY;
-      const threshold = window.innerHeight * 0.9;
-      // If we are scrolled past the fold, the header is statically visible; no hover state needed
-      if (curScroll > threshold) {
-        return;
-      }
-
-      // Check if mouse cursor is within top 80 pixels (height of header is 80px)
-      if (e.clientY < 80) {
-        setIsHoveredAtTop(true);
-      } 
-      // Add a buffer: if mouse moves down past 120 pixels, hide header again
-      else if (e.clientY > 120) {
-        setIsHoveredAtTop(false);
-      }
-    };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     
     // Delay the initial scroll check to allow scroll restoration/reset to finish
     const timer = setTimeout(() => {
@@ -60,13 +39,12 @@ export default function Header() {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("mousemove", handleMouseMove);
       clearTimeout(timer);
     };
   }, [pathname, isCaseStudy]);
 
   return (
-    <header className={`site-header ${isHidden ? "header-hidden" : ""}`}>
+    <header className={`site-header ${isTransparent ? "header-transparent" : ""}`}>
       <Link href="/" className="logo" onClick={(e) => {
         if (typeof window !== 'undefined' && window.location.pathname === '/') {
           e.preventDefault();
