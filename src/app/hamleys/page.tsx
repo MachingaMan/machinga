@@ -12,43 +12,38 @@ export default function HamleysPage() {
   return (
     <main className="cs-page">
       {/*  Hero Section  */}
-    <section className="cs-hero">
-        <div className="cs-container">
-            <h1 className="cs-title">No Awkwardness <br /><span className="green-text">Here.</span></h1>
-
-            <div className="cs-meta">
-                <div className="meta-item">
-                    <span className="meta-label">Brand</span>
-                    <span className="meta-value" style={{fontWeight: "800", fontSize: "18px"}}>Hamleys India</span>
-                </div>
-                <div className="meta-item">
-                    <span className="meta-label">Campaign</span>
-                    <span className="meta-value" style={{fontWeight: "800", fontSize: "18px"}}>#SkipTheAwkward</span>
-                </div>
-                <div className="meta-item">
-                    <span className="meta-label">Work</span>
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "4px" }}>
-                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Campaign Strategy</span>
-                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Creative</span>
-                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>On-Ground Activation</span>
-                    </div>
-                </div>
-                <div className="meta-item">
-                    <span className="meta-label">Result</span>
-                    <span className="meta-value" style={{fontWeight: "800", fontSize: "18px"}}>5M+ organic views.<br />In one week.<br />Before Valentine's Day.</span>
-                </div>
-            </div>
-
-            <div className="cs-hero-image" style={{marginTop: "4rem", display: "flex", justifyContent: "center"}}>
-                <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                    <video src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/hamelys videos/Hamleys Vday Video 25  (1).mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
-                </div>
-            </div>
+      <section className="cs-fs-hero">
+        <video 
+          className="cs-fs-hero-bg" 
+          src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/hamleys.mp4`}
+          autoPlay loop muted playsInline
+        ></video>
+        <div className="cs-fs-hero-content">
+          <h1 className="cs-fs-hero-title">HAMLEYS</h1>
+          <p className="cs-fs-hero-sub">How a 265-year-old toy store solved Valentine’s for Gen Z.</p>
+          <p className="cs-fs-hero-text">5M+ organic views in one week. Recommissioned year two.</p>
+          <div className="cs-fs-hero-tags">
+            <span className="cs-fs-tag">Campaign Strategy</span>
+            <span className="cs-fs-tag">On-ground Activation</span>
+            <span className="cs-fs-tag">Video Production</span>
+            <span className="cs-fs-tag">Social Media Content</span>
+          </div>
         </div>
-    </section>
 
-    {/*  01 The Signal  */}
-    <section className="cs-block-section">
+        <Link href="/?expanded=true" className="cs-fs-back-btn" style={{ textDecoration: 'none' }} aria-label="Back to Work">
+          ←
+        </Link>
+
+        <div className="cs-fs-scroll-indicator">
+          <a href="#challenge" className="cs-fs-scroll-btn" style={{ textDecoration: 'none' }}>
+            <span>DETAIL</span>
+            <span className="arrow">↓</span>
+          </a>
+        </div>
+      </section>
+
+      {/*  01 The Signal  */}
+      <section className="cs-block-section" id="challenge">
         <div className="cs-container">
             <div className="cs-content-narrow">
                 <span className="cs-section-label">01 — The Signal</span>

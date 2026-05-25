@@ -76,9 +76,9 @@ export default function Home() {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Force all loop/background videos to play, excluding the scroll-locked hero video.
+    // Force all loop/background videos to play, excluding the scroll-locked hero video and how-we-work-video.
     // Next.js router cache sometimes suspends videos on navigation.
-    const videos = document.querySelectorAll('video:not(#hero-video)');
+    const videos = document.querySelectorAll('video:not(#hero-video):not(#how-we-work-video)');
     videos.forEach((vid) => {
       // Re-trigger play safely
       (vid as HTMLVideoElement).play().catch((err: any) => console.log('Autoplay prevented:', err));
@@ -186,7 +186,24 @@ export default function Home() {
             {/* Renders a beautiful small colored pulse loop sphere */}
             <div className="tiny-sphere-pulse"></div>
           </div>
+          <div className="bubble-outer-info">
+            <span className="bubble-outer-headline how-we-work-label">HOW WE WORK</span>
+          </div>
         </Link>
+
+        {/* Video Player for How We Work (plays Machinga_Full_Sequence_v11_4K.mp4) */}
+        <div id="how-we-work-video-container" className="how-we-work-video-container">
+          <video 
+            id="how-we-work-video"
+            className="how-we-work-video"
+            playsInline
+            loop
+            muted
+            preload="auto"
+          >
+            <source src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Machinga_Full_Sequence_v11_4K.mp4`} type="video/mp4" />
+          </video>
+        </div>
 
         {/* Central Machinga Logo Button (Placed last for CSS layout layer overlaying) */}
         <button id="hero-logo-btn" className="hero-logo-btn logo-intro-hidden" aria-label="Explore Machinga Work">
@@ -486,21 +503,33 @@ export default function Home() {
         </div>
     </section>
 
-    {/*  Statement  */}
-    <section className="statement-section reveal-on-scroll" id="statement">
-        <div className="container">
+    {/*  How We Work Title & Video Section  */}
+    <section className="statement-section reveal-on-scroll" id="statement" style={{ paddingBottom: '0', paddingTop: '80px' }}>
+        <div className="container" style={{ marginBottom: '2rem' }}>
             <span className="statement-label">HOW WE WORK</span>
-            <h2>EARN ATTENTION WITH COMPOUND INTEREST.</h2>
+        </div>
+        <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden', backgroundColor: '#ffffff', position: 'relative' }}>
+            <video 
+                id="how-we-work-page-video"
+                src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Machinga_Full_Sequence_v11_4K.mp4`}
+                loop 
+                muted 
+                playsInline
+                style={{ width: '100%', height: '100%', objectFit: 'contain', backgroundColor: '#ffffff' }}
+            ></video>
+            <canvas id="wind-canvas" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 2 }}></canvas>
         </div>
     </section>
 
-    {/*  Pricing  */}
-    <section className="pricing-section reveal-on-scroll" id="pricing">
-        <div className="container" style={{ marginBottom: '4rem', textAlign: 'center' }}>
-            <span className="statement-label" style={{ display: 'block', marginBottom: '1rem' }}>Pricing & Engagement</span>
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 40px)', fontWeight: 800, color: '#ffffff', lineHeight: 1.2, margin: 0, textTransform: 'uppercase', letterSpacing: '-0.5px' }}>
-                One size fits none.<br />Buy to scope. Nothing more. Nothing less.
+    {/*  Pricing & Engagement Section  */}
+    <section className="pricing-section reveal-on-scroll" id="pricing" style={{ paddingTop: '80px' }}>
+        <div className="container" style={{ marginBottom: '4rem' }}>
+            <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 64px)', fontWeight: 800, color: '#1a1a1a', lineHeight: 1.1, margin: '0 0 1rem 0', letterSpacing: '-1px' }}>
+                <span className="sweep-reveal-text">One size fits none.</span>
             </h2>
+            <p style={{ fontSize: 'clamp(1.1rem, 2vw, 1.5rem)', color: '#666666', fontWeight: 500, margin: 0 }}>
+                Buy to scope. Nothing more. Nothing less.
+            </p>
         </div>
         <div className="container pricing-grid">
             <div className="pricing-card">
@@ -514,7 +543,7 @@ export default function Home() {
                     <li>Ongoing production</li>
                     <li>Performance optimisation</li>
                 </ul>
-                <Link href="/aava" className="pricing-case-link">LIKE AAVA →</Link>
+                <Link href="/appreciate" className="pricing-case-link">LIKE APPRECIATE →</Link>
                 <div className="price-box">
                     <span className="label">Starting at</span>
                     <span className="price">₹4L<span>/month</span></span>
@@ -531,7 +560,7 @@ export default function Home() {
                     <li>Scripts & briefs</li>
                     <li>Ongoing strategic counsel</li>
                 </ul>
-                <Link href="/appreciate" className="pricing-case-link">LIKE APPRECIATE →</Link>
+                <Link href="/hamleys" className="pricing-case-link">LIKE HAMLEYS →</Link>
                 <div className="price-box">
                     <span className="label">Starting at</span>
                     <span className="price">₹1.5L<span>/month</span></span>
@@ -548,10 +577,10 @@ export default function Home() {
                     <li>Creative development</li>
                     <li>Full production</li>
                 </ul>
-                <Link href="/hamleys" className="pricing-case-link">LIKE HAMLEYS →</Link>
+                <Link href="/contraband" className="pricing-case-link">LIKE CONTRABAND →</Link>
                 <div className="price-box">
                     <span className="label">Starting at</span>
-                    <span className="price">₹5L<span>/month</span></span>
+                    <span className="price">₹5L</span>
                 </div>
             </div>
         </div>
@@ -649,106 +678,146 @@ export default function Home() {
         </div>
     </section>
 
-    {/*  Beliefs  */}
-    <section className="beliefs-section reveal-on-scroll">
-        <div className="container">
-            <span className="statement-label">THINGS WE BELIEVE TO BE TRUE</span>
-
-            <div className="beliefs-scroll-layout" style={{'display': 'flex', 'position': 'relative', 'marginTop': '3rem'}}>
-                {/*  Left Sticky Column  */}
-                <div className="beliefs-left"
-                    style={{'width': '350px', 'position': 'sticky', 'top': '50vh', 'height': '60px', 'transform': 'translateY(-50%)', 'display': 'flex', 'alignItems': 'flex-start', 'gap': '12px', 'overflow': 'hidden', 'fontSize': '40px', 'fontWeight': '800', 'color': '#999999', 'textTransform': 'uppercase'}}>
-                    <span style={{'height': '60px', 'lineHeight': '60px'}}>ON</span>
-                    <div id="dynamic-belief-words"
-                        style={{'display': 'flex', 'flexDirection': 'column', 'transition': 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)', 'marginTop': '0'}}>
-                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Strategy</span>
-                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Content</span>
-                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Briefs</span>
-                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Creative</span>
-                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Attention</span>
-                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Reality</span>
-                    </div>
-                </div>
-
-                {/*  Right Scrolling Column  */}
-                <div className="beliefs-right" style={{'flex': '1'}}>
-                    <div className="belief-scroll-item" data-index="0" data-tag="On Strategy"
-                        style={{'padding': '3vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
-                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Strategy
-                            isn't a phase you rush through.</h4>
-                        <p style={{'fontSize': '14px', 'color': '#888888'}}>It's the reason everything else works.</p>
-                    </div>
-                    <div className="belief-scroll-item" data-index="1" data-tag="On Content"
-                        style={{'padding': '3vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
-                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Content
-                            should be an engine, not a slot machine.</h4>
-                        <p style={{'fontSize': '14px', 'color': '#888888'}}>Systems beat one-offs. Every time.</p>
-                    </div>
-                    <div className="belief-scroll-item" data-index="2" data-tag="On Briefs"
-                        style={{'padding': '3vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
-                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>The brief is
-                            rarely about what the brief says it's about.</h4>
-                        <p style={{'fontSize': '14px', 'color': '#888888'}}>Dig until you hit the real question.</p>
-                    </div>
-                    <div className="belief-scroll-item" data-index="3" data-tag="On Creative"
-                        style={{'padding': '3vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
-                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>The best
-                            creative comes from understanding, not guessing.</h4>
-                        <p style={{'fontSize': '14px', 'color': '#888888'}}>Do the homework. Then do the fun part.</p>
-                    </div>
-                    <div className="belief-scroll-item" data-index="4" data-tag="On Attention"
-                        style={{'padding': '3vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
-                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Compound
-                            interest works for attention too.</h4>
-                        <p style={{'fontSize': '14px', 'color': '#888888'}}>Show up consistently, or don't bother showing up.
-                        </p>
-                    </div>
-                    <div className="belief-scroll-item" data-index="5" data-tag="On Reality"
-                        style={{'padding': '3vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
-                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Virality
-                            isn't luck.</h4>
-                        <p style={{'fontSize': '14px', 'color': '#888888'}}>It's research dressed up as spontaneity.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    {/*  About  */}
+    {/*  About Machinga & Beliefs  */}
     <section className="about-section reveal-on-scroll" id="about">
         <div className="container" style={{ paddingTop: "120px" }}>
-            <div className="about-story" style={{ marginBottom: "6rem", maxWidth: "900px" }}>
-                <p style={{ fontSize: "clamp(1.1rem, 2vw, 1.4rem)", lineHeight: "1.7", color: "#555555", marginBottom: "1.5rem" }}>
-                    A farmer once held a meeting for the fruits in his garden. He needed one of them to handle something important.
-                </p>
-                <p style={{ fontSize: "clamp(1.1rem, 2vw, 1.4rem)", lineHeight: "1.7", color: "#555555", marginBottom: "1.5rem" }}>
-                    The mango brought a deck. The jackfruit brought a methodology with its own acronym. The dragon fruit, uninvited as always, brought three case studies and a mood board. The avocado brought a proprietary framework for measuring creative impact on a scale of one to ten.
-                </p>
-                <p style={{ fontSize: "clamp(1.1rem, 2vw, 1.4rem)", lineHeight: "1.7", color: "#555555", marginBottom: "1.5rem" }}>
-                    A tiny coconut-fruit rolled in. No slides. No acronyms. No framework. Just a twig it had bent into a toy.
-                </p>
-                <p style={{ fontSize: "clamp(1.2rem, 2.2vw, 1.5rem)", lineHeight: "1.7", color: "#1a1a1a", fontWeight: "700" }}>
-                    The farmer hadn't laughed that hard in three days of pitches.
-                </p>
+            <span className="statement-label" style={{ display: 'block', marginBottom: '3rem' }}>ABOUT MACHINGA</span>
+            
+            <div className="about-story" style={{ marginBottom: "8rem", maxWidth: "1100px" }}>
+                {(() => {
+                    const paragraphs = [
+                        "A farmer once held a meeting for the fruits in his garden. He needed one of them to handle something important.",
+                        "The mango brought a deck. The jackfruit brought a methodology with its own acronym. The dragon fruit, uninvited as always, brought three case studies and a mood board. The avocado brought a proprietary framework for measuring creative impact on a scale of one to ten.",
+                        "A tiny coconut-fruit rolled in. No slides. No acronyms. No framework. Just a twig it had bent into a toy.",
+                        "The farmer hadn't laughed that hard in three days of pitches."
+                    ];
+                    
+                    let globalWordIndex = 0;
+                    
+                    return paragraphs.map((para, pIndex) => {
+                        const words = para.split(/\s+/);
+                        const isLastPara = pIndex === paragraphs.length - 1;
+                        
+                        return (
+                            <p 
+                                key={pIndex} 
+                                style={{ 
+                                    fontSize: "clamp(1.8rem, 4.2vw, 3.5rem)", 
+                                    lineHeight: "1.3", 
+                                    fontWeight: isLastPara ? "800" : "700", 
+                                    color: "#1a1a1a", 
+                                    marginBottom: isLastPara ? "0" : "2.5rem",
+                                    letterSpacing: "-0.02em"
+                                }}
+                            >
+                                {words.map((word, wIndex) => {
+                                    const index = globalWordIndex++;
+                                    return (
+                                        <span key={wIndex}>
+                                            <span 
+                                                className="fable-word" 
+                                                data-index={index}
+                                                style={{ 
+                                                    opacity: 0.15, 
+                                                    transition: "opacity 0.12s ease-out, color 0.12s ease-out",
+                                                }}
+                                            >
+                                                {word}
+                                            </span>
+                                            {wIndex < words.length - 1 ? " " : ""}
+                                        </span>
+                                    );
+                                })}
+                            </p>
+                        );
+                    });
+                })()}
             </div>
             
-            <div className="about-header">
-                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/coconut.png`} alt="Coconut" className="about-coconut-img" />
-                <h2 className="name-title">MACHINGA</h2>
+            <div className="about-coconut-wrapper" style={{ position: "relative", height: "112px", marginBottom: "1rem" }}>
+                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/coconut.png`} alt="Coconut" className="about-coconut-img" style={{ top: 0 }} />
             </div>
-            <div className="about-text-grid">
+            
+            <div className="about-text-grid" style={{ marginBottom: "8rem" }}>
                 <div className="about-left-col">
-                    <p className="pronunciation">/MUH - CHIN - GAH/</p>
-                    <p className="definition" style={{ fontSize: "1.05rem", lineHeight: "1.6", color: "#555555" }}>
+                    <h2 className="name-title" style={{ margin: 0 }}>MACHINGA</h2>
+                    <p className="pronunciation" style={{ marginTop: "0.5rem", marginBottom: "2rem" }}>/MUH - CHIN - GAH/</p>
+                    <p className="definition" style={{ fontSize: "1rem", lineHeight: "1.6", color: "#666666", margin: 0 }}>
                         <sup style={{ color: "var(--green)", fontWeight: "bold", marginRight: "4px" }}>1</sup> 
                         A palm-sized coconut fruit used to make innovative handmade toys for kids of all ages. Crudely translated from Malayalam.
                     </p>
                 </div>
-                <div className="about-right-col" style={{ display: "flex", alignItems: "flex-end" }}>
-                    <p className="explanation" style={{ fontSize: "1.05rem", lineHeight: "1.6", color: "#555555", margin: 0 }}>
-                        <sup style={{ color: "var(--green)", fontWeight: "bold", marginRight: "4px" }}>2</sup> 
+                <div className="about-right-col">
+                    <p className="explanation" style={{ fontSize: "clamp(1.15rem, 2.2vw, 1.45rem)", lineHeight: "1.7", color: "#1a1a1a", fontWeight: 500, margin: 0 }}>
+                        <sup style={{ color: "var(--green)", fontWeight: "bold", marginRight: "6px" }}>2</sup> 
                         An independent creative company based in India. Small team. Short client list. We take a small number of clients at a time. If the timing is right, we tend to know within one conversation.
                     </p>
+                </div>
+            </div>
+
+            {/* Subsection: Things We Believe to Be True */}
+            <div className="beliefs-subsection" style={{ marginTop: '8rem', paddingTop: '4rem', borderTop: '1px solid #eaeaea' }}>
+                <span className="statement-label" style={{ display: 'block', marginBottom: '1.5rem' }}>THINGS WE BELIEVE TO BE TRUE</span>
+                <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 64px)', fontWeight: 800, color: '#1a1a1a', lineHeight: 1.1, margin: '0 0 4rem 0', letterSpacing: '-1px' }}>
+                    <span className="sweep-reveal-text">Things we believe to be true.</span>
+                </h2>
+
+                <div className="beliefs-scroll-layout" style={{'display': 'flex', 'position': 'relative', 'marginTop': '3rem'}}>
+                    {/*  Left Sticky Column  */}
+                    <div className="beliefs-left"
+                        style={{'width': '350px', 'position': 'sticky', 'top': '50vh', 'height': '60px', 'transform': 'translateY(-50%)', 'display': 'flex', 'alignItems': 'flex-start', 'gap': '12px', 'overflow': 'hidden', 'fontSize': '40px', 'fontWeight': '800', 'color': '#999999', 'textTransform': 'uppercase'}}>
+                        <span style={{'height': '60px', 'lineHeight': '60px'}}>ON</span>
+                        <div id="dynamic-belief-words"
+                            style={{'display': 'flex', 'flexDirection': 'column', 'transition': 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)', 'marginTop': '0'}}>
+                            <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Strategy</span>
+                            <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Content</span>
+                            <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Briefs</span>
+                            <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Creative</span>
+                            <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Attention</span>
+                            <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Reality</span>
+                        </div>
+                    </div>
+
+                    {/*  Right Scrolling Column  */}
+                    <div className="beliefs-right" style={{'flex': '1'}}>
+                        <div className="belief-scroll-item" data-index="0" data-tag="On Strategy"
+                            style={{'padding': '3vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                            <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Strategy
+                                isn't a phase you rush through.</h4>
+                            <p style={{'fontSize': '14px', 'color': '#888888'}}>It's the reason everything else works.</p>
+                        </div>
+                        <div className="belief-scroll-item" data-index="1" data-tag="On Content"
+                            style={{'padding': '3vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                            <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Content
+                                should be an engine, not a slot machine.</h4>
+                            <p style={{'fontSize': '14px', 'color': '#888888'}}>Systems beat one-offs. Every time.</p>
+                        </div>
+                        <div className="belief-scroll-item" data-index="2" data-tag="On Briefs"
+                            style={{'padding': '3vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                            <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>The brief is
+                                rarely about what the brief says it's about.</h4>
+                            <p style={{'fontSize': '14px', 'color': '#888888'}}>Dig until you hit the real question.</p>
+                        </div>
+                        <div className="belief-scroll-item" data-index="3" data-tag="On Creative"
+                            style={{'padding': '3vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                            <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>The best
+                                creative comes from understanding, not guessing.</h4>
+                            <p style={{'fontSize': '14px', 'color': '#888888'}}>Do the homework. Then do the fun part.</p>
+                        </div>
+                        <div className="belief-scroll-item" data-index="4" data-tag="On Attention"
+                            style={{'padding': '3vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                            <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Compound
+                                interest works for attention too.</h4>
+                            <p style={{'fontSize': '14px', 'color': '#888888'}}>Show up consistently, or don't bother showing up.
+                            </p>
+                        </div>
+                        <div className="belief-scroll-item" data-index="5" data-tag="On Reality"
+                            style={{'padding': '3vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                            <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Virality
+                                isn't luck.</h4>
+                            <p style={{'fontSize': '14px', 'color': '#888888'}}>It's research dressed up as spontaneity.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -760,7 +829,10 @@ export default function Home() {
         <div className="container">
             <div className="contact-card">
                 <div className="contact-info-side">
-                    <h2 className="huge-text">LET'S MAKE<br />SOMETHING</h2>
+                    <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 64px)', fontWeight: 800, color: '#1a1a1a', lineHeight: 1.1, margin: '0 0 2rem 0', letterSpacing: '-1px' }}>
+                        <span className="sweep-reveal-text" style={{ display: 'block' }}>Let's make</span>
+                        <span className="sweep-reveal-text" style={{ display: 'block', transitionDelay: '0.2s' }}>something.</span>
+                    </h2>
                     <p className="prompt-text">Start the conversation. Tell us what you're after. Get a quick read on your brief.</p>
                     <a href="mailto:hello@studiomachinga.com" className="email-link">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0FC823" strokeWidth="2"

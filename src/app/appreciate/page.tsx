@@ -12,43 +12,39 @@ export default function AppreciatePage() {
   return (
     <main className="cs-page">
       {/*  Hero Section  */}
-    <section className="cs-hero">
-        <div className="cs-container">
-            <h1 className="cs-title">A Fintech With <br /><span className="green-text">Keeda.</span></h1>
-
-            <div className="cs-meta">
-                <div className="meta-item">
-                    <span className="meta-label">Brand</span>
-                    <span className="meta-value">Appreciate</span>
-                </div>
-                <div className="meta-item">
-                    <span className="meta-label">Work</span>
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "4px" }}>
-                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Content Strategy</span>
-                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Engine Build</span>
-                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Ongoing Production</span>
-                    </div>
-                </div>
-                <div className="meta-item">
-                    <span className="meta-label">Platform</span>
-                    <span className="meta-value">Instagram-first, multi-platform</span>
-                </div>
-                <div className="meta-item">
-                    <span className="meta-label">Duration</span>
-                    <span className="meta-value">18 months+ Ongoing</span>
-                </div>
-            </div>
-
-            <div className="cs-hero-image">
-                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Appreciate case studies assets/Appreciate_hero.gif`}
-                    alt="A Fintech With Knack Hero Image"
-                    style={{width: "100%", borderRadius: "12px", maxWidth: "800px", display: "block", margin: "0 auto"}} />
-            </div>
+      <section className="cs-fs-hero">
+        <video 
+          className="cs-fs-hero-bg" 
+          src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Appreciate.MP4`}
+          autoPlay loop muted playsInline
+        ></video>
+        <div className="cs-fs-hero-content">
+          <h1 className="cs-fs-hero-title">APPRECIATE</h1>
+          <p className="cs-fs-hero-sub">How a fintech compounds interest</p>
+          <p className="cs-fs-hero-text">0 &rarr; 124K followers in 18 months.</p>
+          <div className="cs-fs-hero-tags">
+            <span className="cs-fs-tag">Content Strategy</span>
+            <span className="cs-fs-tag">Engine Architecture</span>
+            <span className="cs-fs-tag">Multi-format Production</span>
+            <span className="cs-fs-tag">Creator Discovery</span>
+            <span className="cs-fs-tag">Ongoing Optimisation</span>
+          </div>
         </div>
-    </section>
 
-    {/*  Challenge Section  */}
-    <section className="cs-block-section">
+        <Link href="/?expanded=true" className="cs-fs-back-btn" style={{ textDecoration: 'none' }} aria-label="Back to Work">
+          ←
+        </Link>
+
+        <div className="cs-fs-scroll-indicator">
+          <a href="#challenge" className="cs-fs-scroll-btn" style={{ textDecoration: 'none' }}>
+            <span>DETAIL</span>
+            <span className="arrow">↓</span>
+          </a>
+        </div>
+      </section>
+
+      {/*  Challenge Section  */}
+      <section className="cs-block-section" id="challenge">
         <div className="cs-container">
             <div className="cs-content-narrow">
                 <span className="cs-section-label">01 — The Category Problem</span>

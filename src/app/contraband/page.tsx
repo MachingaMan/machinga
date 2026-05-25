@@ -12,41 +12,37 @@ export default function ContrabandPage() {
   return (
     <main className="cs-page">
       {/*  Hero Section  */}
-    <section className="cs-hero" style={{paddingTop: "180px"}}>
-        <div className="cs-container">
-            <h1 className="cs-title" style={{lineHeight: "1.1", marginBottom: "4rem"}}>Illicit, But <br />Not <span style={{color: "var(--green)"}}>Explicit.</span></h1>
-
-            <div className="cs-meta" style={{marginBottom: "4rem"}}>
-                <div className="meta-item">
-                    <span className="meta-label">Brand</span>
-                    <span className="meta-value" style={{fontWeight: "600"}}>Contraband</span>
-                </div>
-                <div className="meta-item">
-                    <span className="meta-label">Work</span>
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "4px" }}>
-                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Campaign Concept</span>
-                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Script</span>
-                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Production</span>
-                    </div>
-                </div>
-                <div className="meta-item">
-                    <span className="meta-label">Platform</span>
-                    <span className="meta-value" style={{fontWeight: "600"}}>Instagram</span>
-                </div>
-                <div className="meta-item">
-                    <span className="meta-label">Result</span>
-                    <span className="meta-value" style={{fontWeight: "600"}}>60M views in two weeks.<br />1.1M likes.</span>
-                </div>
-            </div>
-
-            <div className="cs-hero-image" style={{marginBottom: "6rem"}}>
-                <video src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/conntraband assets/contraband page video 1.mp4`} autoPlay loop muted playsInline style={{width: "100%", borderRadius: "20px", objectFit: "cover", display: "block", maxHeight: "600px"}}></video>
-            </div>
+      <section className="cs-fs-hero">
+        <video 
+          className="cs-fs-hero-bg" 
+          src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Contraband.MP4`}
+          autoPlay loop muted playsInline
+        ></video>
+        <div className="cs-fs-hero-content">
+          <h1 className="cs-fs-hero-title">CONTRABAND</h1>
+          <p className="cs-fs-hero-sub">How a stain did what a celebrity couldn't</p>
+          <p className="cs-fs-hero-text">88 million plus views in two weeks.</p>
+          <div className="cs-fs-hero-tags">
+            <span className="cs-fs-tag">Campaign Strategy</span>
+            <span className="cs-fs-tag">Scripts</span>
+            <span className="cs-fs-tag">End-to-End DVC Production</span>
+          </div>
         </div>
-    </section>
 
-    {/*  Section 01  */}
-    <section className="cs-block-section">
+        <Link href="/?expanded=true" className="cs-fs-back-btn" style={{ textDecoration: 'none' }} aria-label="Back to Work">
+          ←
+        </Link>
+
+        <div className="cs-fs-scroll-indicator">
+          <a href="#challenge" className="cs-fs-scroll-btn" style={{ textDecoration: 'none' }}>
+            <span>DETAIL</span>
+            <span className="arrow">↓</span>
+          </a>
+        </div>
+      </section>
+
+      {/*  Section 01  */}
+      <section className="cs-block-section" id="challenge">
         <div className="cs-container">
             <div className="cs-content-narrow">
                 <span className="cs-section-label">01 — The Brief</span>
