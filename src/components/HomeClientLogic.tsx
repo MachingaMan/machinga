@@ -404,13 +404,17 @@ export default function HomeClientLogic() {
           
           // Cleanup overlay shortly after navigation begins to prevent issues on page load
           setTimeout(() => {
-            if (overlay.parentNode) {
-              overlay.parentNode.removeChild(overlay);
-            }
-            document.body.style.overflow = '';
-            if (main) main.style.opacity = '1';
-            if (header) header.style.opacity = '1';
-          }, 1000);
+            overlay.style.opacity = '0';
+            
+            setTimeout(() => {
+              if (overlay.parentNode) {
+                overlay.parentNode.removeChild(overlay);
+              }
+              document.body.style.overflow = '';
+              if (main) main.style.opacity = '1';
+              if (header) header.style.opacity = '1';
+            }, 600);
+          }, 400);
         }, 750);
       };
 
