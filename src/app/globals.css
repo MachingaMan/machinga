@@ -704,22 +704,22 @@ body {
 .bubble-about {
     width: 14px !important;
     height: 14px !important;
-    left: calc(50% + 78px);
-    bottom: calc(12% + 450px);
+    left: calc(50% + 82px);
+    bottom: calc(12% + 442px);
 }
 
 .bubble-beliefs {
     width: 4px !important;
     height: 4px !important;
-    left: calc(50% + 104px);
-    bottom: calc(12% + 474px);
+    left: calc(50% + 68px);
+    bottom: calc(12% + 462px);
 }
 
 .bubble-contact {
     width: 16px !important;
     height: 16px !important;
-    left: calc(50% + 118px);
-    bottom: calc(12% + 490px);
+    left: calc(50% + 88px);
+    bottom: calc(12% + 474px);
 }
 
 /* Collapsed State Class - centered and nested behind the lower logo button */
@@ -819,22 +819,22 @@ body {
     .bubble-about {
         width: 12px !important;
         height: 12px !important;
-        left: calc(50% + 65px) !important;
-        bottom: calc(12% + 392px) !important;
+        left: calc(50% + 68px) !important;
+        bottom: calc(12% + 387px) !important;
     }
 
     .bubble-beliefs {
         width: 3px !important;
         height: 3px !important;
-        left: calc(50% + 86px) !important;
-        bottom: calc(12% + 411px) !important;
+        left: calc(50% + 57px) !important;
+        bottom: calc(12% + 402px) !important;
     }
 
     .bubble-contact {
         width: 13px !important;
         height: 13px !important;
-        left: calc(50% + 98px) !important;
-        bottom: calc(12% + 424px) !important;
+        left: calc(50% + 74px) !important;
+        bottom: calc(12% + 411px) !important;
     }
 }
 
