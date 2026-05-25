@@ -3033,16 +3033,17 @@ html.lenis, html.lenis body {
 }
 
 .bubble-beliefs .bubble-outer-info {
-    right: calc(100% + 16px);
-    left: auto;
-    text-align: right;
-    white-space: nowrap;
-    width: auto;
+    right: calc(100% + 16px) !important;
+    left: auto !important;
+    text-align: right !important;
+    white-space: nowrap !important;
+    width: auto !important;
 }
 
 .bubble-beliefs:hover .bubble-outer-info {
-    opacity: 1;
-    right: calc(100% + 32px);
+    opacity: 1 !important;
+    right: calc(100% + 32px) !important;
+    left: auto !important;
 }
 
 .how-we-work-label {
