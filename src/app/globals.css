@@ -702,18 +702,18 @@ body {
 }
 
 .bubble-about {
-    left: calc(50% + 225px);
-    bottom: calc(12% + 280px);
+    left: calc(50% - 240px);
+    bottom: calc(12% + 180px);
 }
 
 .bubble-beliefs {
-    left: calc(50% + 195px);
-    bottom: calc(12% + 115px);
+    left: calc(50% - 145px);
+    bottom: calc(12% + 50px);
 }
 
 .bubble-contact {
-    left: calc(50% - 225px);
-    bottom: calc(12% + 390px);
+    left: calc(50% + 115px);
+    bottom: calc(12% + 60px);
 }
 
 /* Collapsed State Class - centered and nested behind the lower logo button */
@@ -809,18 +809,18 @@ body {
     }
 
     .bubble-about {
-        left: calc(50% + 185px) !important;
-        bottom: calc(12% + 245px) !important;
+        left: calc(50% - 200px) !important;
+        bottom: calc(12% + 155px) !important;
     }
 
     .bubble-beliefs {
-        left: calc(50% + 145px) !important;
-        bottom: calc(12% + 115px) !important;
+        left: calc(50% - 125px) !important;
+        bottom: calc(12% + 40px) !important;
     }
 
     .bubble-contact {
-        left: calc(50% - 175px) !important;
-        bottom: calc(12% + 335px) !important;
+        left: calc(50% + 95px) !important;
+        bottom: calc(12% + 50px) !important;
     }
 }
 
@@ -3002,8 +3002,7 @@ html.lenis, html.lenis body {
 
 /* Satellite Tiny Bubbles Hover Text Layouts */
 .bubble-how-we-work .bubble-outer-info,
-.bubble-about .bubble-outer-info,
-.bubble-beliefs .bubble-outer-info {
+.bubble-contact .bubble-outer-info {
     left: calc(100% + 16px);
     right: auto;
     text-align: left;
@@ -3012,13 +3011,13 @@ html.lenis, html.lenis body {
 }
 
 .bubble-how-we-work:hover .bubble-outer-info,
-.bubble-about:hover .bubble-outer-info,
-.bubble-beliefs:hover .bubble-outer-info {
+.bubble-contact:hover .bubble-outer-info {
     opacity: 1;
     left: calc(100% + 32px);
 }
 
-.bubble-contact .bubble-outer-info {
+.bubble-about .bubble-outer-info,
+.bubble-beliefs .bubble-outer-info {
     right: calc(100% + 16px);
     left: auto;
     text-align: right;
@@ -3026,7 +3025,8 @@ html.lenis, html.lenis body {
     width: auto;
 }
 
-.bubble-contact:hover .bubble-outer-info {
+.bubble-about:hover .bubble-outer-info,
+.bubble-beliefs:hover .bubble-outer-info {
     opacity: 1;
     right: calc(100% + 32px);
 }
