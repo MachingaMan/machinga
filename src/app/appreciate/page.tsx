@@ -38,7 +38,7 @@ export default function AppreciatePage() {
         <div className="cs-fs-scroll-indicator">
           <a href="#challenge" className="cs-fs-scroll-btn" style={{ textDecoration: 'none' }}>
             <span>DETAIL</span>
-            <span className="arrow">↓</span>
+            <div className="cs-cue-line"></div>
           </a>
         </div>
       </section>
