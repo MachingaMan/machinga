@@ -784,7 +784,7 @@ export default function Home() {
                 <div className="about-right-col">
                     <p className="explanation" style={{ fontSize: "clamp(1.15rem, 2.2vw, 1.45rem)", lineHeight: "1.7", color: "#1a1a1a", fontWeight: 500, margin: 0 }}>
                         <sup style={{ color: "var(--green)", fontWeight: "bold", marginRight: "6px" }}>2</sup> 
-                        An independent creative company based in India. Small team. Short client list. We take a small number of clients at a time. If the timing is right, we tend to know within one conversation.
+                        An independent creative company. We work with brands the way long collaborators work. Slowly, with disagreement, and with a shared interest in the work being worth the time.
                     </p>
                 </div>
             </div>
