@@ -96,6 +96,16 @@ export default function HomeClientLogic() {
         const rect = logoBtn.getBoundingClientRect();
         btnX = rect.left + rect.width / 2;
         btnY = rect.top + rect.height / 2;
+        
+        // Expand bubbles on hover (mouseenter)
+        const isVideoPlaying = heroSection.classList.contains('video-playing');
+        if (!isVideoPlaying) {
+          heroSection.classList.remove('collapsed');
+          const headlineEl = document.getElementById('hero-headline');
+          if (headlineEl && window.innerWidth > 768) {
+            headlineEl.classList.add('headline-hidden');
+          }
+        }
       };
 
       const handleLogoMouseMove = (e: MouseEvent) => {
