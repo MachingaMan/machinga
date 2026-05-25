@@ -24,22 +24,37 @@ export default function Header() {
       return;
     }
 
-    const handleScroll = () => {
-      const cur = window.scrollY;
-      const threshold = window.innerHeight * 0.9;
-      setIsScrolledPast(cur > threshold);
+    let observer: IntersectionObserver | null = null;
+    let observerTimeout: NodeJS.Timeout;
+
+    const setupObserver = () => {
+      const hero = document.querySelector('.cs-fs-hero');
+      if (!hero) {
+        // Poll in case of rendering delay
+        observerTimeout = setTimeout(setupObserver, 50);
+        return;
+      }
+
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          // If the hero section is intersecting, it means we are scrolled above the fold.
+          // So we should make the header transparent (isScrolledPast = false).
+          // Otherwise, we scrolled past the fold (isScrolledPast = true).
+          setIsScrolledPast(!entry.isIntersecting);
+        },
+        { threshold: 0.1 } // triggers when 10% or less of the hero is visible
+      );
+
+      observer.observe(hero);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    
-    // Delay the initial scroll check to allow scroll restoration/reset to finish
-    const timer = setTimeout(() => {
-      handleScroll();
-    }, 100);
+    setupObserver();
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      clearTimeout(timer);
+      if (observer) {
+        observer.disconnect();
+      }
+      clearTimeout(observerTimeout);
     };
   }, [pathname, isCaseStudy]);
 
