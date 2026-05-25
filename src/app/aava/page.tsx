@@ -14,7 +14,10 @@ export default function AavaPage() {
       {/*  Hero Section  */}
     <section className="cs-hero">
         <div className="cs-container">
-            <h1 className="cs-title" style={{lineHeight: "1.1", marginBottom: "4rem"}}>Alkaline, <br />But <span className="green-text">True.</span></h1>
+            <h1 className="cs-title" style={{ lineHeight: "1.1", marginBottom: "4rem", display: 'block' }}>
+                <span className="sweep-reveal-text">Alkaline,</span> <br />
+                <span className="sweep-reveal-text">But</span> <span className="sweep-reveal-text sweep-green">True.</span>
+            </h1>
 
             <div className="cs-meta" style={{marginBottom: "4rem"}}>
                 <div className="meta-item">

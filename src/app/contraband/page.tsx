@@ -44,7 +44,10 @@ export default function ContrabandPage() {
       {/*  Editorial Header  */}
       <section className="cs-hero" id="challenge" style={{paddingTop: "180px"}}>
         <div className="cs-container">
-            <h1 className="cs-title" style={{lineHeight: "1.1", marginBottom: "4rem"}}>Illicit, But <br />Not <span className="green-text">Explicit.</span></h1>
+            <h1 className="cs-title" style={{ lineHeight: "1.1", marginBottom: "4rem", display: 'block' }}>
+                <span className="sweep-reveal-text">Illicit, But</span> <br />
+                <span className="sweep-reveal-text">Not</span> <span className="sweep-reveal-text sweep-green">Explicit.</span>
+            </h1>
 
             <div className="cs-meta" style={{marginBottom: "4rem"}}>
                 <div className="meta-item">

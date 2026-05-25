@@ -46,7 +46,10 @@ export default function AppreciatePage() {
       {/*  Editorial Header  */}
       <section className="cs-hero" id="challenge">
         <div className="cs-container">
-            <h1 className="cs-title">A Fintech With <br /><span className="green-text">Keeda.</span></h1>
+            <h1 className="cs-title" style={{ display: 'block' }}>
+                <span className="sweep-reveal-text">A Fintech With</span> <br />
+                <span className="sweep-reveal-text sweep-green">Keeda.</span>
+            </h1>
 
             <div className="cs-meta">
                 <div className="meta-item">

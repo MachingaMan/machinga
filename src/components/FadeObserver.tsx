@@ -24,6 +24,15 @@ export default function FadeObserver() {
         });
     }, { threshold: 0.1 });
 
+    const sweepObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                sweepObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.02 });
+
     const selectors = [
         '.reveal-on-scroll > .container', 
         '.fs-card-content',
@@ -43,8 +52,14 @@ export default function FadeObserver() {
         fadeObserver.observe(target);
     });
 
+    const sweepElements = document.querySelectorAll('.sweep-reveal-text');
+    sweepElements.forEach(el => {
+        sweepObserver.observe(el);
+    });
+
     return () => {
         fadeObserver.disconnect();
+        sweepObserver.disconnect();
     };
   }, [pathname]);
 

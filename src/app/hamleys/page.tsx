@@ -45,7 +45,10 @@ export default function HamleysPage() {
       {/*  Editorial Header  */}
       <section className="cs-hero" id="challenge">
         <div className="cs-container">
-            <h1 className="cs-title">No Awkwardness <br /><span className="green-text">Here.</span></h1>
+            <h1 className="cs-title" style={{ display: 'block' }}>
+                <span className="sweep-reveal-text">No Awkwardness</span> <br />
+                <span className="sweep-reveal-text sweep-green">Here.</span>
+            </h1>
 
             <div className="cs-meta">
                 <div className="meta-item">
