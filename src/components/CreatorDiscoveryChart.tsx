@@ -3,10 +3,22 @@
 import { useEffect, useRef, useState } from 'react';
 
 export default function CreatorDiscoveryChart() {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const chartRef = useRef<HTMLDivElement>(null);
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
+    const container = chartRef.current;
+    if (!container) return;
+
+    // Calculate a threshold based on the container's height relative to the viewport.
+    // If the container is taller than the viewport, trigger when it occupies 90% of the viewport height.
+    // Otherwise, trigger when 95% of the container is visible.
+    const containerHeight = container.offsetHeight || 500;
+    const viewportHeight = window.innerHeight;
+    const computedThreshold = containerHeight > viewportHeight
+      ? Math.max(0.5, Math.min(0.95, (viewportHeight / containerHeight) * 0.9))
+      : 0.95;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -16,12 +28,10 @@ export default function CreatorDiscoveryChart() {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: computedThreshold }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+    observer.observe(container);
 
     return () => {
       observer.disconnect();
@@ -30,7 +40,6 @@ export default function CreatorDiscoveryChart() {
 
   return (
     <section 
-      ref={sectionRef} 
       className={`cs-chart-section ${isActive ? 'active' : ''}`}
       style={{
         backgroundColor: "#1D1D1F", 
@@ -175,7 +184,7 @@ export default function CreatorDiscoveryChart() {
         </div>
 
         {/* Chart Wrapper */}
-        <div className="cs-chart-container">
+        <div className="cs-chart-container" ref={chartRef}>
           {/* Inset Text inside chart's negative space */}
           <div className="cs-chart-inset">
             <h2>We find them before the market prices them in.</h2>
