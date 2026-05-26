@@ -106,7 +106,7 @@ export default function CreatorDiscoveryChart() {
         .cs-chart-avatar-group {
           opacity: 0;
           transform: scale(0.6);
-          transform-origin: 670px 175px;
+          transform-origin: 670px 165px;
           transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2.2s,
                       transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2.2s;
         }
@@ -187,7 +187,7 @@ export default function CreatorDiscoveryChart() {
               </filter>
               {/* Circular clip-paths for faces */}
               <clipPath id="circle-clip-nitesh">
-                <circle cx="670" cy="70" r="18" />
+                <circle cx="670" cy="50" r="18" />
               </clipPath>
               <clipPath id="circle-clip-vir">
                 <circle cx="670" cy="280" r="18" />
@@ -217,22 +217,22 @@ export default function CreatorDiscoveryChart() {
             <text className="cs-chart-axis-label" x="50" y="404" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="end" fontFamily="Inter, sans-serif">0</text>
             <text className="cs-chart-axis-label" x="50" y="364" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="end" fontFamily="Inter, sans-serif">100K</text>
             <text className="cs-chart-axis-label" x="50" y="284" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="end" fontFamily="Inter, sans-serif">200K</text>
-            <text className="cs-chart-axis-label" x="50" y="194" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="end" fontFamily="Inter, sans-serif">400K</text>
-            <text className="cs-chart-axis-label" x="50" y="104" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="end" fontFamily="Inter, sans-serif">600K</text>
-            <text className="cs-chart-axis-label" x="50" y="54" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="end" fontFamily="Inter, sans-serif">800K+</text>
+            <text className="cs-chart-axis-label" x="50" y="194" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="end" fontFamily="Inter, sans-serif">300K</text>
+            <text className="cs-chart-axis-label" x="50" y="104" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="end" fontFamily="Inter, sans-serif">400K</text>
+            <text className="cs-chart-axis-label" x="50" y="54" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="end" fontFamily="Inter, sans-serif">500K+</text>
 
             {/* X Axis Labels */}
             <text className="cs-chart-axis-label" x="60" y="422" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="middle" fontFamily="Inter, sans-serif">-12 Months</text>
             <text className="cs-chart-axis-label" x="230" y="422" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="middle" fontFamily="Inter, sans-serif">-6 Months</text>
             <text className="cs-chart-axis-label" x="400" y="422" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="middle" fontFamily="Inter, sans-serif">Launch</text>
             <text className="cs-chart-axis-label" x="570" y="422" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="middle" fontFamily="Inter, sans-serif">+6 Months</text>
-            <text className="cs-chart-axis-label" x="670" y="422" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="middle" fontFamily="Inter, sans-serif">Today</text>
+            <text className="cs-chart-axis-label" x="670" y="422" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="middle" fontFamily="Inter, sans-serif">+12 Months</text>
 
             {/* Exponential Growth Curves */}
-            {/* Curve 1: Nitesh Shetty (88K Hired, 800K Today) */}
+            {/* Curve 1: Nitesh Shetty (88K Hired, 500K at +12M) */}
             <path 
               className="cs-chart-curve" 
-              d="M 60,392 C 160,390 220,380 300,361 C 380,335 480,220 670,70" 
+              d="M 60,392 C 160,390 220,380 300,361 C 380,335 480,200 670,50" 
               fill="none" 
               stroke="#00FF66" 
               strokeWidth="4.5" 
@@ -240,7 +240,7 @@ export default function CreatorDiscoveryChart() {
               filter="url(#glow-green)"
             />
 
-            {/* Curve 2: Vir Saini (40K Hired, 200K Today) */}
+            {/* Curve 2: Vir Saini (40K Hired, 200K at +12M) */}
             <path 
               className="cs-chart-curve" 
               d="M 60,396 C 160,395 250,390 350,384 C 420,378 520,350 670,280" 
@@ -257,13 +257,13 @@ export default function CreatorDiscoveryChart() {
               <image 
                 href="/assets/Appreciate case studies assets/nitesh_avatar.png"
                 x="652" 
-                y="52" 
+                y="32" 
                 width="36" 
                 height="36" 
                 clipPath="url(#circle-clip-nitesh)"
               />
-              <circle cx="670" cy="70" r="18" fill="none" stroke="#00FF66" strokeWidth="2.5" />
-              <text x="696" y="74" fill="rgba(255,255,255,0.85)" fontSize="12" fontWeight="700" fontFamily="Inter, sans-serif">Nitesh Shetty</text>
+              <circle cx="670" cy="50" r="18" fill="none" stroke="#00FF66" strokeWidth="2.5" />
+              <text x="696" y="54" fill="rgba(255,255,255,0.85)" fontSize="12" fontWeight="700" fontFamily="Inter, sans-serif">Nitesh Shetty</text>
 
               {/* Vir Saini circular headshot */}
               <image 
