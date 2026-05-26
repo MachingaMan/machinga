@@ -51,8 +51,8 @@ export default function CreatorDiscoveryChart() {
         .cs-chart-inset {
           position: absolute;
           top: 8%;
-          left: 6%;
-          width: 48%;
+          left: 12%;
+          width: 42%;
           z-index: 10;
           pointer-events: none;
         }
@@ -98,6 +98,20 @@ export default function CreatorDiscoveryChart() {
         }
 
         .cs-chart-section.active .cs-chart-marker-group {
+          opacity: 1;
+          transform: scale(1);
+        }
+
+        /* Animate face avatar circles */
+        .cs-chart-avatar-group {
+          opacity: 0;
+          transform: scale(0.6);
+          transform-origin: 740px 90px;
+          transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2.2s,
+                      transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2.2s;
+        }
+
+        .cs-chart-section.active .cs-chart-avatar-group {
           opacity: 1;
           transform: scale(1);
         }
@@ -179,6 +193,13 @@ export default function CreatorDiscoveryChart() {
                   <feMergeNode in="SourceGraphic" />
                 </feMerge>
               </filter>
+              {/* Circular clip-paths for faces */}
+              <clipPath id="circle-clip-nitesh">
+                <circle cx="740" cy="70" r="18" />
+              </clipPath>
+              <clipPath id="circle-clip-vir">
+                <circle cx="740" cy="110" r="18" />
+              </clipPath>
             </defs>
 
             {/* Gridlines */}
@@ -237,6 +258,31 @@ export default function CreatorDiscoveryChart() {
               strokeLinecap="round" 
               filter="url(#glow-cyan)"
             />
+
+            {/* Face Avatars Group on the right ends of the lines */}
+            <g className="cs-chart-avatar-group">
+              {/* Nitesh Shetty circular headshot */}
+              <image 
+                href="/assets/Appreciate case studies assets/nitesh_avatar.png"
+                x="722" 
+                y="52" 
+                width="36" 
+                height="36" 
+                clipPath="url(#circle-clip-nitesh)"
+              />
+              <circle cx="740" cy="70" r="18" fill="none" stroke="#00FF66" strokeWidth="2.5" />
+
+              {/* Vir Saini circular headshot */}
+              <image 
+                href="/assets/Appreciate case studies assets/vir_avatar.png"
+                x="722" 
+                y="92" 
+                width="36" 
+                height="36" 
+                clipPath="url(#circle-clip-vir)"
+              />
+              <circle cx="740" cy="110" r="18" fill="none" stroke="#00E5FF" strokeWidth="2.5" />
+            </g>
 
             {/* Hired Tooltip/Badge & Markers Group */}
             <g className="cs-chart-marker-group">
