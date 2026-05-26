@@ -472,7 +472,7 @@ export default function HomeClientLogic() {
       });
 
       // ── Dynamic Video Auto-Cropping (No Black Borders) ─────────────────────────
-      const setupBubbleVideoAutoCropping = () => {
+      function setupBubbleVideoAutoCropping() {
         const videos = document.querySelectorAll('.bubble-video') as NodeListOf<HTMLVideoElement>;
         
         videos.forEach((vid) => {
