@@ -7,6 +7,8 @@ import { usePathname } from "next/navigation";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolledPast, setIsScrolledPast] = useState(false);
+  const [isOverDark, setIsOverDark] = useState(false);
+  const [darkBgColor, setDarkBgColor] = useState('rgba(29, 29, 31, 0.95)');
   const pathname = usePathname();
 
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -21,20 +23,64 @@ export default function Header() {
   useEffect(() => {
     // Always reset states when pathname changes
     setIsScrolledPast(false);
-
-    if (!isCaseStudy) {
-      return;
-    }
+    setIsOverDark(false);
 
     const handleScroll = () => {
       const cur = window.scrollY;
-      const threshold = window.innerHeight * 0.9;
-      // If we are at scroll 0 or very close to top, the header must be transparent
-      if (cur <= 10) {
-        setIsScrolledPast(false);
+      
+      if (isCaseStudy) {
+        const threshold = window.innerHeight * 0.9;
+        if (cur <= 10) {
+          setIsScrolledPast(false);
+        } else {
+          setIsScrolledPast(cur > threshold);
+        }
       } else {
-        setIsScrolledPast(cur > threshold);
+        setIsScrolledPast(cur > 10);
       }
+
+      // Check if the header currently overlaps with any dark section
+      const sections = document.querySelectorAll('section, footer');
+      let darkDetected = false;
+      let detectedColor = 'rgba(29, 29, 31, 0.95)';
+
+      for (let i = 0; i < sections.length; i++) {
+        const sec = sections[i] as HTMLElement;
+        const rect = sec.getBoundingClientRect();
+
+        // Check if Y=40 (approx middle of header height) is within the section bounding box
+        if (rect.top <= 40 && rect.bottom >= 40) {
+          const computedStyle = window.getComputedStyle(sec);
+          const bgColor = computedStyle.backgroundColor;
+
+          if (bgColor === 'transparent' || bgColor === 'rgba(0, 0, 0, 0)') {
+            continue;
+          }
+
+          // Parse RGB/RGBA values
+          const rgbMatch = bgColor.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?/);
+          if (rgbMatch) {
+            const r = parseInt(rgbMatch[1], 10);
+            const g = parseInt(rgbMatch[2], 10);
+            const b = parseInt(rgbMatch[3], 10);
+            const a = rgbMatch[4] !== undefined ? parseFloat(rgbMatch[4]) : 1;
+
+            if (a === 0) {
+              continue;
+            }
+
+            const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+            if (brightness < 120) {
+              darkDetected = true;
+              detectedColor = `rgba(${r}, ${g}, ${b}, 0.95)`;
+            }
+          }
+          break;
+        }
+      }
+
+      setIsOverDark(darkDetected);
+      setDarkBgColor(detectedColor);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -53,14 +99,25 @@ export default function Header() {
   }, [pathname, isCaseStudy]);
 
   return (
-    <header 
-      className={`site-header ${isTransparent ? "header-transparent" : ""}`}
-      style={isTransparent ? {
-        background: 'transparent',
-        backdropFilter: 'none',
-        WebkitBackdropFilter: 'none'
-      } : undefined}
-    >
+    <>
+      <style dangerouslySetInnerHTML={{ __html: `
+        .site-header.header-dark .menu-toggle span {
+          background-color: #ffffff !important;
+        }
+      `}} />
+      <header 
+        className={`site-header ${isTransparent ? "header-transparent" : ""} ${isOverDark ? "header-dark" : ""}`}
+        style={isTransparent ? {
+          background: 'transparent',
+          backdropFilter: 'none',
+          WebkitBackdropFilter: 'none'
+        } : {
+          background: isOverDark ? darkBgColor : 'rgba(255, 255, 255, 0.95)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          color: isOverDark ? '#ffffff' : '#000000'
+        }}
+      >
       <Link href="/" className="logo" onClick={(e) => {
         if (typeof window !== 'undefined' && window.location.pathname === '/') {
           e.preventDefault();
@@ -97,5 +154,6 @@ export default function Header() {
         <Link href="/#contact" className="nav-contact" onClick={() => setIsOpen(false)}>Contact Us</Link>
       </nav>
     </header>
+    </>
   );
 }
