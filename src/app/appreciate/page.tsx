@@ -23,12 +23,17 @@ export default function AppreciatePage() {
           <h1 className="cs-fs-hero-title">APPRECIATE</h1>
           <p className="cs-fs-hero-sub">How a fintech compounds interest</p>
           <p className="cs-fs-hero-text">0 &rarr; 124K followers in 18 months.</p>
-          <div className="cs-fs-hero-tags">
-            <span className="cs-fs-tag">Content Strategy</span>
-            <span className="cs-fs-tag">Engine Architecture</span>
-            <span className="cs-fs-tag">Multi-format Production</span>
-            <span className="cs-fs-tag">Creator Discovery</span>
-            <span className="cs-fs-tag">Ongoing Optimisation</span>
+          <div className="cs-fs-hero-tags-container">
+            <div className="cs-fs-hero-tags-row-engagement">
+              <span className="cs-fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Content Engine</span>
+            </div>
+            <div className="cs-fs-hero-tags-row-sub">
+              <span className="cs-fs-tag">Content Strategy</span>
+              <span className="cs-fs-tag">Engine Architecture</span>
+              <span className="cs-fs-tag">Multi-format Production</span>
+              <span className="cs-fs-tag">Creator Discovery</span>
+              <span className="cs-fs-tag">Ongoing Optimisation</span>
+            </div>
           </div>
         </div>
 

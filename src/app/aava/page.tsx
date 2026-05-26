@@ -21,10 +21,17 @@ export default function AavaPage() {
           <h1 className="cs-fs-hero-title">AAVA</h1>
           <p className="cs-fs-hero-sub">How the OG water brand won a category flooded with imposters.</p>
           <p className="cs-fs-hero-text">Two words. Uncopyable by design.</p>
-          <div className="cs-fs-hero-tags">
-            <span className="cs-fs-tag">Brand Positioning</span>
-            <span className="cs-fs-tag">Campaign Strategy</span>
-            <span className="cs-fs-tag">Film Production</span>
+          <div className="cs-fs-hero-tags-container">
+            <div className="cs-fs-hero-tags-row-engagement">
+              <span className="cs-fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Creative Strategy</span>
+              <span className="cs-fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Campaign/Project</span>
+            </div>
+            <div className="cs-fs-hero-tags-row-sub">
+              <span className="cs-fs-tag">Brand Strategy</span>
+              <span className="cs-fs-tag">Positioning</span>
+              <span className="cs-fs-tag">Scripts</span>
+              <span className="cs-fs-tag">End-to-End DVC Production</span>
+            </div>
           </div>
         </div>
 

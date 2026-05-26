@@ -22,11 +22,17 @@ export default function HamleysPage() {
           <h1 className="cs-fs-hero-title">HAMLEYS</h1>
           <p className="cs-fs-hero-sub">How a 265-year-old toy store solved Valentine’s for Gen Z.</p>
           <p className="cs-fs-hero-text">5M+ organic views in one week. Recommissioned year two.</p>
-          <div className="cs-fs-hero-tags">
-            <span className="cs-fs-tag">Campaign Strategy</span>
-            <span className="cs-fs-tag">On-ground Activation</span>
-            <span className="cs-fs-tag">Video Production</span>
-            <span className="cs-fs-tag">Social Media Content</span>
+          <div className="cs-fs-hero-tags-container">
+            <div className="cs-fs-hero-tags-row-engagement">
+              <span className="cs-fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Creative Strategy</span>
+              <span className="cs-fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Campaign/Project</span>
+            </div>
+            <div className="cs-fs-hero-tags-row-sub">
+              <span className="cs-fs-tag">Campaign Strategy</span>
+              <span className="cs-fs-tag">On-ground Activation</span>
+              <span className="cs-fs-tag">Video Production</span>
+              <span className="cs-fs-tag">Social Media Content</span>
+            </div>
           </div>
         </div>
 

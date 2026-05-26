@@ -22,10 +22,15 @@ export default function ContrabandPage() {
           <h1 className="cs-fs-hero-title">CONTRABAND</h1>
           <p className="cs-fs-hero-sub">How a stain did what a celebrity couldn't</p>
           <p className="cs-fs-hero-text">88 million plus views in two weeks.</p>
-          <div className="cs-fs-hero-tags">
-            <span className="cs-fs-tag">Campaign Strategy</span>
-            <span className="cs-fs-tag">Scripts</span>
-            <span className="cs-fs-tag">End-to-End DVC Production</span>
+          <div className="cs-fs-hero-tags-container">
+            <div className="cs-fs-hero-tags-row-engagement">
+              <span className="cs-fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Campaign/Project</span>
+            </div>
+            <div className="cs-fs-hero-tags-row-sub">
+              <span className="cs-fs-tag">Campaign Strategy</span>
+              <span className="cs-fs-tag">Scripts</span>
+              <span className="cs-fs-tag">End-to-End DVC Production</span>
+            </div>
           </div>
         </div>
 

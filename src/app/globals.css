@@ -3395,3 +3395,27 @@ html.lenis, html.lenis body {
         font-size: clamp(2.5rem, 10vw, 80px);
     }
 }
+
+/* Stacked Tags Layout for Cards & Heroes */
+.fs-card-tags-container, .cs-fs-hero-tags-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.fs-card-tags-row-engagement, .cs-fs-hero-tags-row-engagement {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.fs-card-tags-row-sub, .cs-fs-hero-tags-row-sub {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}

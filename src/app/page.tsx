@@ -260,16 +260,26 @@ export default function Home() {
                 <h2 className="fs-card-title">APPRECIATE</h2>
                 <p className="fs-card-sub">How a fintech compounds interest</p>
                 <p className="fs-card-text">0 &rarr; 124K followers in 18 months.</p>
-                <div className="fs-card-tags">
-                    <span className="fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Content Engine</span>
-                    <span className="fs-tag">Content Strategy</span>
-                    <span className="fs-tag">Engine Architecture</span>
-                    <span className="fs-tag">Multi-format Production</span>
-                    <span className="fs-tag">Creator Discovery</span>
-                    <span className="fs-tag">Ongoing Optimisation</span>
+                <div className="fs-card-tags-container">
+                    <div className="fs-card-tags-row-engagement">
+                        <span className="fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Content Engine</span>
+                    </div>
+                    <div className="fs-card-tags-row-sub">
+                        <span className="fs-tag">Content Strategy</span>
+                        <span className="fs-tag">Engine Architecture</span>
+                        <span className="fs-tag">Multi-format Production</span>
+                        <span className="fs-tag">Creator Discovery</span>
+                        <span className="fs-tag">Ongoing Optimisation</span>
+                    </div>
                 </div>
             </div>
-            <div className="scroll-down-indicator">
+            <div className="scroll-down-indicator" style={{ flexDirection: 'column', gap: '4px', bottom: '20px' }}>
+                <div style={{
+                    width: '1px',
+                    height: '35px',
+                    background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%)',
+                    opacity: 0.7
+                }}></div>
                 <button 
                     onClick={(e) => toggleDropdown('details-1', e)} 
                     className="toggle-details"
@@ -282,12 +292,27 @@ export default function Home() {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        gap: '4px',
-                        fontFamily: 'inherit'
+                        gap: '6px',
+                        fontFamily: 'inherit',
+                        outline: 'none'
                     }}
                 >
-                    <span style={{ fontSize: '0.85rem', fontWeight: 300, letterSpacing: '0.15em', textTransform: 'uppercase' }}>DETAIL</span>
-                    <span className="arrow" style={{ fontSize: '1.2rem', marginTop: '2px' }}>&darr;</span>
+                    <span style={{ fontSize: '0.85rem', fontWeight: 300, letterSpacing: '0.15em', textTransform: 'uppercase' }}>TL;DR</span>
+                    <div 
+                        style={{
+                            width: '24px',
+                            height: '24px',
+                            borderRadius: '50%',
+                            border: '1px solid rgba(255, 255, 255, 0.4)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            transition: 'transform 0.3s ease, border-color 0.3s ease',
+                            transform: activeDropdown === 'details-1' ? 'rotate(45deg)' : 'rotate(0deg)'
+                        }}
+                    >
+                        <span style={{ fontSize: '1.05rem', fontWeight: 300, lineHeight: 1, marginTop: '-2px' }}>+</span>
+                    </div>
                 </button>
             </div>
         </div>
@@ -332,14 +357,24 @@ export default function Home() {
                 <h2 className="fs-card-title">CONTRABAND</h2>
                 <p className="fs-card-sub">How a stain did what a celebrity couldn't.</p>
                 <p className="fs-card-text">88M+ views in 2 weeks.</p>
-                <div className="fs-card-tags">
-                    <span className="fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Campaign/Project</span>
-                    <span className="fs-tag">Campaign Strategy</span>
-                    <span className="fs-tag">Scripts</span>
-                    <span className="fs-tag">End-to-End DVC Production</span>
+                <div className="fs-card-tags-container">
+                    <div className="fs-card-tags-row-engagement">
+                        <span className="fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Campaign/Project</span>
+                    </div>
+                    <div className="fs-card-tags-row-sub">
+                        <span className="fs-tag">Campaign Strategy</span>
+                        <span className="fs-tag">Scripts</span>
+                        <span className="fs-tag">End-to-End DVC Production</span>
+                    </div>
                 </div>
             </div>
-            <div className="scroll-down-indicator">
+            <div className="scroll-down-indicator" style={{ flexDirection: 'column', gap: '4px', bottom: '20px' }}>
+                <div style={{
+                    width: '1px',
+                    height: '35px',
+                    background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%)',
+                    opacity: 0.7
+                }}></div>
                 <button 
                     onClick={(e) => toggleDropdown('details-2', e)} 
                     className="toggle-details"
@@ -352,12 +387,27 @@ export default function Home() {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        gap: '4px',
-                        fontFamily: 'inherit'
+                        gap: '6px',
+                        fontFamily: 'inherit',
+                        outline: 'none'
                     }}
                 >
-                    <span style={{ fontSize: '0.85rem', fontWeight: 300, letterSpacing: '0.15em', textTransform: 'uppercase' }}>DETAIL</span>
-                    <span className="arrow" style={{ fontSize: '1.2rem', marginTop: '2px' }}>&darr;</span>
+                    <span style={{ fontSize: '0.85rem', fontWeight: 300, letterSpacing: '0.15em', textTransform: 'uppercase' }}>TL;DR</span>
+                    <div 
+                        style={{
+                            width: '24px',
+                            height: '24px',
+                            borderRadius: '50%',
+                            border: '1px solid rgba(255, 255, 255, 0.4)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            transition: 'transform 0.3s ease, border-color 0.3s ease',
+                            transform: activeDropdown === 'details-2' ? 'rotate(45deg)' : 'rotate(0deg)'
+                        }}
+                    >
+                        <span style={{ fontSize: '1.05rem', fontWeight: 300, lineHeight: 1, marginTop: '-2px' }}>+</span>
+                    </div>
                 </button>
             </div>
         </div>
@@ -394,16 +444,26 @@ export default function Home() {
                 <h2 className="fs-card-title">AAVA</h2>
                 <p className="fs-card-sub">How the OG water brand won a category flooded with imposters.</p>
                 <p className="fs-card-text">Two words. Uncopyable by design.</p>
-                <div className="fs-card-tags">
-                    <span className="fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Creative Strategy</span>
-                    <span className="fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Campaign/Project</span>
-                    <span className="fs-tag">Brand Strategy</span>
-                    <span className="fs-tag">Positioning</span>
-                    <span className="fs-tag">Scripts</span>
-                    <span className="fs-tag">End-to-End DVC Production</span>
+                <div className="fs-card-tags-container">
+                    <div className="fs-card-tags-row-engagement">
+                        <span className="fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Creative Strategy</span>
+                        <span className="fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Campaign/Project</span>
+                    </div>
+                    <div className="fs-card-tags-row-sub">
+                        <span className="fs-tag">Brand Strategy</span>
+                        <span className="fs-tag">Positioning</span>
+                        <span className="fs-tag">Scripts</span>
+                        <span className="fs-tag">End-to-End DVC Production</span>
+                    </div>
                 </div>
             </div>
-            <div className="scroll-down-indicator">
+            <div className="scroll-down-indicator" style={{ flexDirection: 'column', gap: '4px', bottom: '20px' }}>
+                <div style={{
+                    width: '1px',
+                    height: '35px',
+                    background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%)',
+                    opacity: 0.7
+                }}></div>
                 <button 
                     onClick={(e) => toggleDropdown('details-3', e)} 
                     className="toggle-details"
@@ -416,12 +476,27 @@ export default function Home() {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        gap: '4px',
-                        fontFamily: 'inherit'
+                        gap: '6px',
+                        fontFamily: 'inherit',
+                        outline: 'none'
                     }}
                 >
-                    <span style={{ fontSize: '0.85rem', fontWeight: 300, letterSpacing: '0.15em', textTransform: 'uppercase' }}>DETAIL</span>
-                    <span className="arrow" style={{ fontSize: '1.2rem', marginTop: '2px' }}>&darr;</span>
+                    <span style={{ fontSize: '0.85rem', fontWeight: 300, letterSpacing: '0.15em', textTransform: 'uppercase' }}>TL;DR</span>
+                    <div 
+                        style={{
+                            width: '24px',
+                            height: '24px',
+                            borderRadius: '50%',
+                            border: '1px solid rgba(255, 255, 255, 0.4)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            transition: 'transform 0.3s ease, border-color 0.3s ease',
+                            transform: activeDropdown === 'details-3' ? 'rotate(45deg)' : 'rotate(0deg)'
+                        }}
+                    >
+                        <span style={{ fontSize: '1.05rem', fontWeight: 300, lineHeight: 1, marginTop: '-2px' }}>+</span>
+                    </div>
                 </button>
             </div>
         </div>
@@ -458,16 +533,26 @@ export default function Home() {
                 <h2 className="fs-card-title">HAMLEYS</h2>
                 <p className="fs-card-sub">How a 265-year-old toy store solved Valentine’s for Gen Z.</p>
                 <p className="fs-card-text">5M+ organic views in one week. Recommissioned year two.</p>
-                <div className="fs-card-tags">
-                    <span className="fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Creative Strategy</span>
-                    <span className="fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Campaign/Project</span>
-                    <span className="fs-tag">Campaign Strategy</span>
-                    <span className="fs-tag">On-ground Activation</span>
-                    <span className="fs-tag">Video Production</span>
-                    <span className="fs-tag">Social Media Content</span>
+                <div className="fs-card-tags-container">
+                    <div className="fs-card-tags-row-engagement">
+                        <span className="fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Creative Strategy</span>
+                        <span className="fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Campaign/Project</span>
+                    </div>
+                    <div className="fs-card-tags-row-sub">
+                        <span className="fs-tag">Campaign Strategy</span>
+                        <span className="fs-tag">On-ground Activation</span>
+                        <span className="fs-tag">Video Production</span>
+                        <span className="fs-tag">Social Media Content</span>
+                    </div>
                 </div>
             </div>
-            <div className="scroll-down-indicator">
+            <div className="scroll-down-indicator" style={{ flexDirection: 'column', gap: '4px', bottom: '20px' }}>
+                <div style={{
+                    width: '1px',
+                    height: '35px',
+                    background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%)',
+                    opacity: 0.7
+                }}></div>
                 <button 
                     onClick={(e) => toggleDropdown('details-4', e)} 
                     className="toggle-details"
@@ -480,12 +565,27 @@ export default function Home() {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        gap: '4px',
-                        fontFamily: 'inherit'
+                        gap: '6px',
+                        fontFamily: 'inherit',
+                        outline: 'none'
                     }}
                 >
-                    <span style={{ fontSize: '0.85rem', fontWeight: 300, letterSpacing: '0.15em', textTransform: 'uppercase' }}>DETAIL</span>
-                    <span className="arrow" style={{ fontSize: '1.2rem', marginTop: '2px' }}>&darr;</span>
+                    <span style={{ fontSize: '0.85rem', fontWeight: 300, letterSpacing: '0.15em', textTransform: 'uppercase' }}>TL;DR</span>
+                    <div 
+                        style={{
+                            width: '24px',
+                            height: '24px',
+                            borderRadius: '50%',
+                            border: '1px solid rgba(255, 255, 255, 0.4)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            transition: 'transform 0.3s ease, border-color 0.3s ease',
+                            transform: activeDropdown === 'details-4' ? 'rotate(45deg)' : 'rotate(0deg)'
+                        }}
+                    >
+                        <span style={{ fontSize: '1.05rem', fontWeight: 300, lineHeight: 1, marginTop: '-2px' }}>+</span>
+                    </div>
                 </button>
             </div>
         </div>
