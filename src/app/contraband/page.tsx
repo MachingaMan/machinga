@@ -68,7 +68,7 @@ export default function ContrabandPage() {
                 </div>
                 <div className="meta-item">
                     <span className="meta-label">Result</span>
-                    <span className="meta-value" style={{fontWeight: "600"}}>60M views in two weeks.<br />1.1M likes.</span>
+                    <span className="meta-value" style={{fontWeight: "600"}}>88M+ views in two weeks.<br />1.1M likes.</span>
                 </div>
             </div>
 
@@ -141,7 +141,7 @@ export default function ContrabandPage() {
             <div className="cs-content-narrow">
                 <span className="cs-section-label">04 — How It Works</span>
                 <h2 className="cs-section-heading">Let it Stain</h2>
-                <p className="cs-section-text">60 million views is not a number that happens. It is a number that is built. Here is what was built, and why.</p>
+                <p className="cs-section-text">88 million views is not a number that happens. It is a number that is built. Here is what was built, and why.</p>
                 
                 <div style={{display: "flex", flexDirection: "column", gap: "2rem", marginTop: "3rem"}}>
                     {/*  Box 1  */}
@@ -303,7 +303,7 @@ export default function ContrabandPage() {
             </div>
             
             <div className="cs-content-narrow" style={{marginTop: "4rem"}}>
-                <p className="cs-section-text">Let It Stain: 60 million views in two weeks. 1.1 million likes. The snackable cut: 26.4 million views. For a fragrance brand's fourth SKU, no human talent, a brief that asked luxury to feel illicit without being explicit.</p>
+                <p className="cs-section-text">Let It Stain: 88 million views in two weeks. 1.1 million likes. The snackable cut: 26.4 million views. For a fragrance brand's fourth SKU, no human talent, a brief that asked luxury to feel illicit without being explicit.</p>
                 <p className="cs-section-text" style={{fontWeight: "600", color: "#1a1a1a", marginTop: "2rem"}}>The number is not the point. The architecture is the point. The number is what happens when the architecture works.</p>
             </div>
         </div>
