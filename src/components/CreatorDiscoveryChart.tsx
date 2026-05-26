@@ -288,13 +288,11 @@ export default function CreatorDiscoveryChart() {
               <line x1="285" y1="308" x2="300" y2="361" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" strokeDasharray="3 3" />
               <line x1="285" y1="308" x2="350" y2="384" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" strokeDasharray="3 3" />
 
-              {/* Nitesh Hired Marker & Follower Count */}
+              {/* Nitesh Hired Marker */}
               <circle cx="300" cy="361" r="6" fill="#00FF66" stroke="#ffffff" strokeWidth="2" />
-              <text x="286" y="364" fill="#00FF66" fontSize="10" fontWeight="700" textAnchor="end" fontFamily="Inter, sans-serif">88K</text>
 
-              {/* Vir Hired Marker & Follower Count */}
+              {/* Vir Hired Marker */}
               <circle cx="350" cy="384" r="6" fill="#00E5FF" stroke="#ffffff" strokeWidth="2" />
-              <text x="336" y="387" fill="#00E5FF" fontSize="10" fontWeight="700" textAnchor="end" fontFamily="Inter, sans-serif">40K</text>
             </g>
           </svg>
         </div>
