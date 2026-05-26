@@ -2772,13 +2772,16 @@ body {
 /* ── Next Project ───────────────────────────────────────────── */
 .cs-next-project {
     position: relative;
-    height: 400px;
+    height: auto;
+    min-height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: #fff;
     overflow: hidden;
+    padding-top: 11rem !important; /* Increased top padding to give ample separation from the dark block above */
+    padding-bottom: 8rem !important;
 }
 
 .cs-next-bg {
