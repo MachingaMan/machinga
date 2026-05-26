@@ -92,7 +92,7 @@ export default function CreatorDiscoveryChart() {
         .cs-chart-marker-group {
           opacity: 0;
           transform: scale(0.6);
-          transform-origin: 400px 360px;
+          transform-origin: 325px 372px;
           transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2s,
                       transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2s;
         }
@@ -106,7 +106,7 @@ export default function CreatorDiscoveryChart() {
         .cs-chart-avatar-group {
           opacity: 0;
           transform: scale(0.6);
-          transform-origin: 670px 90px;
+          transform-origin: 670px 175px;
           transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2.2s,
                       transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2.2s;
         }
@@ -190,7 +190,7 @@ export default function CreatorDiscoveryChart() {
                 <circle cx="670" cy="70" r="18" />
               </clipPath>
               <clipPath id="circle-clip-vir">
-                <circle cx="670" cy="110" r="18" />
+                <circle cx="670" cy="280" r="18" />
               </clipPath>
             </defs>
 
@@ -206,8 +206,8 @@ export default function CreatorDiscoveryChart() {
             <line className="cs-chart-gridline" x1="230" y1="50" x2="230" y2="400" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
             <line className="cs-chart-gridline" x1="570" y1="50" x2="570" y2="400" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
 
-            {/* Hired vertical dashed marker line */}
-            <line className="cs-chart-gridline" x1="400" y1="50" x2="400" y2="400" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" strokeDasharray="5 5" />
+            {/* Launch vertical dashed marker line */}
+            <line className="cs-chart-gridline" x1="400" y1="50" x2="400" y2="400" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" strokeDasharray="5 5" />
 
             {/* Coordinates Axes */}
             <line x1="60" y1="400" x2="670" y2="400" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" />
@@ -216,23 +216,23 @@ export default function CreatorDiscoveryChart() {
             {/* Y Axis Labels */}
             <text className="cs-chart-axis-label" x="50" y="404" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="end" fontFamily="Inter, sans-serif">0</text>
             <text className="cs-chart-axis-label" x="50" y="364" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="end" fontFamily="Inter, sans-serif">100K</text>
-            <text className="cs-chart-axis-label" x="50" y="284" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="end" fontFamily="Inter, sans-serif">1M</text>
-            <text className="cs-chart-axis-label" x="50" y="194" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="end" fontFamily="Inter, sans-serif">2M</text>
-            <text className="cs-chart-axis-label" x="50" y="104" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="end" fontFamily="Inter, sans-serif">3M</text>
-            <text className="cs-chart-axis-label" x="50" y="54" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="end" fontFamily="Inter, sans-serif">4M+</text>
+            <text className="cs-chart-axis-label" x="50" y="284" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="end" fontFamily="Inter, sans-serif">200K</text>
+            <text className="cs-chart-axis-label" x="50" y="194" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="end" fontFamily="Inter, sans-serif">400K</text>
+            <text className="cs-chart-axis-label" x="50" y="104" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="end" fontFamily="Inter, sans-serif">600K</text>
+            <text className="cs-chart-axis-label" x="50" y="54" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="end" fontFamily="Inter, sans-serif">800K+</text>
 
             {/* X Axis Labels */}
             <text className="cs-chart-axis-label" x="60" y="422" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="middle" fontFamily="Inter, sans-serif">-12 Months</text>
             <text className="cs-chart-axis-label" x="230" y="422" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="middle" fontFamily="Inter, sans-serif">-6 Months</text>
-            <text className="cs-chart-axis-label" x="400" y="424" fill="#ffffff" fontSize="12" fontWeight="700" textAnchor="middle" fontFamily="Inter, sans-serif">Hired</text>
+            <text className="cs-chart-axis-label" x="400" y="422" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="middle" fontFamily="Inter, sans-serif">Launch</text>
             <text className="cs-chart-axis-label" x="570" y="422" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="middle" fontFamily="Inter, sans-serif">+6 Months</text>
             <text className="cs-chart-axis-label" x="670" y="422" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="middle" fontFamily="Inter, sans-serif">Today</text>
 
             {/* Exponential Growth Curves */}
-            {/* Curve 1: Nitesh Shetty */}
+            {/* Curve 1: Nitesh Shetty (88K Hired, 800K Today) */}
             <path 
               className="cs-chart-curve" 
-              d="M 60,395 C 180,390 280,380 400,360 C 490,340 570,180 670,70" 
+              d="M 60,392 C 160,390 220,380 300,361 C 380,335 480,220 670,70" 
               fill="none" 
               stroke="#00FF66" 
               strokeWidth="4.5" 
@@ -240,10 +240,10 @@ export default function CreatorDiscoveryChart() {
               filter="url(#glow-green)"
             />
 
-            {/* Curve 2: Vir Saini */}
+            {/* Curve 2: Vir Saini (40K Hired, 200K Today) */}
             <path 
               className="cs-chart-curve" 
-              d="M 60,390 C 180,385 280,375 400,358 C 470,345 560,240 670,110" 
+              d="M 60,396 C 160,395 250,390 350,384 C 420,378 520,350 670,280" 
               fill="none" 
               stroke="#00E5FF" 
               strokeWidth="4.5" 
@@ -269,27 +269,26 @@ export default function CreatorDiscoveryChart() {
               <image 
                 href="/assets/Appreciate case studies assets/vir_avatar.png"
                 x="652" 
-                y="92" 
+                y="262" 
                 width="36" 
                 height="36" 
                 clipPath="url(#circle-clip-vir)"
               />
-              <circle cx="670" cy="110" r="18" fill="none" stroke="#00E5FF" strokeWidth="2.5" />
-              <text x="696" y="114" fill="rgba(255,255,255,0.85)" fontSize="12" fontWeight="700" fontFamily="Inter, sans-serif">Vir Saini</text>
+              <circle cx="670" cy="280" r="18" fill="none" stroke="#00E5FF" strokeWidth="2.5" />
+              <text x="696" y="284" fill="rgba(255,255,255,0.85)" fontSize="12" fontWeight="700" fontFamily="Inter, sans-serif">Vir Saini</text>
             </g>
 
             {/* Hired Tooltip/Badge & Markers Group */}
             <g className="cs-chart-marker-group">
-              {/* Badge pointer line */}
-              <line x1="400" y1="328" x2="400" y2="352" stroke="rgba(255,255,255,0.5)" strokeWidth="1" />
-              
-              {/* Badge box */}
-              <rect x="330" y="300" width="140" height="28" rx="6" fill="#1D1D1F" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
-              <text x="400" y="317" fill="#ffffff" fontSize="10" fontWeight="700" letterSpacing="0.5" textAnchor="middle" fontFamily="Inter, sans-serif">WE HIRED HERE</text>
-              
-              {/* Circular points on the curves at hiring point */}
-              <circle cx="400" cy="360" r="6" fill="#00FF66" stroke="#ffffff" strokeWidth="2" />
-              <circle cx="400" cy="358" r="6" fill="#00E5FF" stroke="#ffffff" strokeWidth="2" />
+              {/* Nitesh Hired Marker & Label */}
+              <circle cx="300" cy="361" r="6" fill="#00FF66" stroke="#ffffff" strokeWidth="2" />
+              <line x1="300" y1="361" x2="260" y2="330" stroke="rgba(255,255,255,0.3)" strokeWidth="1" strokeDasharray="3 3" />
+              <text x="250" y="334" fill="#00FF66" fontSize="10" fontWeight="700" textAnchor="end" fontFamily="Inter, sans-serif">WE HIRED HERE (88K)</text>
+
+              {/* Vir Hired Marker & Label */}
+              <circle cx="350" cy="384" r="6" fill="#00E5FF" stroke="#ffffff" strokeWidth="2" />
+              <line x1="350" y1="384" x2="390" y2="353" stroke="rgba(255,255,255,0.3)" strokeWidth="1" strokeDasharray="3 3" />
+              <text x="400" y="357" fill="#00E5FF" fontSize="10" fontWeight="700" textAnchor="start" fontFamily="Inter, sans-serif">WE HIRED HERE (40K)</text>
             </g>
           </svg>
         </div>
