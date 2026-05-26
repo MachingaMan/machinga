@@ -474,7 +474,13 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    scale: 1.3; /* Base scale for parallax bleed and letterbox cropping */
+    --drift-x: 0px;
+    --drift-y: 0px;
+    --tx: 0%;
+    --ty: 0%;
+    --zoom-factor: 1;
+    transform: translate(calc(var(--drift-x) + var(--tx)), calc(var(--drift-y) + var(--ty)));
+    scale: calc(1.65 * var(--zoom-factor)); /* Base scale for parallax bleed and letterbox cropping */
 }
 
 .project-bubble:hover {
@@ -484,7 +490,7 @@ body {
 }
 
 .project-bubble:hover .bubble-video {
-    scale: 1.4; /* Combined base scale 1.3 * hover scale 1.08 ≈ 1.4 */
+    scale: calc(1.75 * var(--zoom-factor)); /* Combined base scale 1.65 * hover scale 1.06 ≈ 1.75 */
 }
 
 /* Staggered Pop-Out Transition Delays */
@@ -672,12 +678,11 @@ body {
     --bubble-letter-spacing: -0.03em;
 }
 
-/* Custom scaling for the Contraband video to crop out top/bottom black letterbox bars */
-.bubble-contraband .bubble-video {
-    scale: 1.45; /* Zoom more to crop letterboxing */
-}
-.bubble-contraband:hover .bubble-video {
-    scale: 1.55;
+/* Custom scaling for specific project bubbles with heavy letterbox/pillarbox black bars */
+.bubble-contraband .bubble-video,
+.bubble-hamleys .bubble-video {
+    --base-scale: 1.75;
+    --base-hover-scale: 1.85;
 }
 
 .bubble-aava {

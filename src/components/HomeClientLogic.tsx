@@ -40,10 +40,16 @@ export default function HomeClientLogic() {
       let sweepTimeout: NodeJS.Timeout | null = null;
       let videoTimeout: NodeJS.Timeout | null = null;
 
+      let pullY = 0;
+      let releaseTimeout: NodeJS.Timeout | null = null;
+      let isPulling = false;
+      let isLockedDuringAnimation = false;
+      const heroContainer = document.querySelector('.hero-bubble-container') as HTMLElement;
+
       const updateScrollLock = () => {
         const isCollapsed = heroSection.classList.contains('collapsed');
         const isVideoPlaying = heroSection.classList.contains('video-playing');
-        if (isCollapsed || isVideoPlaying) {
+        if (isCollapsed || isVideoPlaying || isLockedDuringAnimation) {
           document.body.style.overflow = 'hidden';
           document.documentElement.style.overflow = 'hidden';
           if (lenisRef.current) {
@@ -262,7 +268,8 @@ export default function HomeClientLogic() {
           
           const video = bubble.querySelector('.bubble-video') as HTMLElement;
           if (video) {
-            video.style.transform = `translate(${driftX}px, ${driftY}px)`;
+            video.style.setProperty('--drift-x', `${driftX}px`);
+            video.style.setProperty('--drift-y', `${driftY}px`);
           }
         });
       };
@@ -349,6 +356,8 @@ export default function HomeClientLogic() {
       };
 
       // Bind Listeners
+      setupBubbleVideoAutoCropping();
+
       logoBtn.addEventListener('mouseenter', handleLogoMouseEnter);
       logoBtn.addEventListener('mousemove', handleLogoMouseMove);
       logoBtn.addEventListener('mouseleave', handleLogoMouseLeave);
@@ -462,45 +471,284 @@ export default function HomeClientLogic() {
         bubble.addEventListener('click', handleProjectBubbleClick as EventListener);
       });
 
-      // ── Scroll Intercept when Collapsed ─────────────────────────────────────────
-      const handleScrollAttempt = (e: WheelEvent) => {
-        const isCollapsed = heroSection.classList.contains('collapsed');
-        if (isCollapsed && e.deltaY > 0) {
-          e.preventDefault();
-          heroSection.classList.remove('collapsed');
-          const headlineEl = document.getElementById('hero-headline');
-          if (headlineEl && window.innerWidth > 768) {
-            headlineEl.classList.add('headline-hidden');
+      // ── Dynamic Video Auto-Cropping (No Black Borders) ─────────────────────────
+      const setupBubbleVideoAutoCropping = () => {
+        const videos = document.querySelectorAll('.bubble-video') as NodeListOf<HTMLVideoElement>;
+        
+        videos.forEach((vid) => {
+          let processed = false;
+          let checkCount = 0;
+          const maxChecks = 25; // Try up to 25 times
+          let intervalId: any = null;
+
+          const analyzeFrame = () => {
+            if (processed || checkCount >= maxChecks) {
+              if (intervalId) {
+                clearInterval(intervalId);
+                intervalId = null;
+              }
+              return;
+            }
+
+            if (vid.paused || vid.ended || vid.readyState < 2) {
+              return; // Video not playing or not ready
+            }
+
+            checkCount++;
+
+            try {
+              const videoWidth = vid.videoWidth;
+              const videoHeight = vid.videoHeight;
+              if (videoWidth === 0 || videoHeight === 0) return;
+
+              // Create offscreen canvas for scanning
+              const canvas = document.createElement('canvas');
+              const width = 160;
+              const height = Math.round((videoHeight / videoWidth) * width) || 90;
+              canvas.width = width;
+              canvas.height = height;
+
+              const ctx = canvas.getContext('2d');
+              if (!ctx) return;
+
+              ctx.drawImage(vid, 0, 0, width, height);
+              const imgData = ctx.getImageData(0, 0, width, height);
+              const data = imgData.data;
+
+              // Check if frame is too dark (e.g. initial transition / black screen)
+              let maxVal = 0;
+              for (let i = 0; i < data.length; i += 4) {
+                const val = Math.max(data[i], data[i+1], data[i+2]);
+                if (val > maxVal) maxVal = val;
+              }
+
+              if (maxVal < 25) {
+                return; // Wait for a brighter frame
+              }
+
+              // Scan bounding box of non-black pixels
+              const BLACK_THRESHOLD = 15;
+              let minY = height;
+              let maxY = 0;
+              let minX = width;
+              let maxX = 0;
+              let hasContent = false;
+
+              for (let y = 0; y < height; y++) {
+                for (let x = 0; x < width; x++) {
+                  const idx = (y * width + x) * 4;
+                  const r = data[idx];
+                  const g = data[idx + 1];
+                  const b = data[idx + 2];
+                  if (r > BLACK_THRESHOLD || g > BLACK_THRESHOLD || b > BLACK_THRESHOLD) {
+                    hasContent = true;
+                    if (y < minY) minY = y;
+                    if (y > maxY) maxY = y;
+                    if (x < minX) minX = x;
+                    if (x > maxX) maxX = x;
+                  }
+                }
+              }
+
+              if (!hasContent) return;
+
+              const w = maxX - minX + 1;
+              const h = maxY - minY + 1;
+
+              // Safeguard against too-small bounding box (e.g. tiny logo on dark background)
+              if (w < width * 0.15 || h < height * 0.15) {
+                return;
+              }
+
+              // Found valid content frame! Crop now.
+              processed = true;
+              if (intervalId) {
+                clearInterval(intervalId);
+                intervalId = null;
+              }
+
+              // Normalize margins
+              const L = minX / width;
+              const R = (width - 1 - maxX) / width;
+              const T = minY / height;
+              const B = (height - 1 - maxY) / height;
+
+              const marginThreshold = 0.02;
+              if (L < marginThreshold && R < marginThreshold && T < marginThreshold && B < marginThreshold) {
+                console.log(`Video ${vid.src || vid.currentSrc} has no significant borders.`);
+                vid.style.setProperty('--tx', '0%');
+                vid.style.setProperty('--ty', '0%');
+                vid.style.setProperty('--zoom-factor', '1');
+                return;
+              }
+
+              // Content fraction
+              const fx = w / width;
+              const fy = h / height;
+              const aspect = videoWidth / videoHeight;
+
+              // Calculate required crop scale
+              let S = 1.0;
+              if (aspect >= 1) {
+                S = Math.max(1 / (fx * aspect), 1 / fy);
+              } else {
+                S = Math.max(1 / fx, aspect / fy);
+              }
+
+              // Center alignment offset
+              const cx = L + fx / 2;
+              const cy = T + fy / 2;
+              const txPercent = -(cx - 0.5) * 100;
+              const tyPercent = -(cy - 0.5) * 100;
+
+              console.log(`Cropping bubble video:`, {
+                src: vid.src || vid.currentSrc,
+                aspect,
+                margins: { L, R, T, B },
+                zoom: S,
+                tx: txPercent,
+                ty: tyPercent
+              });
+
+              vid.style.setProperty('--tx', `${txPercent}%`);
+              vid.style.setProperty('--ty', `${tyPercent}%`);
+              vid.style.setProperty('--zoom-factor', `${S}`);
+
+            } catch (err) {
+              console.error("Error auto-cropping video:", err);
+            }
+          };
+
+          const startPolling = () => {
+            if (processed) return;
+            if (!intervalId) {
+              intervalId = setInterval(analyzeFrame, 250);
+            }
+          };
+
+          vid.addEventListener('playing', startPolling);
+          vid.addEventListener('timeupdate', startPolling);
+          
+          if (!vid.paused) {
+            startPolling();
           }
-          updateScrollLock();
+        });
+      };
+
+      // ── Scroll Intercept when Collapsed (Elastic Pull-to-Expand) ────────────────
+      const handleRelease = () => {
+        if (releaseTimeout) {
+          clearTimeout(releaseTimeout);
+          releaseTimeout = null;
+        }
+
+        if (pullY > 0) {
+          const isCollapsed = heroSection.classList.contains('collapsed');
+          if (isCollapsed) {
+            const visualPull = Math.min(80, Math.pow(pullY, 0.72));
+            if (visualPull > 30) {
+              // Trigger pop-out
+              heroSection.classList.remove('collapsed');
+              const headlineEl = document.getElementById('hero-headline');
+              if (headlineEl && window.innerWidth > 768) {
+                headlineEl.classList.add('headline-hidden');
+              }
+
+              // Snap back with spring bounce
+              if (heroContainer) {
+                heroContainer.style.transition = 'transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                heroContainer.style.transform = 'translateY(0px)';
+              }
+
+              // Lock scroll for 1.2s during pop-out animation
+              isLockedDuringAnimation = true;
+              updateScrollLock();
+
+              setTimeout(() => {
+                isLockedDuringAnimation = false;
+                updateScrollLock();
+              }, 1200);
+
+            } else {
+              // Snap back smoothly
+              if (heroContainer) {
+                heroContainer.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+                heroContainer.style.transform = 'translateY(0px)';
+              }
+            }
+          }
+          pullY = 0;
+        }
+      };
+
+      const handleScrollAttempt = (e: WheelEvent) => {
+        if (isLockedDuringAnimation) {
+          e.preventDefault();
+          return;
+        }
+
+        const isCollapsed = heroSection.classList.contains('collapsed');
+        if (isCollapsed) {
+          if (e.deltaY > 0 || pullY > 0) {
+            e.preventDefault();
+            pullY += e.deltaY;
+            if (pullY < 0) pullY = 0;
+
+            const dampedY = Math.min(80, Math.pow(pullY, 0.72));
+            if (heroContainer) {
+              heroContainer.style.transition = 'none';
+              heroContainer.style.transform = `translateY(-${dampedY}px)`;
+            }
+
+            if (releaseTimeout) clearTimeout(releaseTimeout);
+            releaseTimeout = setTimeout(handleRelease, 150);
+          }
         }
       };
 
       let touchStartY = 0;
       const handleTouchStart = (e: TouchEvent) => {
-        touchStartY = e.touches[0].clientY;
+        if (heroSection.classList.contains('collapsed') && !isLockedDuringAnimation) {
+          touchStartY = e.touches[0].clientY;
+          isPulling = true;
+        }
       };
 
       const handleTouchMove = (e: TouchEvent) => {
+        if (isLockedDuringAnimation) {
+          e.preventDefault();
+          return;
+        }
+
         const isCollapsed = heroSection.classList.contains('collapsed');
-        if (isCollapsed) {
-          const touchEndY = e.touches[0].clientY;
-          const diffY = touchStartY - touchEndY;
-          if (diffY > 8) { // Swiped up (scrolling down)
+        if (isCollapsed && isPulling) {
+          const touchCurrentY = e.touches[0].clientY;
+          const diffY = touchStartY - touchCurrentY;
+          if (diffY > 0) {
             e.preventDefault();
-            heroSection.classList.remove('collapsed');
-            const headlineEl = document.getElementById('hero-headline');
-            if (headlineEl && window.innerWidth > 768) {
-              headlineEl.classList.add('headline-hidden');
+            pullY = diffY;
+
+            const dampedY = Math.min(80, Math.pow(pullY, 0.72));
+            if (heroContainer) {
+              heroContainer.style.transition = 'none';
+              heroContainer.style.transform = `translateY(-${dampedY}px)`;
             }
-            updateScrollLock();
           }
+        }
+      };
+
+      const handleTouchEnd = () => {
+        if (isPulling) {
+          isPulling = false;
+          handleRelease();
         }
       };
 
       window.addEventListener('wheel', handleScrollAttempt, { passive: false });
       window.addEventListener('touchstart', handleTouchStart, { passive: true });
       window.addEventListener('touchmove', handleTouchMove, { passive: false });
+      window.addEventListener('touchend', handleTouchEnd, { passive: true });
+      window.addEventListener('touchcancel', handleTouchEnd, { passive: true });
 
       window.addEventListener('mousemove', handleGlobalMouseMove, { passive: true });
       window.addEventListener('scroll', handleHeaderScroll, { passive: true });
@@ -765,6 +1013,8 @@ export default function HomeClientLogic() {
         window.removeEventListener('wheel', handleScrollAttempt);
         window.removeEventListener('touchstart', handleTouchStart);
         window.removeEventListener('touchmove', handleTouchMove);
+        window.removeEventListener('touchend', handleTouchEnd);
+        window.removeEventListener('touchcancel', handleTouchEnd);
         window.removeEventListener('mousemove', handleGlobalMouseMove);
         window.removeEventListener('scroll', handleHeaderScroll);
         window.removeEventListener('scroll', handleBeliefScroll);
