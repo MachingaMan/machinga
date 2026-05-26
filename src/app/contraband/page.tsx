@@ -24,7 +24,7 @@ export default function ContrabandPage() {
           <p className="cs-fs-hero-text">88 million plus views in two weeks.</p>
           <div className="cs-fs-hero-tags-container">
             <div className="cs-fs-hero-tags-row-engagement">
-              <span className="cs-fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Campaign/Project</span>
+              <span className="cs-fs-tag cs-fs-tag-white">Campaign/Project</span>
             </div>
             <div className="cs-fs-hero-tags-row-sub">
               <span className="cs-fs-tag">Campaign Strategy</span>

@@ -23,8 +23,8 @@ export default function AavaPage() {
           <p className="cs-fs-hero-text">Two words. Uncopyable by design.</p>
           <div className="cs-fs-hero-tags-container">
             <div className="cs-fs-hero-tags-row-engagement">
-              <span className="cs-fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Creative Strategy</span>
-              <span className="cs-fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Campaign/Project</span>
+              <span className="cs-fs-tag cs-fs-tag-white">Creative Strategy</span>
+              <span className="cs-fs-tag cs-fs-tag-white">Campaign/Project</span>
             </div>
             <div className="cs-fs-hero-tags-row-sub">
               <span className="cs-fs-tag">Brand Strategy</span>

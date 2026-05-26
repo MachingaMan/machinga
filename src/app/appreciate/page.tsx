@@ -25,7 +25,7 @@ export default function AppreciatePage() {
           <p className="cs-fs-hero-text">0 &rarr; 124K followers in 18 months.</p>
           <div className="cs-fs-hero-tags-container">
             <div className="cs-fs-hero-tags-row-engagement">
-              <span className="cs-fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Content Engine</span>
+              <span className="cs-fs-tag cs-fs-tag-white">Content Engine</span>
             </div>
             <div className="cs-fs-hero-tags-row-sub">
               <span className="cs-fs-tag">Content Strategy</span>
