@@ -1,5 +1,6 @@
 import Carousel from '@/components/Carousel';
 import Link from 'next/link';
+import CreatorDiscoveryChart from '@/components/CreatorDiscoveryChart';
 
 
 export const metadata = {
@@ -230,17 +231,12 @@ export default function AppreciatePage() {
         </div>
     </section>
 
-    {/*  Split Section (Outcome/Next)  */}
+    {/*  Creator Discovery Custom Chart Section  */}
+    <CreatorDiscoveryChart />
+
+    {/*  Split Section (05 - The AI Frontier)  */}
     <section className="cs-split-section" style={{backgroundColor: "#F5F5F7", paddingTop: "4rem", paddingBottom: "4rem"}}>
         <div className="cs-container">
-            <div className="cs-content-narrow" style={{marginBottom: "6rem", textAlign: "center"}}>
-                <span className="cs-section-label">04 — Creator Discovery</span>
-                <h2 className="cs-section-heading">We find them before the market prices them in.</h2>
-                <p className="cs-section-text">Across all three workflows, the most structurally significant thing we built is a methodology for identifying creators before the market prices them in.</p>
-                <p className="cs-section-text">The Nitesh and Vir collaborations both happened at a point when those creators were significantly less expensive than they became in the months that followed. In both cases, fees had more than tripled by the time that window closed.</p>
-                <p className="cs-section-text">The economics of early discovery compound: not just in money saved, but in relationships built before the creator has ten agencies in their inbox.</p>
-            </div>
-
             <div className="cs-split-grid">
                 <div className="cs-split-image">
                     <video src={`/assets/Appreciate case studies assets/export_22.mp4`} autoPlay loop muted playsInline
