@@ -3428,3 +3428,25 @@ html.lenis, html.lenis body {
     justify-content: center;
     gap: 10px;
 }
+
+/* Light Background Accordion Tags */
+.acc-tag {
+    display: inline-block;
+    color: #1a1a1a;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.acc-tag-dark {
+    background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+    border: 1px solid #1a1a1a !important;
+    font-weight: 600 !important;
+}

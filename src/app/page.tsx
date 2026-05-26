@@ -342,7 +342,20 @@ export default function Home() {
                         </div>
                     </div>
                     <h4 className="details-section-title">Engagement Model</h4>
-                    <p className="details-section-text">Content Engine — Full-service retainer, embedded team, ongoing production</p>
+                    <div className="fs-card-tags-container" style={{ alignItems: 'flex-start', marginTop: '15px', marginBottom: '0', gap: '8px' }}>
+                        <div className="fs-card-tags-row-engagement" style={{ justifyContent: 'flex-start', gap: '8px' }}>
+                            <span className="acc-tag acc-tag-dark">Content Engine</span>
+                        </div>
+                        <div className="fs-card-tags-row-sub" style={{ justifyContent: 'flex-start', gap: '8px' }}>
+                            <span className="acc-tag">Content Strategy</span>
+                            <span className="acc-tag">Engine Architecture</span>
+                            <span className="acc-tag">Multi-format Production</span>
+                        </div>
+                        <div className="fs-card-tags-row-sub" style={{ justifyContent: 'flex-start', gap: '8px' }}>
+                            <span className="acc-tag">Creator Discovery</span>
+                            <span className="acc-tag">Ongoing Optimisation</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -423,7 +436,16 @@ export default function Home() {
                         </div>
                     </div>
                     <h4 className="details-section-title">Engagement Model</h4>
-                    <p className="details-section-text">Campaign/Project — Campaign Strategy | Scripts | End-to-End DVC Production</p>
+                    <div className="fs-card-tags-container" style={{ alignItems: 'flex-start', marginTop: '15px', marginBottom: '0', gap: '8px' }}>
+                        <div className="fs-card-tags-row-engagement" style={{ justifyContent: 'flex-start', gap: '8px' }}>
+                            <span className="acc-tag acc-tag-dark">Campaign/Project</span>
+                        </div>
+                        <div className="fs-card-tags-row-sub" style={{ justifyContent: 'flex-start', gap: '8px' }}>
+                            <span className="acc-tag">Campaign Strategy</span>
+                            <span className="acc-tag">Scripts</span>
+                            <span className="acc-tag">End-to-End DVC Production</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -506,7 +528,18 @@ export default function Home() {
                         </div>
                     </div>
                     <h4 className="details-section-title">Engagement Model</h4>
-                    <p className="details-section-text">Creative Strategy | Campaign / Project — Brand Strategy | Positioning | Scripts | End-to-End DVC Production</p>
+                    <div className="fs-card-tags-container" style={{ alignItems: 'flex-start', marginTop: '15px', marginBottom: '0', gap: '8px' }}>
+                        <div className="fs-card-tags-row-engagement" style={{ justifyContent: 'flex-start', gap: '8px' }}>
+                            <span className="acc-tag acc-tag-dark">Creative Strategy</span>
+                            <span className="acc-tag acc-tag-dark">Campaign/Project</span>
+                        </div>
+                        <div className="fs-card-tags-row-sub" style={{ justifyContent: 'flex-start', gap: '8px' }}>
+                            <span className="acc-tag">Brand Strategy</span>
+                            <span className="acc-tag">Positioning</span>
+                            <span className="acc-tag">Scripts</span>
+                            <span className="acc-tag">End-to-End DVC Production</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -589,7 +622,18 @@ export default function Home() {
                         </div>
                     </div>
                     <h4 className="details-section-title">Engagement Model</h4>
-                    <p className="details-section-text">Creative Strategy | Campaign/Project — Campaign Strategy | On-ground Activation | Video Production | Social Media Content</p>
+                    <div className="fs-card-tags-container" style={{ alignItems: 'flex-start', marginTop: '15px', marginBottom: '0', gap: '8px' }}>
+                        <div className="fs-card-tags-row-engagement" style={{ justifyContent: 'flex-start', gap: '8px' }}>
+                            <span className="acc-tag acc-tag-dark">Creative Strategy</span>
+                            <span className="acc-tag acc-tag-dark">Campaign/Project</span>
+                        </div>
+                        <div className="fs-card-tags-row-sub" style={{ justifyContent: 'flex-start', gap: '8px' }}>
+                            <span className="acc-tag">Campaign Strategy</span>
+                            <span className="acc-tag">On-ground Activation</span>
+                            <span className="acc-tag">Video Production</span>
+                            <span className="acc-tag">Social Media Content</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
