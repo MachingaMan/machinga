@@ -309,15 +309,13 @@ export default function ContrabandPage() {
         </div>
     </section>
 
-    {/*  Black Background Bar  */}
-    <section style={{padding: "4rem 0"}}>
-        <div className="cs-container">
-            <div style={{backgroundColor: "#000000", borderRadius: "20px", padding: "4rem 2rem", display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: "1.5rem"}}>
-                <div style={{color: "#ffffff", padding: "14px 8vw", fontWeight: "600", fontSize: "1rem", border: "1px solid #888888", borderRadius: "50px", textAlign: "center", whiteSpace: "nowrap"}}>Engagement Model</div>
-                <div style={{color: "#ffffff", padding: "14px 8vw", fontWeight: "600", fontSize: "1rem", border: "1px solid #888888", borderRadius: "50px", textAlign: "center", whiteSpace: "nowrap"}}>Campaign Concept</div>
-                <div style={{color: "#ffffff", padding: "14px 8vw", fontWeight: "600", fontSize: "1rem", border: "1px solid #888888", borderRadius: "50px", textAlign: "center", whiteSpace: "nowrap"}}>Script</div>
-                <div style={{color: "#ffffff", padding: "14px 8vw", fontWeight: "600", fontSize: "1rem", border: "1px solid #888888", borderRadius: "50px", textAlign: "center", whiteSpace: "nowrap"}}>Production</div>
-            </div>
+    {/*  Tags Section  */}
+    <section style={{backgroundColor: "#1D1D1F", padding: "4rem 0"}}>
+        <div className="cs-container" style={{display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: "1.5rem"}}>
+            <span style={{backgroundColor: "#ffffff", color: "#000000", border: "1px solid #ffffff", padding: "14px 36px", borderRadius: "50px", fontSize: "1rem", fontWeight: "700", whiteSpace: "nowrap"}}>Campaign/Project</span>
+            <span style={{border: "1px solid #48484A", color: "#ffffff", padding: "14px 36px", borderRadius: "50px", fontSize: "1rem", whiteSpace: "nowrap"}}>Campaign Strategy</span>
+            <span style={{border: "1px solid #48484A", color: "#ffffff", padding: "14px 36px", borderRadius: "50px", fontSize: "1rem", whiteSpace: "nowrap"}}>Scripts</span>
+            <span style={{border: "1px solid #48484A", color: "#ffffff", padding: "14px 36px", borderRadius: "50px", fontSize: "1rem", whiteSpace: "nowrap"}}>End-to-End DVC Production</span>
         </div>
     </section>
 

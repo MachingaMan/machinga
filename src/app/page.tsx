@@ -261,6 +261,7 @@ export default function Home() {
                 <p className="fs-card-sub">How a fintech compounds interest</p>
                 <p className="fs-card-text">0 &rarr; 124K followers in 18 months.</p>
                 <div className="fs-card-tags">
+                    <span className="fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Content Engine</span>
                     <span className="fs-tag">Content Strategy</span>
                     <span className="fs-tag">Engine Architecture</span>
                     <span className="fs-tag">Multi-format Production</span>
@@ -332,6 +333,7 @@ export default function Home() {
                 <p className="fs-card-sub">How a stain did what a celebrity couldn't.</p>
                 <p className="fs-card-text">88M+ views in 2 weeks.</p>
                 <div className="fs-card-tags">
+                    <span className="fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Campaign/Project</span>
                     <span className="fs-tag">Campaign Strategy</span>
                     <span className="fs-tag">Scripts</span>
                     <span className="fs-tag">End-to-End DVC Production</span>
@@ -393,9 +395,12 @@ export default function Home() {
                 <p className="fs-card-sub">How the OG water brand won a category flooded with imposters.</p>
                 <p className="fs-card-text">Two words. Uncopyable by design.</p>
                 <div className="fs-card-tags">
-                    <span className="fs-tag">Brand Positioning</span>
-                    <span className="fs-tag">Campaign Strategy</span>
-                    <span className="fs-tag">Film Production</span>
+                    <span className="fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Creative Strategy</span>
+                    <span className="fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Campaign/Project</span>
+                    <span className="fs-tag">Brand Strategy</span>
+                    <span className="fs-tag">Positioning</span>
+                    <span className="fs-tag">Scripts</span>
+                    <span className="fs-tag">End-to-End DVC Production</span>
                 </div>
             </div>
             <div className="scroll-down-indicator">
@@ -454,6 +459,8 @@ export default function Home() {
                 <p className="fs-card-sub">How a 265-year-old toy store solved Valentine’s for Gen Z.</p>
                 <p className="fs-card-text">5M+ organic views in one week. Recommissioned year two.</p>
                 <div className="fs-card-tags">
+                    <span className="fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Creative Strategy</span>
+                    <span className="fs-tag" style={{ backgroundColor: '#ffffff', color: '#000000', border: '1px solid #ffffff', fontWeight: '600' }}>Campaign/Project</span>
                     <span className="fs-tag">Campaign Strategy</span>
                     <span className="fs-tag">On-ground Activation</span>
                     <span className="fs-tag">Video Production</span>
