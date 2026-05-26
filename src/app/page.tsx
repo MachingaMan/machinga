@@ -268,18 +268,14 @@ export default function Home() {
                         <span className="fs-tag">Content Strategy</span>
                         <span className="fs-tag">Engine Architecture</span>
                         <span className="fs-tag">Multi-format Production</span>
+                    </div>
+                    <div className="fs-card-tags-row-sub">
                         <span className="fs-tag">Creator Discovery</span>
                         <span className="fs-tag">Ongoing Optimisation</span>
                     </div>
                 </div>
             </div>
             <div className="scroll-down-indicator" style={{ flexDirection: 'column', gap: '4px', bottom: '20px' }}>
-                <div style={{
-                    width: '1px',
-                    height: '35px',
-                    background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%)',
-                    opacity: 0.7
-                }}></div>
                 <button 
                     onClick={(e) => toggleDropdown('details-1', e)} 
                     className="toggle-details"
@@ -369,12 +365,6 @@ export default function Home() {
                 </div>
             </div>
             <div className="scroll-down-indicator" style={{ flexDirection: 'column', gap: '4px', bottom: '20px' }}>
-                <div style={{
-                    width: '1px',
-                    height: '35px',
-                    background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%)',
-                    opacity: 0.7
-                }}></div>
                 <button 
                     onClick={(e) => toggleDropdown('details-2', e)} 
                     className="toggle-details"
@@ -458,12 +448,6 @@ export default function Home() {
                 </div>
             </div>
             <div className="scroll-down-indicator" style={{ flexDirection: 'column', gap: '4px', bottom: '20px' }}>
-                <div style={{
-                    width: '1px',
-                    height: '35px',
-                    background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%)',
-                    opacity: 0.7
-                }}></div>
                 <button 
                     onClick={(e) => toggleDropdown('details-3', e)} 
                     className="toggle-details"
@@ -547,12 +531,6 @@ export default function Home() {
                 </div>
             </div>
             <div className="scroll-down-indicator" style={{ flexDirection: 'column', gap: '4px', bottom: '20px' }}>
-                <div style={{
-                    width: '1px',
-                    height: '35px',
-                    background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%)',
-                    opacity: 0.7
-                }}></div>
                 <button 
                     onClick={(e) => toggleDropdown('details-4', e)} 
                     className="toggle-details"

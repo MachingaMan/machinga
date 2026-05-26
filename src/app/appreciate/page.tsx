@@ -31,6 +31,8 @@ export default function AppreciatePage() {
               <span className="cs-fs-tag">Content Strategy</span>
               <span className="cs-fs-tag">Engine Architecture</span>
               <span className="cs-fs-tag">Multi-format Production</span>
+            </div>
+            <div className="cs-fs-hero-tags-row-sub">
               <span className="cs-fs-tag">Creator Discovery</span>
               <span className="cs-fs-tag">Ongoing Optimisation</span>
             </div>
