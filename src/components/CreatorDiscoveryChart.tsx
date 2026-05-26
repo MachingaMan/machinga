@@ -88,8 +88,8 @@ export default function CreatorDiscoveryChart() {
 
         /* Micro-animations for growth curves */
         .cs-chart-curve {
-          stroke-dasharray: 1200;
-          stroke-dashoffset: 1200;
+          stroke-dasharray: 100;
+          stroke-dashoffset: 100;
           transition: stroke-dashoffset 2.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
@@ -118,7 +118,7 @@ export default function CreatorDiscoveryChart() {
           offset-distance: 0%;
           opacity: 0;
           transition: offset-distance 2.5s cubic-bezier(0.25, 1, 0.5, 1),
-                      opacity 0.4s ease 0.2s;
+                      opacity 0.3s ease;
         }
 
         .cs-chart-section.active .cs-chart-avatar-nitesh {
@@ -132,7 +132,7 @@ export default function CreatorDiscoveryChart() {
           offset-distance: 0%;
           opacity: 0;
           transition: offset-distance 2.5s cubic-bezier(0.25, 1, 0.5, 1),
-                      opacity 0.4s ease 0.2s;
+                      opacity 0.3s ease;
         }
 
         .cs-chart-section.active .cs-chart-avatar-vir {
@@ -259,6 +259,7 @@ export default function CreatorDiscoveryChart() {
               strokeWidth="4.5" 
               strokeLinecap="round" 
               filter="url(#glow-green)"
+              pathLength={100}
             />
 
             {/* Curve 2: Vir Saini (40K Hired, 200K at +12M) */}
@@ -270,6 +271,7 @@ export default function CreatorDiscoveryChart() {
               strokeWidth="4.5" 
               strokeLinecap="round" 
               filter="url(#glow-cyan)"
+              pathLength={100}
             />
 
             {/* Face Avatars traveling along growth paths */}
