@@ -4,10 +4,38 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 const projects = [
-  { id: 'appreciate', title: 'Appreciate', subtext: 'How a fintech compounds interest', img: '/assets/APPRECIATE1.png', video: '/assets/Appreciate.MP4' },
-  { id: 'aava', title: 'Aava', subtext: 'How two words made a 20-year-old water brand uncopyable', img: '/assets/AAVA3.png', video: '/assets/aava.mp4' },
-  { id: 'contraband', title: 'Contraband', subtext: 'How a stain launched a luxury fragrance to 88 million people', img: '/assets/CONTRABAND2.png', video: '/assets/Contraband.MP4' },
-  { id: 'hamleys', title: 'Hamleys', subtext: "How a 250-year-old toy store helped Gen Z defuse a time bomb on Valentine's Day", img: '/assets/HAMLEYS4.png', video: '/assets/hamleys.mp4' },
+  { 
+    id: 'appreciate', 
+    title: 'Appreciate', 
+    headline: 'How a fintech compounds interest', 
+    subheadline: '0 → 124K followers in 18 months.', 
+    img: '/assets/APPRECIATE1.png', 
+    video: '/assets/Appreciate.MP4' 
+  },
+  { 
+    id: 'aava', 
+    title: 'Aava', 
+    headline: 'How the OG water brand won a category flooded with imposters.', 
+    subheadline: 'Two words. Uncopyable by design.', 
+    img: '/assets/AAVA3.png', 
+    video: '/assets/aava.mp4' 
+  },
+  { 
+    id: 'contraband', 
+    title: 'Contraband', 
+    headline: "How a stain did what a celebrity couldn't.", 
+    subheadline: '88M+ views in 2 weeks.', 
+    img: '/assets/CONTRABAND2.png', 
+    video: '/assets/Contraband.MP4' 
+  },
+  { 
+    id: 'hamleys', 
+    title: 'Hamleys', 
+    headline: 'How a 265-year-old toy store solved Valentine’s for Gen Z.', 
+    subheadline: '5M+ organic views in one week. Recommissioned year two.', 
+    img: '/assets/HAMLEYS4.png', 
+    video: '/assets/hamleys.mp4' 
+  },
 ];
 
 export default function Carousel({ currentProject }: { currentProject: string }) {
@@ -230,17 +258,33 @@ export default function Carousel({ currentProject }: { currentProject: string })
                     {p.title}
                   </h3>
                   
+                  {/* Headline */}
                   <p className="carousel-subtext" style={{ 
                     margin: '0.6rem 0 0 0', 
-                    fontSize: 'clamp(0.85rem, 1.3vw, 1.1rem)', 
-                    fontWeight: 400, 
-                    color: 'rgba(255, 255, 255, 0.9)',
+                    fontSize: 'clamp(0.9rem, 1.4vw, 1.25rem)', 
+                    fontWeight: 600, 
+                    color: 'rgba(255, 255, 255, 0.95)',
                     textShadow: '0 4px 12px rgba(0, 0, 0, 0.6)',
                     transition: 'all 0.65s cubic-bezier(0.25, 1, 0.3, 1)',
                     opacity: isCenter ? 1 : 0,
                     transform: isCenter ? 'translateY(0)' : 'translateY(12px)'
                   }}>
-                    {p.subtext}
+                    {p.headline}
+                  </p>
+                  
+                  {/* Sub-headline */}
+                  <p className="carousel-desc" style={{ 
+                    margin: '0.4rem 0 0 0', 
+                    fontSize: 'clamp(0.75rem, 1.1vw, 0.95rem)', 
+                    fontWeight: 400, 
+                    color: 'rgba(255, 255, 255, 0.75)', 
+                    textShadow: '0 4px 10px rgba(0, 0, 0, 0.6)',
+                    transition: 'all 0.65s cubic-bezier(0.25, 1, 0.3, 1)',
+                    opacity: isCenter ? 1 : 0,
+                    transform: isCenter ? 'translateY(0)' : 'translateY(12px)',
+                    transitionDelay: '0.05s'
+                  }}>
+                    {p.subheadline}
                   </p>
                 </div>
 
