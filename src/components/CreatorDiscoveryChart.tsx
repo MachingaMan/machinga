@@ -280,15 +280,21 @@ export default function CreatorDiscoveryChart() {
 
             {/* Hired Tooltip/Badge & Markers Group */}
             <g className="cs-chart-marker-group">
-              {/* Nitesh Hired Marker & Label */}
-              <circle cx="300" cy="361" r="6" fill="#00FF66" stroke="#ffffff" strokeWidth="2" />
-              <line x1="300" y1="361" x2="260" y2="330" stroke="rgba(255,255,255,0.3)" strokeWidth="1" strokeDasharray="3 3" />
-              <text x="250" y="334" fill="#00FF66" fontSize="10" fontWeight="700" textAnchor="end" fontFamily="Inter, sans-serif">WE HIRED HERE (88K)</text>
+              {/* Single "WE HIRED HERE" Badge */}
+              <rect x="255" y="280" width="140" height="28" rx="6" fill="#1D1D1F" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
+              <text x="325" y="297" fill="#ffffff" fontSize="10" fontWeight="700" letterSpacing="0.5" textAnchor="middle" fontFamily="Inter, sans-serif">WE HIRED HERE</text>
 
-              {/* Vir Hired Marker & Label */}
+              {/* Dotted attribution lines coming from the badge bottom center */}
+              <line x1="325" y1="308" x2="300" y2="361" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" strokeDasharray="3 3" />
+              <line x1="325" y1="308" x2="350" y2="384" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" strokeDasharray="3 3" />
+
+              {/* Nitesh Hired Marker & Follower Count */}
+              <circle cx="300" cy="361" r="6" fill="#00FF66" stroke="#ffffff" strokeWidth="2" />
+              <text x="286" y="364" fill="#00FF66" fontSize="10" fontWeight="700" textAnchor="end" fontFamily="Inter, sans-serif">88K</text>
+
+              {/* Vir Hired Marker & Follower Count */}
               <circle cx="350" cy="384" r="6" fill="#00E5FF" stroke="#ffffff" strokeWidth="2" />
-              <line x1="350" y1="384" x2="390" y2="353" stroke="rgba(255,255,255,0.3)" strokeWidth="1" strokeDasharray="3 3" />
-              <text x="400" y="357" fill="#00E5FF" fontSize="10" fontWeight="700" textAnchor="start" fontFamily="Inter, sans-serif">WE HIRED HERE (40K)</text>
+              <text x="336" y="387" fill="#00E5FF" fontSize="10" fontWeight="700" textAnchor="end" fontFamily="Inter, sans-serif">40K</text>
             </g>
           </svg>
         </div>
