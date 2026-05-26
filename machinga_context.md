@@ -73,6 +73,7 @@ This file contains the development context, recent changes, and project status f
 - **Broken Cover Image Path Fix**: Removed the obsolete `/machinga-nextjs` prefix from `getAssetPath` in [src/components/Carousel.tsx](file:///Users/anandnair/Machinga%20Website%20Antigravity/src/components/Carousel.tsx), repairing the broken case study banner images at the bottom of case study pages.
 - **3-Card Snap Carousel Redesign**: Re-engineered the marquee scrolling carousel in [src/components/Carousel.tsx](file:///Users/anandnair/Machinga%20Website%20Antigravity/src/components/Carousel.tsx) into a centered, state-driven 3-card snap slider with responsive viewport-based translation, smooth grayscale/blur transitions, explicit arrow navigation, and direct page routing on click of the active centered card.
 - **Scroll Cue Text Update**: Updated the homepage scroll cue text in [src/app/page.tsx](file:///Users/anandnair/Machinga%20Website%20Antigravity/src/app/page.tsx) from `"Enter"` to `"explore"` (which renders as uppercase `"EXPLORE"`) to prevent keyboard-related interface confusion.
+- **Interactive Scroll Lock & Intercept**: Locked scrolling on the homepage initially using `overflow: hidden` and `lenis.stop()` when in the collapsed intro state. Intercepted mouse wheel (`wheel`) and mobile touch swipes (`touchmove`) to automatically trigger the bubble pop-out expansion and unlock scroll, preventing users from skipping the hero interaction while keeping scroll intuitive.
 
 ---
 
