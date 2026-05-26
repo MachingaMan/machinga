@@ -36,7 +36,7 @@ export default function Carousel({ currentProject }: { currentProject: string })
     <section className="cs-carousel-section" style={{ padding: '6rem 0 10rem', backgroundColor: '#ffffff', overflow: 'hidden', position: 'relative' }}>
       <div className="cs-container" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
         <span style={{ 
-          color: 'var(--green)', 
+          color: '#8c8c8c', 
           fontSize: '12px', 
           fontWeight: '700', 
           textTransform: 'uppercase', 
@@ -44,7 +44,7 @@ export default function Carousel({ currentProject }: { currentProject: string })
           display: 'block', 
           marginBottom: '0rem' 
         }}>
-          Explore more case studies
+          Explore case studies
         </span>
       </div>
 

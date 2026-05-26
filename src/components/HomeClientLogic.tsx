@@ -11,6 +11,16 @@ export default function HomeClientLogic() {
 
   useEffect(() => {
     lenisRef.current = lenis;
+    if (lenis) {
+      const heroSection = document.getElementById('hero-bubble-section');
+      const isCollapsed = heroSection?.classList.contains('collapsed');
+      const isVideoPlaying = heroSection?.classList.contains('video-playing');
+      if (isCollapsed || isVideoPlaying) {
+        lenis.stop();
+      } else {
+        lenis.start();
+      }
+    }
   }, [lenis]);
 
   useEffect(() => {
