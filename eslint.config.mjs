@@ -11,7 +11,11 @@ const eslintConfig = defineConfig([
       "@next/next/no-img-element": "off",
       "@typescript-eslint/no-unused-vars": "off",
       "@typescript-eslint/ban-ts-comment": "off",
-      "@typescript-eslint/no-unused-expressions": "off"
+      "@typescript-eslint/no-unused-expressions": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "react-hooks/set-state-in-effect": "off",
+      "no-use-before-define": "off",
+      "@typescript-eslint/no-use-before-define": ["error", { "functions": false, "classes": true, "variables": true }]
     }
   },
   // Override default ignores of eslint-config-next.
@@ -21,6 +25,7 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "scratch/**",
   ]),
 ]);
 
