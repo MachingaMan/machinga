@@ -102,7 +102,7 @@ export default function Home() {
             <span className="line-2">for brands with a right to win.</span>
           </h1>
           <div className="hero-scroll-cue">
-            <span className="hero-cue-text">Enter</span>
+            <span className="hero-cue-text">explore</span>
             <div className="hero-cue-line"></div>
           </div>
         </div>
