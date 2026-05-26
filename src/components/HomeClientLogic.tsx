@@ -40,10 +40,30 @@ export default function HomeClientLogic() {
       let sweepTimeout: NodeJS.Timeout | null = null;
       let videoTimeout: NodeJS.Timeout | null = null;
 
+      const updateScrollLock = () => {
+        const isCollapsed = heroSection.classList.contains('collapsed');
+        const isVideoPlaying = heroSection.classList.contains('video-playing');
+        if (isCollapsed || isVideoPlaying) {
+          document.body.style.overflow = 'hidden';
+          document.documentElement.style.overflow = 'hidden';
+          if (lenisRef.current) {
+            lenisRef.current.stop();
+          }
+        } else {
+          document.body.style.overflow = '';
+          document.documentElement.style.overflow = '';
+          if (lenisRef.current) {
+            lenisRef.current.start();
+          }
+        }
+      };
+
       // Check if we should return in expanded state (e.g. back button clicked or back navigation)
+      const hasScroll = typeof window !== 'undefined' && window.scrollY > 50;
       const shouldBeExpanded = typeof window !== 'undefined' && (
         sessionStorage.getItem('returnExpanded') === 'true' || 
-        window.location.search.includes('expanded=true')
+        window.location.search.includes('expanded=true') ||
+        hasScroll
       );
 
       if (shouldBeExpanded) {
@@ -57,7 +77,6 @@ export default function HomeClientLogic() {
       }
 
       // Reset any transition leftovers to ensure pages load fully visible
-      document.body.style.overflow = '';
       const main = document.querySelector('main');
       if (main) {
         main.style.opacity = '';
@@ -68,6 +87,7 @@ export default function HomeClientLogic() {
         (siteHeader as HTMLElement).style.transition = '';
         siteHeader.classList.remove('header-hidden');
       }
+      updateScrollLock();
 
       console.log("Machinga Client Logic: DOM elements ready, binding listeners.");
 
@@ -109,6 +129,7 @@ export default function HomeClientLogic() {
           if (headlineEl && window.innerWidth > 768) {
             headlineEl.classList.add('headline-hidden');
           }
+          updateScrollLock();
         }
       };
 
@@ -168,6 +189,7 @@ export default function HomeClientLogic() {
           }
           heroSection.classList.remove('video-playing');
           heroSection.classList.remove('collapsed'); // Re-expand case studies
+          updateScrollLock();
           
           // Show headline if cursor is far enough
           const headlineEl = document.getElementById('hero-headline');
@@ -178,6 +200,7 @@ export default function HomeClientLogic() {
           // Normal behavior
           const isCollapsed = heroSection.classList.contains('collapsed');
           heroSection.classList.toggle('collapsed');
+          updateScrollLock();
           
           const headlineEl = document.getElementById('hero-headline');
           if (headlineEl) {
@@ -439,6 +462,46 @@ export default function HomeClientLogic() {
         bubble.addEventListener('click', handleProjectBubbleClick as EventListener);
       });
 
+      // ── Scroll Intercept when Collapsed ─────────────────────────────────────────
+      const handleScrollAttempt = (e: WheelEvent) => {
+        const isCollapsed = heroSection.classList.contains('collapsed');
+        if (isCollapsed && e.deltaY > 0) {
+          e.preventDefault();
+          heroSection.classList.remove('collapsed');
+          const headlineEl = document.getElementById('hero-headline');
+          if (headlineEl && window.innerWidth > 768) {
+            headlineEl.classList.add('headline-hidden');
+          }
+          updateScrollLock();
+        }
+      };
+
+      let touchStartY = 0;
+      const handleTouchStart = (e: TouchEvent) => {
+        touchStartY = e.touches[0].clientY;
+      };
+
+      const handleTouchMove = (e: TouchEvent) => {
+        const isCollapsed = heroSection.classList.contains('collapsed');
+        if (isCollapsed) {
+          const touchEndY = e.touches[0].clientY;
+          const diffY = touchStartY - touchEndY;
+          if (diffY > 8) { // Swiped up (scrolling down)
+            e.preventDefault();
+            heroSection.classList.remove('collapsed');
+            const headlineEl = document.getElementById('hero-headline');
+            if (headlineEl && window.innerWidth > 768) {
+              headlineEl.classList.add('headline-hidden');
+            }
+            updateScrollLock();
+          }
+        }
+      };
+
+      window.addEventListener('wheel', handleScrollAttempt, { passive: false });
+      window.addEventListener('touchstart', handleTouchStart, { passive: true });
+      window.addEventListener('touchmove', handleTouchMove, { passive: false });
+
       window.addEventListener('mousemove', handleGlobalMouseMove, { passive: true });
       window.addEventListener('scroll', handleHeaderScroll, { passive: true });
       window.addEventListener('scroll', handleBeliefScroll, { passive: true });
@@ -693,6 +756,15 @@ export default function HomeClientLogic() {
           resolvedPageVideo.removeEventListener('timeupdate', handleVideoTimeUpdate);
         }
 
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+        if (lenisRef.current) {
+          lenisRef.current.start();
+        }
+
+        window.removeEventListener('wheel', handleScrollAttempt);
+        window.removeEventListener('touchstart', handleTouchStart);
+        window.removeEventListener('touchmove', handleTouchMove);
         window.removeEventListener('mousemove', handleGlobalMouseMove);
         window.removeEventListener('scroll', handleHeaderScroll);
         window.removeEventListener('scroll', handleBeliefScroll);
