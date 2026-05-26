@@ -710,8 +710,38 @@ export default function HomeClientLogic() {
               heroContainer.style.transform = `translateY(-${dampedY}px)`;
             }
 
-            if (releaseTimeout) clearTimeout(releaseTimeout);
-            releaseTimeout = setTimeout(handleRelease, 150);
+            if (dampedY > 30) {
+              // Trigger pop-out immediately
+              heroSection.classList.remove('collapsed');
+              const headlineEl = document.getElementById('hero-headline');
+              if (headlineEl && window.innerWidth > 768) {
+                headlineEl.classList.add('headline-hidden');
+              }
+
+              // Snap back with spring bounce
+              if (heroContainer) {
+                heroContainer.style.transition = 'transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                heroContainer.style.transform = 'translateY(0px)';
+              }
+
+              // Lock scroll for 1.2s during pop-out animation
+              isLockedDuringAnimation = true;
+              updateScrollLock();
+
+              setTimeout(() => {
+                isLockedDuringAnimation = false;
+                updateScrollLock();
+              }, 1200);
+
+              pullY = 0;
+              if (releaseTimeout) {
+                clearTimeout(releaseTimeout);
+                releaseTimeout = null;
+              }
+            } else {
+              if (releaseTimeout) clearTimeout(releaseTimeout);
+              releaseTimeout = setTimeout(handleRelease, 150);
+            }
           }
         }
       };
@@ -742,6 +772,33 @@ export default function HomeClientLogic() {
             if (heroContainer) {
               heroContainer.style.transition = 'none';
               heroContainer.style.transform = `translateY(-${dampedY}px)`;
+            }
+
+            if (dampedY > 30) {
+              // Trigger pop-out immediately
+              heroSection.classList.remove('collapsed');
+              const headlineEl = document.getElementById('hero-headline');
+              if (headlineEl && window.innerWidth > 768) {
+                headlineEl.classList.add('headline-hidden');
+              }
+
+              // Snap back with spring bounce
+              if (heroContainer) {
+                heroContainer.style.transition = 'transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                heroContainer.style.transform = 'translateY(0px)';
+              }
+
+              // Lock scroll for 1.2s during pop-out animation
+              isLockedDuringAnimation = true;
+              updateScrollLock();
+
+              setTimeout(() => {
+                isLockedDuringAnimation = false;
+                updateScrollLock();
+              }, 1200);
+
+              pullY = 0;
+              isPulling = false;
             }
           }
         }
