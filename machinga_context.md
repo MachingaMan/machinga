@@ -67,6 +67,13 @@ This file contains the development context, recent changes, and project status f
 - **Footer wrap fix**: Added `white-space: nowrap` to prevent *"Run."* from wrapping to a second line.
 - **Hidden Testimonials**: Temporarily commented out/hidden testimonials section on the homepage as requested.
 
+### 6. Case Study Refinements (Today's Work - May 26, 2026)
+- **Appreciate Section Spacing**: Replaced `paddingTop: "0"` with `paddingTop: "6rem"` on the three-screens section wrapper in [src/app/appreciate/page.tsx](file:///Users/anandnair/Machinga%20Website%20Antigravity/src/app/appreciate/page.tsx) to provide proper separation from the grey split-section.
+- **Vir Saini Video Swap**: Updated the second phone outline in [src/app/appreciate/page.tsx](file:///Users/anandnair/Machinga%20Website%20Antigravity/src/app/appreciate/page.tsx) to use the correct "American Keeda" video asset (`American_Keeda_ka_kuch_nahi_ho_sakta_...mp4`). The third phone serves as a placeholder until the user provides the Instagram link for the third clip.
+- **Broken Cover Image Path Fix**: Removed the obsolete `/machinga-nextjs` prefix from `getAssetPath` in [src/components/Carousel.tsx](file:///Users/anandnair/Machinga%20Website%20Antigravity/src/components/Carousel.tsx), repairing the broken case study banner images at the bottom of case study pages.
+- **3-Card Snap Carousel Redesign**: Re-engineered the marquee scrolling carousel in [src/components/Carousel.tsx](file:///Users/anandnair/Machinga%20Website%20Antigravity/src/components/Carousel.tsx) into a centered, state-driven 3-card snap slider with responsive viewport-based translation, smooth grayscale/blur transitions, explicit arrow navigation, and direct page routing on click of the active centered card.
+- **Scroll Cue Text Update**: Updated the homepage scroll cue text in [src/app/page.tsx](file:///Users/anandnair/Machinga%20Website%20Antigravity/src/app/page.tsx) from `"Enter"` to `"explore"` (which renders as uppercase `"EXPLORE"`) to prevent keyboard-related interface confusion.
+
 ---
 
 ## 📂 Current File Directory Structure
