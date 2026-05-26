@@ -223,7 +223,7 @@ export default function AppreciatePage() {
                     autoPlay loop muted playsInline
                     style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}}></video>
                 <video
-                    src={`/assets/Appreciate case studies assets/Sab_karte_hai_GlobalInvesting_AppreciateGlobal_Investing_Podcast_episode_3Disclaimer-_Inves.mp4`}
+                    src={`/assets/Appreciate case studies assets/American_Keeda_3_Appreciate.mp4`}
                     autoPlay loop muted playsInline
                     style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}}></video>
             </div>
