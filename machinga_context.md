@@ -24,7 +24,7 @@ This file contains the development context, recent changes, and project status f
 - **Restored Metadata Tables**: Re-instantiated the `cs-meta` grid for each page:
   - **Hamleys**: BRAND (`Hamleys India`), CAMPAIGN (`#SkipTheAwkward`), WORK (`Campaign Strategy`, `Creative`, `On-Ground Activation`), RESULT (`5M+ organic views. In one week.`).
   - **Appreciate**: BRAND (`Appreciate`), WORK (`Content Strategy`, `Engine Build`, `Ongoing Production`), PLATFORM (`Instagram-first`), DURATION (`18 months+ Ongoing`).
-  - **Contraband**: BRAND (`Contraband`), WORK (`Campaign Concept`, `Script`, `Production`), PLATFORM (`Instagram`), RESULT (`60M views in two weeks. 1.1M likes.`).
+  - **Contraband**: BRAND (`Contraband`), WORK (`Campaign Concept`, `Script`, `Production`), PLATFORM (`Instagram`), RESULT (`88M+ views in two weeks. 1.1M likes.`).
   - **Aava**: BRAND (`AAVA`), WORK (`Brand Positioning`, `Campaign Strategy`, `Film Production`).
 - **Media Asset Linking**: Correctly linked the first assets under each editorial header:
   - **Hamleys**: Vertically displayed bear video (`/assets/hamelys videos/Hamleys Vday Video 25  (1).mp4`).
