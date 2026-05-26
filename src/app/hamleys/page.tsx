@@ -42,7 +42,7 @@ export default function HamleysPage() {
 
         <div className="cs-fs-scroll-indicator">
           <a href="#challenge" className="cs-fs-scroll-btn" style={{ textDecoration: 'none' }}>
-            <span>DETAIL</span>
+            <span>CASE STUDY</span>
             <div className="cs-cue-line"></div>
           </a>
         </div>

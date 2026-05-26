@@ -663,16 +663,19 @@ export default function Home() {
         </div>
     </section>
 
-    {/*  How We Work Title & Video Section  */}
-    <section className="statement-section reveal-on-scroll" id="statement" style={{ paddingBottom: '0', paddingTop: '80px' }}>
-        <div className="container" style={{ marginBottom: '2rem' }}>
+    {/*  How We Work Title  */}
+    <section className="reveal-on-scroll" style={{ paddingTop: '80px', paddingBottom: '20px', backgroundColor: '#ffffff' }}>
+        <div className="container">
             <span className="statement-label">HOW WE WORK</span>
         </div>
-        <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden', backgroundColor: '#ffffff', position: 'relative' }}>
+    </section>
+
+    {/*  How We Work Video Section  */}
+    <section className="statement-section" id="statement" style={{ position: 'relative', height: '100vh', backgroundColor: '#ffffff', padding: 0, margin: 0 }}>
+        <div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden', backgroundColor: '#ffffff', position: 'relative' }}>
             <video 
                 id="how-we-work-page-video"
                 src={`/assets/Machinga_Full_Sequence_v11_4K.mp4`}
-                loop 
                 muted 
                 playsInline
                 style={{ width: '100%', height: '100%', objectFit: 'contain', backgroundColor: '#ffffff' }}

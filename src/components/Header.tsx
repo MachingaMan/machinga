@@ -8,6 +8,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolledPast, setIsScrolledPast] = useState(false);
   const [isOverDark, setIsOverDark] = useState(false);
+  const [isOverHowWeWork, setIsOverHowWeWork] = useState(false);
   const [darkBgColor, setDarkBgColor] = useState('rgba(29, 29, 31, 0.95)');
   const pathname = usePathname();
 
@@ -18,12 +19,14 @@ export default function Header() {
   const isCaseStudy = normalizedPath === '/appreciate' || normalizedPath === '/hamleys' || normalizedPath === '/contraband' || normalizedPath === '/aava';
 
   // On case study pages, the header background is transparent if we have not scrolled past the hero fold AND the menu is closed.
-  const isTransparent = isCaseStudy && !isScrolledPast && !isOpen;
+  // Also transparent when scrolling over the homepage 'How We Work' video section.
+  const isTransparent = (isCaseStudy && !isScrolledPast && !isOpen) || (isOverHowWeWork && !isOpen);
 
   useEffect(() => {
     // Always reset states when pathname changes
     setIsScrolledPast(false);
     setIsOverDark(false);
+    setIsOverHowWeWork(false);
 
     const handleScroll = () => {
       const cur = window.scrollY;
@@ -37,6 +40,15 @@ export default function Header() {
         }
       } else {
         setIsScrolledPast(cur > 10);
+      }
+
+      // Check if overlapping with the 'How We Work' video section
+      const statementSec = document.getElementById('statement');
+      if (statementSec) {
+        const rect = statementSec.getBoundingClientRect();
+        setIsOverHowWeWork(rect.top <= 80 && rect.bottom >= 0);
+      } else {
+        setIsOverHowWeWork(false);
       }
 
       // Check if the header currently overlaps with any dark section

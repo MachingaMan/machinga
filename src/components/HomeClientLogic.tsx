@@ -8,6 +8,13 @@ export default function HomeClientLogic() {
   const lenis = useLenis();
   const lenisRef = useRef(lenis);
   const router = useRouter();
+  const handleScrollRef = useRef<((e: any) => void) | undefined>(undefined);
+
+  useLenis((e) => {
+    if (handleScrollRef.current) {
+      handleScrollRef.current(e);
+    }
+  });
 
   useEffect(() => {
     lenisRef.current = lenis;
@@ -37,8 +44,8 @@ export default function HomeClientLogic() {
       const bubbles = document.querySelectorAll('.project-bubble');
       const siteHeader = document.querySelector('.site-header');
 
-      // If key elements are not ready in the DOM, wait for the next frame
-      if (!logoBtn || !heroSection) {
+      // If key elements or Lenis are not ready in the DOM, wait for the next frame
+      if (!logoBtn || !heroSection || !lenisRef.current) {
         requestAnimationFrame(init);
         return;
       }
@@ -54,12 +61,18 @@ export default function HomeClientLogic() {
       let releaseTimeout: NodeJS.Timeout | null = null;
       let isPulling = false;
       let isLockedDuringAnimation = false;
+      let videoScrollLockActive = false;
+      let lastScrollTime = 0;
+      let videoCompleted = false;
+      let isSnappingToVideo = false;
+      let scrubFrameId: number;
+      let accumulatedScroll = 0;
       const heroContainer = document.querySelector('.hero-bubble-container') as HTMLElement;
 
       const updateScrollLock = () => {
         const isCollapsed = heroSection.classList.contains('collapsed');
         const isVideoPlaying = heroSection.classList.contains('video-playing');
-        if (isCollapsed || isVideoPlaying || isLockedDuringAnimation) {
+        if (isCollapsed || isVideoPlaying || isLockedDuringAnimation || videoScrollLockActive) {
           document.body.style.overflow = 'hidden';
           document.documentElement.style.overflow = 'hidden';
           if (lenisRef.current) {
@@ -692,8 +705,31 @@ export default function HomeClientLogic() {
       };
 
       const handleScrollAttempt = (e: WheelEvent) => {
-        if (isLockedDuringAnimation) {
+        if (isLockedDuringAnimation || isSnappingToVideo) {
           e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
+
+        if (videoScrollLockActive) {
+          e.preventDefault();
+          e.stopPropagation();
+          const pageVideoEl = document.getElementById('how-we-work-page-video') as HTMLVideoElement;
+          if (pageVideoEl && e.deltaY < 0 && pageVideoEl.currentTime < 1.0) {
+            videoScrollLockActive = false;
+            hasSnappedToVideo = false; // Reset snap flag on escape!
+            updateScrollLock();
+            const curScroll = lenisRef.current ? lenisRef.current.scroll : window.scrollY;
+            if (lenisRef.current) {
+              lenisRef.current.scrollTo(curScroll - 150, { duration: 0.5 });
+            }
+            return;
+          }
+          // Accumulate scroll down for responsive gas-pedal acceleration
+          if (e.deltaY > 0) {
+            accumulatedScroll += e.deltaY;
+          }
+          lastScrollTime = Date.now();
           return;
         }
 
@@ -748,15 +784,51 @@ export default function HomeClientLogic() {
 
       let touchStartY = 0;
       const handleTouchStart = (e: TouchEvent) => {
+        const isHeader = (e.target as HTMLElement).closest('.site-header');
+        if ((isLockedDuringAnimation || isSnappingToVideo || videoScrollLockActive) && !isHeader) {
+          e.stopPropagation();
+        }
+
+        touchStartY = e.touches[0].clientY; // ALWAYS track touch start position!
+
         if (heroSection.classList.contains('collapsed') && !isLockedDuringAnimation) {
-          touchStartY = e.touches[0].clientY;
           isPulling = true;
         }
       };
 
       const handleTouchMove = (e: TouchEvent) => {
-        if (isLockedDuringAnimation) {
+        if (isLockedDuringAnimation || isSnappingToVideo) {
           e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
+
+        if (videoScrollLockActive) {
+          e.preventDefault();
+          e.stopPropagation();
+          const pageVideoEl = document.getElementById('how-we-work-page-video') as HTMLVideoElement;
+          if (pageVideoEl) {
+            const touchCurrentY = e.touches[0].clientY;
+            const isScrollingUp = touchCurrentY > touchStartY; // Dragging down means scrolling up
+            if (isScrollingUp && pageVideoEl.currentTime < 1.0) {
+              videoScrollLockActive = false;
+              hasSnappedToVideo = false; // Reset snap flag on escape!
+              updateScrollLock();
+              const curScroll = lenisRef.current ? lenisRef.current.scroll : window.scrollY;
+              if (lenisRef.current) {
+                lenisRef.current.scrollTo(curScroll - 150, { duration: 0.5 });
+              }
+              return;
+            }
+            
+            // Accumulate touch drag speed for responsive gas-pedal acceleration
+            const diffY = touchStartY - touchCurrentY; // Positive when dragging finger up (scrolling down)
+            if (diffY > 0) {
+              accumulatedScroll += diffY * 2.0;
+            }
+            touchStartY = touchCurrentY; // Update for continuous relative delta tracking
+          }
+          lastScrollTime = Date.now();
           return;
         }
 
@@ -811,9 +883,9 @@ export default function HomeClientLogic() {
         }
       };
 
-      window.addEventListener('wheel', handleScrollAttempt, { passive: false });
-      window.addEventListener('touchstart', handleTouchStart, { passive: true });
-      window.addEventListener('touchmove', handleTouchMove, { passive: false });
+      window.addEventListener('wheel', handleScrollAttempt, { passive: false, capture: true });
+      window.addEventListener('touchstart', handleTouchStart, { passive: true, capture: true });
+      window.addEventListener('touchmove', handleTouchMove, { passive: false, capture: true });
       window.addEventListener('touchend', handleTouchEnd, { passive: true });
       window.addEventListener('touchcancel', handleTouchEnd, { passive: true });
 
@@ -859,6 +931,133 @@ export default function HomeClientLogic() {
         });
       };
 
+      // ── Scroller & Snapper for How We Work Video snapping ───────────────────────
+      let hasSnappedToVideo = false;
+
+      handleScrollRef.current = (e: any) => {
+        const statementSec = document.getElementById('statement');
+        if (!statementSec) return;
+
+        const rect = statementSec.getBoundingClientRect();
+        
+        const curScrollY = e.scroll;
+        const startY = curScrollY + rect.top; // Absolute top of the statement section
+        const isScrollingDown = e.direction === 1;
+
+        // Snap to top when scrolling down and entering the snap zone
+        if (lenisRef.current && !isLockedDuringAnimation && !isSnappingToVideo) {
+          const triggerZone = window.innerHeight * 0.85; // Snaps much sooner when scrolled into view
+          if (isScrollingDown && rect.top < triggerZone && rect.bottom > 200 && !hasSnappedToVideo && !videoCompleted) {
+            hasSnappedToVideo = true;
+            isSnappingToVideo = true;
+            lenisRef.current.scrollTo(statementSec, { 
+              duration: 0.6,
+              easing: (t) => t === 1 ? 1 : 1 - Math.pow(2, -10 * t), // smooth easeOutExpo
+              onComplete: () => {
+                isSnappingToVideo = false;
+                videoScrollLockActive = true;
+                updateScrollLock();
+                if (resolvedPageVideo) {
+                  resolvedPageVideo.currentTime = 0;
+                  resolvedPageVideo.play().catch(err => console.log("Failed to play video:", err));
+                }
+              }
+            });
+          }
+        }
+
+        // Reset snap flag and video states if we scroll outside the section bounds
+        if (curScrollY < startY - 200 && !isSnappingToVideo) {
+          if (hasSnappedToVideo && !videoCompleted) {
+            // Reset state if video was not completed (e.g. user scrolled up via escape hatch)
+            hasSnappedToVideo = false;
+            videoScrollLockActive = false;
+            accumulatedScroll = 0;
+            updateScrollLock();
+            if (resolvedPageVideo) {
+              resolvedPageVideo.currentTime = 0;
+              resolvedPageVideo.playbackRate = 1.0;
+              resolvedPageVideo.pause();
+            }
+          } else if (videoCompleted) {
+            // If the video was already completed, keep videoCompleted as true permanently.
+            // Reset the temporary snap flag so it doesn't get stuck in snapping state,
+            // but do not reset the video position or snap settings.
+            hasSnappedToVideo = false;
+            videoScrollLockActive = false;
+            updateScrollLock();
+          }
+        } else if (curScrollY > startY + window.innerHeight + 200) {
+          hasSnappedToVideo = false;
+        }
+      };
+
+      // ── Stages and Reading Windows for Responsive Gas-Pedal Acceleration ─────
+      const milestoneWindows = [
+        { start: 10.5, end: 13.0 }, // THINK
+        { start: 19.5, end: 22.0 }, // MAKE
+        { start: 28.5, end: 31.0 }, // RUN
+        { start: 36.5, end: 39.0 }  // TAGLINE / END
+      ];
+
+      const updateVideoStateFrame = () => {
+        if (!active) return;
+
+        const vid = resolvedPageVideo;
+        if (vid) {
+          const t = vid.currentTime;
+
+          // Always clamp the video to 39.0s max to prevent showing the trimmed tail frame
+          if (t >= 39.0) {
+            vid.pause();
+            vid.currentTime = 39.0;
+            if (videoScrollLockActive) {
+              videoScrollLockActive = false;
+              videoCompleted = true;
+              updateScrollLock();
+
+
+            }
+          }
+
+          if (videoScrollLockActive) {
+            // Auto-play if paused
+            if (vid.paused && t < 39.0) {
+              vid.play().catch(err => console.log("Failed to play page video in frame:", err));
+            }
+
+            // Decay the accumulated scroll speed smoothly (exponential decay)
+            accumulatedScroll = accumulatedScroll * 0.90;
+            if (accumulatedScroll < 1) accumulatedScroll = 0;
+
+            // Check if we are inside any milestone reading window
+            let isInsideMilestone = false;
+            for (const window of milestoneWindows) {
+              if (t >= window.start && t < window.end) {
+                isInsideMilestone = true;
+                break;
+              }
+            }
+
+            let targetRate = 1.0;
+            if (isInsideMilestone) {
+              // Revert/clamp to 1x speed during text milestones
+              targetRate = 1.0;
+            } else if (accumulatedScroll > 0) {
+              // Dynamically map accumulatedScroll activity to a responsive speed [1.0x - 3.0x]
+              targetRate = 1.0 + Math.min(2.0, accumulatedScroll * 0.015);
+            }
+
+            // Smoothly interpolate (lerp) playbackRate to feel tactile and prevent stutters
+            const currentRate = vid.playbackRate;
+            const newRate = currentRate + (targetRate - currentRate) * 0.15;
+            vid.playbackRate = Number(newRate.toFixed(2));
+          }
+        }
+
+        scrubFrameId = requestAnimationFrame(updateVideoStateFrame);
+      };
+
       // ── Intersection Observer for How We Work Page Video ───────────────────────
       const setupVideoObserverAndListener = () => {
         if (!active) return;
@@ -869,7 +1068,6 @@ export default function HomeClientLogic() {
         }
 
         resolvedPageVideo = pageVideoEl;
-        pageVideoEl.addEventListener('timeupdate', handleVideoTimeUpdate);
 
         videoObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
@@ -883,6 +1081,11 @@ export default function HomeClientLogic() {
         }, { threshold: 0.1 });
 
         videoObserver.observe(pageVideoEl);
+
+        // Start the frame loop update function
+        updateVideoStateFrame();
+
+
       };
 
       setupSweepObserver();
@@ -1067,9 +1270,11 @@ export default function HomeClientLogic() {
         if (sweepTimeout) clearTimeout(sweepTimeout);
         if (videoTimeout) clearTimeout(videoTimeout);
 
-        if (resolvedPageVideo) {
-          resolvedPageVideo.removeEventListener('timeupdate', handleVideoTimeUpdate);
+        if (scrubFrameId) {
+          cancelAnimationFrame(scrubFrameId);
         }
+
+        handleScrollRef.current = undefined;
 
         document.body.style.overflow = '';
         document.documentElement.style.overflow = '';
@@ -1077,9 +1282,9 @@ export default function HomeClientLogic() {
           lenisRef.current.start();
         }
 
-        window.removeEventListener('wheel', handleScrollAttempt);
-        window.removeEventListener('touchstart', handleTouchStart);
-        window.removeEventListener('touchmove', handleTouchMove);
+        window.removeEventListener('wheel', handleScrollAttempt, { capture: true });
+        window.removeEventListener('touchstart', handleTouchStart, { capture: true });
+        window.removeEventListener('touchmove', handleTouchMove, { capture: true });
         window.removeEventListener('touchend', handleTouchEnd);
         window.removeEventListener('touchcancel', handleTouchEnd);
         window.removeEventListener('mousemove', handleGlobalMouseMove);
