@@ -311,11 +311,15 @@ export default function ContrabandPage() {
 
     {/*  Tags Section  */}
     <section style={{backgroundColor: "#1D1D1F", padding: "4rem 0"}}>
-        <div className="cs-container" style={{display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: "1.5rem"}}>
-            <span style={{backgroundColor: "#ffffff", color: "#000000", border: "1px solid #ffffff", padding: "14px 36px", borderRadius: "50px", fontSize: "1rem", fontWeight: "700", whiteSpace: "nowrap"}}>Campaign/Project</span>
-            <span style={{border: "1px solid #48484A", color: "#ffffff", padding: "14px 36px", borderRadius: "50px", fontSize: "1rem", whiteSpace: "nowrap"}}>Campaign Strategy</span>
-            <span style={{border: "1px solid #48484A", color: "#ffffff", padding: "14px 36px", borderRadius: "50px", fontSize: "1rem", whiteSpace: "nowrap"}}>Scripts</span>
-            <span style={{border: "1px solid #48484A", color: "#ffffff", padding: "14px 36px", borderRadius: "50px", fontSize: "1rem", whiteSpace: "nowrap"}}>End-to-End DVC Production</span>
+        <div className="cs-container" style={{display: "flex", flexDirection: "column", alignItems: "center", gap: "1.5rem"}}>
+            <div style={{display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "1.5rem"}}>
+                <span style={{backgroundColor: "#ffffff", color: "#000000", border: "1px solid #ffffff", padding: "14px 36px", borderRadius: "50px", fontSize: "1rem", fontWeight: "700", whiteSpace: "nowrap"}}>Campaign/Project</span>
+            </div>
+            <div style={{display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "1.5rem"}}>
+                <span style={{border: "1px solid #48484A", color: "#ffffff", padding: "14px 36px", borderRadius: "50px", fontSize: "1rem", whiteSpace: "nowrap"}}>Campaign Strategy</span>
+                <span style={{border: "1px solid #48484A", color: "#ffffff", padding: "14px 36px", borderRadius: "50px", fontSize: "1rem", whiteSpace: "nowrap"}}>Scripts</span>
+                <span style={{border: "1px solid #48484A", color: "#ffffff", padding: "14px 36px", borderRadius: "50px", fontSize: "1rem", whiteSpace: "nowrap"}}>End-to-End DVC Production</span>
+            </div>
         </div>
     </section>
 
