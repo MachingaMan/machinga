@@ -3450,3 +3450,9 @@ html.lenis, html.lenis body {
     border: 1px solid #1a1a1a !important;
     font-weight: 600 !important;
 }
+
+/* Zoom contraband video to crop hardcoded letterbox black bars */
+.contraband-video {
+    transform: scale(1.33) !important;
+    transform-origin: center center !important;
+}

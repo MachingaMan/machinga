@@ -14,7 +14,7 @@ export default function ContrabandPage() {
       {/*  Hero Section  */}
       <section className="cs-fs-hero">
         <video 
-          className="cs-fs-hero-bg" 
+          className="cs-fs-hero-bg contraband-video" 
           src={`/assets/Contraband.MP4`}
           autoPlay loop muted playsInline
         ></video>

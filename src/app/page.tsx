@@ -361,7 +361,7 @@ export default function Home() {
         </div>
 
         <div className="fs-card">
-            <video className="fs-card-bg" src={`/assets/Contraband.MP4`} loop muted playsInline preload="none"></video>
+            <video className="fs-card-bg contraband-video" src={`/assets/Contraband.MP4`} loop muted playsInline preload="none"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">CONTRABAND</h2>
                 <p className="fs-card-sub">How a stain did what a celebrity couldn't.</p>
