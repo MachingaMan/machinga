@@ -92,7 +92,7 @@ export default function CreatorDiscoveryChart() {
         .cs-chart-marker-group {
           opacity: 0;
           transform: scale(0.6);
-          transform-origin: 325px 372px;
+          transform-origin: 285px 372px;
           transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2s,
                       transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2s;
         }
@@ -281,12 +281,12 @@ export default function CreatorDiscoveryChart() {
             {/* Hired Tooltip/Badge & Markers Group */}
             <g className="cs-chart-marker-group">
               {/* Single "WE HIRED HERE" Badge */}
-              <rect x="255" y="280" width="140" height="28" rx="6" fill="#1D1D1F" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
-              <text x="325" y="297" fill="#ffffff" fontSize="10" fontWeight="700" letterSpacing="0.5" textAnchor="middle" fontFamily="Inter, sans-serif">WE HIRED HERE</text>
+              <rect x="215" y="280" width="140" height="28" rx="6" fill="#1D1D1F" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
+              <text x="285" y="297" fill="#ffffff" fontSize="10" fontWeight="700" letterSpacing="0.5" textAnchor="middle" fontFamily="Inter, sans-serif">WE HIRED HERE</text>
 
               {/* Dotted attribution lines coming from the badge bottom center */}
-              <line x1="325" y1="308" x2="300" y2="361" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" strokeDasharray="3 3" />
-              <line x1="325" y1="308" x2="350" y2="384" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" strokeDasharray="3 3" />
+              <line x1="285" y1="308" x2="300" y2="361" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" strokeDasharray="3 3" />
+              <line x1="285" y1="308" x2="350" y2="384" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" strokeDasharray="3 3" />
 
               {/* Nitesh Hired Marker & Follower Count */}
               <circle cx="300" cy="361" r="6" fill="#00FF66" stroke="#ffffff" strokeWidth="2" />
