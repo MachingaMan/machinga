@@ -206,7 +206,7 @@ export default function AppreciatePage() {
     </section>
 
     {/*  Three Screens Section  */}
-    <section className="cs-block-section" style={{paddingTop: "0"}}>
+    <section className="cs-block-section" style={{paddingTop: "6rem"}}>
         <div className="cs-container">
             <div className="cs-content-narrow" style={{textAlign: "center", marginBottom: "3rem"}}>
                 <h2 className="cs-section-heading" style={{fontSize: "2rem"}}>When something hits at that scale, the only correct response is to make it a series.</h2>
@@ -219,7 +219,7 @@ export default function AppreciatePage() {
                     autoPlay loop muted playsInline
                     style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}}></video>
                 <video
-                    src={`/assets/Appreciate case studies assets/Apun_hi_Shareholder._Apun_hi_Owner...Disclaimer-_Investments_in_securities_markets_are_subject_t.mp4`}
+                    src={`/assets/Appreciate case studies assets/American_Keeda_ka_kuch_nahi_ho_sakta_Appreciate_americankeeda_USStocks_GlobalInvesting_.mp4`}
                     autoPlay loop muted playsInline
                     style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}}></video>
                 <video
