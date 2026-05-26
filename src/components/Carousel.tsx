@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 const projects = [
-  { id: 'appreciate', title: 'Appreciate', subtext: 'How a fintech compounds interest', img: '/assets/APPRECIATE1.png' },
-  { id: 'aava', title: 'Aava', subtext: 'How two words made a 20-year-old water brand uncopyable', img: '/assets/AAVA3.png' },
-  { id: 'contraband', title: 'Contraband', subtext: 'How a stain launched a luxury fragrance to 88 million people', img: '/assets/CONTRABAND2.png' },
-  { id: 'hamleys', title: 'Hamleys', subtext: "How a 250-year-old toy store helped Gen Z defuse a time bomb on Valentine's Day", img: '/assets/HAMLEYS4.png' },
+  { id: 'appreciate', title: 'Appreciate', subtext: 'How a fintech compounds interest', img: '/assets/APPRECIATE1.png', video: '/assets/Appreciate.MP4' },
+  { id: 'aava', title: 'Aava', subtext: 'How two words made a 20-year-old water brand uncopyable', img: '/assets/AAVA3.png', video: '/assets/aava.mp4' },
+  { id: 'contraband', title: 'Contraband', subtext: 'How a stain launched a luxury fragrance to 88 million people', img: '/assets/CONTRABAND2.png', video: '/assets/Contraband.MP4' },
+  { id: 'hamleys', title: 'Hamleys', subtext: "How a 250-year-old toy store helped Gen Z defuse a time bomb on Valentine's Day", img: '/assets/HAMLEYS4.png', video: '/assets/hamleys.mp4' },
 ];
 
 export default function Carousel({ currentProject }: { currentProject: string }) {
@@ -42,20 +42,10 @@ export default function Carousel({ currentProject }: { currentProject: string })
           textTransform: 'uppercase', 
           letterSpacing: '2px', 
           display: 'block', 
-          marginBottom: '1rem' 
-        }}>
-          What's Next
-        </span>
-        <h2 style={{ 
-          fontSize: 'clamp(2.2rem, 4.5vw, 3.2rem)', 
-          fontWeight: 800, 
-          color: '#1a1a1a', 
-          margin: 0, 
-          letterSpacing: '-1px',
-          lineHeight: 1.1
+          marginBottom: '0rem' 
         }}>
           Explore more case studies
-        </h2>
+        </span>
       </div>
 
       <div style={{ position: 'relative', width: '100%', height: '420px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -180,10 +170,15 @@ export default function Carousel({ currentProject }: { currentProject: string })
                 onMouseEnter={() => !isCenter && setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
-                {/* Background Image */}
-                <img 
-                  src={p.img} 
-                  alt={p.title} 
+                {/* Background Video */}
+                <video 
+                  src={p.video}
+                  poster={p.img}
+                  preload="metadata"
+                  loop 
+                  muted 
+                  playsInline 
+                  autoPlay
                   style={{ 
                     width: '100%', 
                     height: '100%', 
