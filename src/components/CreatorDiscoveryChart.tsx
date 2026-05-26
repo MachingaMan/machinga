@@ -93,8 +93,8 @@ export default function CreatorDiscoveryChart() {
           opacity: 0;
           transform: scale(0.6);
           transform-origin: 285px 372px;
-          transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2s,
-                      transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2s;
+          transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2.4s,
+                      transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2.4s;
         }
 
         .cs-chart-section.active .cs-chart-marker-group {
@@ -102,18 +102,33 @@ export default function CreatorDiscoveryChart() {
           transform: scale(1);
         }
 
-        /* Animate face avatar circles */
-        .cs-chart-avatar-group {
+        /* Animate face avatar circles along growth paths */
+        .cs-chart-avatar-nitesh {
+          offset-path: path('M 60,392 C 160,390 220,380 300,361 C 380,335 480,200 670,50');
+          offset-rotate: 0deg;
+          offset-distance: 0%;
           opacity: 0;
-          transform: scale(0.6);
-          transform-origin: 670px 165px;
-          transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2.2s,
-                      transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2.2s;
+          transition: offset-distance 2.5s cubic-bezier(0.25, 1, 0.5, 1),
+                      opacity 0.4s ease 0.2s;
         }
 
-        .cs-chart-section.active .cs-chart-avatar-group {
+        .cs-chart-section.active .cs-chart-avatar-nitesh {
+          offset-distance: 100%;
           opacity: 1;
-          transform: scale(1);
+        }
+
+        .cs-chart-avatar-vir {
+          offset-path: path('M 60,396 C 160,395 250,390 350,384 C 420,378 520,350 670,280');
+          offset-rotate: 0deg;
+          offset-distance: 0%;
+          opacity: 0;
+          transition: offset-distance 2.5s cubic-bezier(0.25, 1, 0.5, 1),
+                      opacity 0.4s ease 0.2s;
+        }
+
+        .cs-chart-section.active .cs-chart-avatar-vir {
+          offset-distance: 100%;
+          opacity: 1;
         }
 
         /* Animate coordinate lines and grids */
@@ -185,12 +200,9 @@ export default function CreatorDiscoveryChart() {
                   <feMergeNode in="SourceGraphic" />
                 </feMerge>
               </filter>
-              {/* Circular clip-paths for faces */}
-              <clipPath id="circle-clip-nitesh">
-                <circle cx="670" cy="50" r="18" />
-              </clipPath>
-              <clipPath id="circle-clip-vir">
-                <circle cx="670" cy="280" r="18" />
+              {/* Circular clip-path for face avatars (animated relative to origin) */}
+              <clipPath id="circle-clip-avatar">
+                <circle cx="0" cy="0" r="18" />
               </clipPath>
             </defs>
 
@@ -251,31 +263,33 @@ export default function CreatorDiscoveryChart() {
               filter="url(#glow-cyan)"
             />
 
-            {/* Face Avatars Group on the right ends of the lines */}
-            <g className="cs-chart-avatar-group">
-              {/* Nitesh Shetty circular headshot */}
+            {/* Face Avatars traveling along growth paths */}
+            {/* Nitesh Shetty circular headshot */}
+            <g className="cs-chart-avatar-nitesh">
               <image 
                 href="/assets/Appreciate case studies assets/nitesh_avatar.png"
-                x="652" 
-                y="32" 
+                x="-18" 
+                y="-18" 
                 width="36" 
                 height="36" 
-                clipPath="url(#circle-clip-nitesh)"
+                clipPath="url(#circle-clip-avatar)"
               />
-              <circle cx="670" cy="50" r="18" fill="none" stroke="#00FF66" strokeWidth="2.5" />
-              <text x="696" y="54" fill="rgba(255,255,255,0.85)" fontSize="12" fontWeight="700" fontFamily="Inter, sans-serif">Nitesh Shetty</text>
+              <circle cx="0" cy="0" r="18" fill="none" stroke="#00FF66" strokeWidth="2.5" />
+              <text x="26" y="4" fill="rgba(255,255,255,0.85)" fontSize="12" fontWeight="700" fontFamily="Inter, sans-serif">Nitesh Shetty</text>
+            </g>
 
-              {/* Vir Saini circular headshot */}
+            {/* Vir Saini circular headshot */}
+            <g className="cs-chart-avatar-vir">
               <image 
                 href="/assets/Appreciate case studies assets/vir_avatar.png"
-                x="652" 
-                y="262" 
+                x="-18" 
+                y="-18" 
                 width="36" 
                 height="36" 
-                clipPath="url(#circle-clip-vir)"
+                clipPath="url(#circle-clip-avatar)"
               />
-              <circle cx="670" cy="280" r="18" fill="none" stroke="#00E5FF" strokeWidth="2.5" />
-              <text x="696" y="284" fill="rgba(255,255,255,0.85)" fontSize="12" fontWeight="700" fontFamily="Inter, sans-serif">Vir Saini</text>
+              <circle cx="0" cy="0" r="18" fill="none" stroke="#00E5FF" strokeWidth="2.5" />
+              <text x="26" y="4" fill="rgba(255,255,255,0.85)" fontSize="12" fontWeight="700" fontFamily="Inter, sans-serif">Vir Saini</text>
             </g>
 
             {/* Hired Tooltip/Badge & Markers Group */}
