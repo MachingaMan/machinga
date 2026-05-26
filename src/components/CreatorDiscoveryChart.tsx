@@ -88,13 +88,16 @@ export default function CreatorDiscoveryChart() {
 
         /* Micro-animations for growth curves */
         .cs-chart-curve {
-          stroke-dasharray: 100;
+          stroke-dasharray: 100 200;
           stroke-dashoffset: 100;
-          transition: stroke-dashoffset 2.5s cubic-bezier(0.25, 1, 0.5, 1);
+          opacity: 0;
+          transition: stroke-dashoffset 2.5s cubic-bezier(0.25, 1, 0.5, 1),
+                      opacity 0.3s ease;
         }
 
         .cs-chart-section.active .cs-chart-curve {
           stroke-dashoffset: 0;
+          opacity: 1;
         }
 
         /* Animate hired marker group */
