@@ -106,7 +106,7 @@ export default function CreatorDiscoveryChart() {
         .cs-chart-avatar-group {
           opacity: 0;
           transform: scale(0.6);
-          transform-origin: 740px 90px;
+          transform-origin: 670px 90px;
           transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2.2s,
                       transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2.2s;
         }
@@ -130,14 +130,6 @@ export default function CreatorDiscoveryChart() {
           transition: opacity 0.8s ease 0.5s;
         }
         .cs-chart-section.active .cs-chart-axis-label {
-          opacity: 1;
-        }
-
-        .cs-chart-legend {
-          opacity: 0;
-          transition: opacity 0.8s ease 1s;
-        }
-        .cs-chart-section.active .cs-chart-legend {
           opacity: 1;
         }
 
@@ -195,20 +187,20 @@ export default function CreatorDiscoveryChart() {
               </filter>
               {/* Circular clip-paths for faces */}
               <clipPath id="circle-clip-nitesh">
-                <circle cx="740" cy="70" r="18" />
+                <circle cx="670" cy="70" r="18" />
               </clipPath>
               <clipPath id="circle-clip-vir">
-                <circle cx="740" cy="110" r="18" />
+                <circle cx="670" cy="110" r="18" />
               </clipPath>
             </defs>
 
             {/* Gridlines */}
             {/* Horizontal Grid */}
-            <line className="cs-chart-gridline" x1="60" y1="360" x2="740" y2="360" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-            <line className="cs-chart-gridline" x1="60" y1="280" x2="740" y2="280" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-            <line className="cs-chart-gridline" x1="60" y1="190" x2="740" y2="190" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-            <line className="cs-chart-gridline" x1="60" y1="100" x2="740" y2="100" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-            <line className="cs-chart-gridline" x1="60" y1="50" x2="740" y2="50" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+            <line className="cs-chart-gridline" x1="60" y1="360" x2="670" y2="360" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+            <line className="cs-chart-gridline" x1="60" y1="280" x2="670" y2="280" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+            <line className="cs-chart-gridline" x1="60" y1="190" x2="670" y2="190" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+            <line className="cs-chart-gridline" x1="60" y1="100" x2="670" y2="100" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+            <line className="cs-chart-gridline" x1="60" y1="50" x2="670" y2="50" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
 
             {/* Vertical Grid */}
             <line className="cs-chart-gridline" x1="230" y1="50" x2="230" y2="400" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
@@ -218,8 +210,8 @@ export default function CreatorDiscoveryChart() {
             <line className="cs-chart-gridline" x1="400" y1="50" x2="400" y2="400" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" strokeDasharray="5 5" />
 
             {/* Coordinates Axes */}
-            <line x1="60" y1="400" x2="740" y2="400" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" />
-            <line x1="740" y1="50" x2="740" y2="400" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" />
+            <line x1="60" y1="400" x2="670" y2="400" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" />
+            <line x1="670" y1="50" x2="670" y2="400" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" />
 
             {/* Y Axis Labels */}
             <text className="cs-chart-axis-label" x="50" y="404" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="end" fontFamily="Inter, sans-serif">0</text>
@@ -234,13 +226,13 @@ export default function CreatorDiscoveryChart() {
             <text className="cs-chart-axis-label" x="230" y="422" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="middle" fontFamily="Inter, sans-serif">-6 Months</text>
             <text className="cs-chart-axis-label" x="400" y="424" fill="#ffffff" fontSize="12" fontWeight="700" textAnchor="middle" fontFamily="Inter, sans-serif">Hired</text>
             <text className="cs-chart-axis-label" x="570" y="422" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="middle" fontFamily="Inter, sans-serif">+6 Months</text>
-            <text className="cs-chart-axis-label" x="740" y="422" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="middle" fontFamily="Inter, sans-serif">Today</text>
+            <text className="cs-chart-axis-label" x="670" y="422" fill="rgba(255,255,255,0.4)" fontSize="11" textAnchor="middle" fontFamily="Inter, sans-serif">Today</text>
 
             {/* Exponential Growth Curves */}
             {/* Curve 1: Nitesh Shetty */}
             <path 
               className="cs-chart-curve" 
-              d="M 60,395 C 200,390 300,380 400,360 C 500,340 600,180 740,70" 
+              d="M 60,395 C 180,390 280,380 400,360 C 490,340 570,180 670,70" 
               fill="none" 
               stroke="#00FF66" 
               strokeWidth="4.5" 
@@ -251,7 +243,7 @@ export default function CreatorDiscoveryChart() {
             {/* Curve 2: Vir Saini */}
             <path 
               className="cs-chart-curve" 
-              d="M 60,390 C 200,385 300,375 400,358 C 480,345 580,240 740,110" 
+              d="M 60,390 C 180,385 280,375 400,358 C 470,345 560,240 670,110" 
               fill="none" 
               stroke="#00E5FF" 
               strokeWidth="4.5" 
@@ -264,24 +256,26 @@ export default function CreatorDiscoveryChart() {
               {/* Nitesh Shetty circular headshot */}
               <image 
                 href="/assets/Appreciate case studies assets/nitesh_avatar.png"
-                x="722" 
+                x="652" 
                 y="52" 
                 width="36" 
                 height="36" 
                 clipPath="url(#circle-clip-nitesh)"
               />
-              <circle cx="740" cy="70" r="18" fill="none" stroke="#00FF66" strokeWidth="2.5" />
+              <circle cx="670" cy="70" r="18" fill="none" stroke="#00FF66" strokeWidth="2.5" />
+              <text x="696" y="74" fill="rgba(255,255,255,0.85)" fontSize="12" fontWeight="700" fontFamily="Inter, sans-serif">Nitesh Shetty</text>
 
               {/* Vir Saini circular headshot */}
               <image 
                 href="/assets/Appreciate case studies assets/vir_avatar.png"
-                x="722" 
+                x="652" 
                 y="92" 
                 width="36" 
                 height="36" 
                 clipPath="url(#circle-clip-vir)"
               />
-              <circle cx="740" cy="110" r="18" fill="none" stroke="#00E5FF" strokeWidth="2.5" />
+              <circle cx="670" cy="110" r="18" fill="none" stroke="#00E5FF" strokeWidth="2.5" />
+              <text x="696" y="114" fill="rgba(255,255,255,0.85)" fontSize="12" fontWeight="700" fontFamily="Inter, sans-serif">Vir Saini</text>
             </g>
 
             {/* Hired Tooltip/Badge & Markers Group */}
@@ -296,15 +290,6 @@ export default function CreatorDiscoveryChart() {
               {/* Circular points on the curves at hiring point */}
               <circle cx="400" cy="360" r="6" fill="#00FF66" stroke="#ffffff" strokeWidth="2" />
               <circle cx="400" cy="358" r="6" fill="#00E5FF" stroke="#ffffff" strokeWidth="2" />
-            </g>
-
-            {/* Chart Legend */}
-            <g className="cs-chart-legend">
-              <circle cx="630" cy="65" r="5" fill="#00FF66" />
-              <text x="642" y="69" fill="rgba(255,255,255,0.7)" fontSize="11" fontWeight="500" fontFamily="Inter, sans-serif">Nitesh Shetty</text>
-
-              <circle cx="630" cy="85" r="5" fill="#00E5FF" />
-              <text x="642" y="89" fill="rgba(255,255,255,0.7)" fontSize="11" fontWeight="500" fontFamily="Inter, sans-serif">Vir Saini</text>
             </g>
           </svg>
         </div>
