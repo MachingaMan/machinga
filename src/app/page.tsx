@@ -44,7 +44,7 @@ export default function Home() {
           });
         }
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.65 });
 
     cards.forEach(card => observer.observe(card));
     return () => observer.disconnect();
@@ -255,7 +255,7 @@ export default function Home() {
     {/*  Work Section  */}
     <section className="fs-cards-section" id="work">
         <div className="fs-card">
-            <video className="fs-card-bg" src={`/assets/Appreciate.MP4`} loop muted playsInline preload="none"></video>
+            <video className="fs-card-bg" src={`/assets/Appreciate.MP4`} loop muted playsInline autoPlay preload="auto"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">APPRECIATE</h2>
                 <p className="fs-card-sub">How a fintech compounds interest</p>
@@ -361,7 +361,7 @@ export default function Home() {
         </div>
 
         <div className="fs-card">
-            <video className="fs-card-bg contraband-video" src={`/assets/Contraband.MP4`} loop muted playsInline preload="none"></video>
+            <video className="fs-card-bg contraband-video" src={`/assets/Contraband.MP4`} loop muted playsInline autoPlay preload="auto"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">CONTRABAND</h2>
                 <p className="fs-card-sub">How a stain did what a celebrity couldn't.</p>
@@ -451,7 +451,7 @@ export default function Home() {
         </div>
 
         <div className="fs-card">
-            <video className="fs-card-bg" src={`/assets/aava.mp4`} loop muted playsInline preload="none"></video>
+            <video className="fs-card-bg" src={`/assets/aava.mp4`} loop muted playsInline autoPlay preload="auto"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">AAVA</h2>
                 <p className="fs-card-sub">How the OG water brand won a category flooded with imposters.</p>
@@ -545,7 +545,7 @@ export default function Home() {
         </div>
 
         <div className="fs-card">
-            <video className="fs-card-bg" src={`/assets/hamleys.mp4`} loop muted playsInline preload="none"></video>
+            <video className="fs-card-bg" src={`/assets/hamleys.mp4`} loop muted playsInline autoPlay preload="auto"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">HAMLEYS</h2>
                 <p className="fs-card-sub">How a 265-year-old toy store solved Valentine’s for Gen Z.</p>

@@ -75,7 +75,11 @@ export default function HomeClientLogic() {
       const updateScrollLock = () => {
         const isCollapsed = heroSection.classList.contains('collapsed');
         const isVideoPlaying = heroSection.classList.contains('video-playing');
-        if (isCollapsed || isVideoPlaying || isLockedDuringAnimation || isLocked) {
+        
+        // Check if any details dropdown is open
+        const hasOpenDropdown = document.querySelector('.card-details-dropdown.open') !== null;
+
+        if ((isCollapsed || isVideoPlaying || isLockedDuringAnimation || isLocked) && !hasOpenDropdown) {
           document.body.style.overflow = 'hidden';
           document.documentElement.style.overflow = 'hidden';
           if (lenisRef.current) {
@@ -704,6 +708,62 @@ export default function HomeClientLogic() {
         }
 
         if (isLocked) {
+          // If a details dropdown is open for the active card, check if we should allow fluid scroll or transition
+          if (workActiveIndex !== -1) {
+            const currentDropdown = document.getElementById(`details-${workActiveIndex + 1}`);
+            const isDropdownOpen = currentDropdown && currentDropdown.classList.contains('open');
+            if (isDropdownOpen) {
+              const workSec = document.getElementById('work');
+              const cards = workSec ? workSec.querySelectorAll('.fs-card') : [];
+              const deltaY = e.deltaY;
+
+              if (Math.abs(deltaY) > 5) {
+                if (deltaY > 0) {
+                  // Scrolling down
+                  if (workActiveIndex < cards.length - 1) {
+                    const nextCard = cards[workActiveIndex + 1];
+                    const nextRect = nextCard.getBoundingClientRect();
+                    if (nextRect.top < window.innerHeight - 80) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      if (Date.now() - lastSnapTime >= 850) {
+                        transitionToCard(workActiveIndex + 1);
+                      }
+                      return;
+                    }
+                  } else {
+                    // Last card, check bottom of dropdown
+                    const dropdownRect = currentDropdown.getBoundingClientRect();
+                    if (dropdownRect.bottom < window.innerHeight - 80) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      if (Date.now() - lastSnapTime >= 850) {
+                        transitionToCard(workActiveIndex + 1);
+                      }
+                      return;
+                    }
+                  }
+                } else {
+                  // Scrolling up
+                  const currentCard = cards[workActiveIndex];
+                  if (currentCard) {
+                    const cardRect = currentCard.getBoundingClientRect();
+                    if (cardRect.bottom > 80) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      if (Date.now() - lastSnapTime >= 850) {
+                        transitionToCard(workActiveIndex); // snap back to card
+                      }
+                      return;
+                    }
+                  }
+                }
+              }
+              // Allow normal scroll inside the open dropdown!
+              return;
+            }
+          }
+
           e.preventDefault();
           e.stopPropagation();
 
@@ -808,6 +868,66 @@ export default function HomeClientLogic() {
         }
 
         if (isLocked && !isHeader) {
+          // If a details dropdown is open for the active card, check if we should allow fluid scroll or transition
+          if (workActiveIndex !== -1) {
+            const currentDropdown = document.getElementById(`details-${workActiveIndex + 1}`);
+            const isDropdownOpen = currentDropdown && currentDropdown.classList.contains('open');
+            if (isDropdownOpen) {
+              const touchCurrentY = e.touches[0].clientY;
+              const diffY = touchStartY - touchCurrentY; // Positive when dragging finger up (scrolling down)
+              const workSec = document.getElementById('work');
+              const cards = workSec ? workSec.querySelectorAll('.fs-card') : [];
+
+              if (Math.abs(diffY) > 30) {
+                if (diffY > 0) {
+                  // Scrolling down
+                  if (workActiveIndex < cards.length - 1) {
+                    const nextCard = cards[workActiveIndex + 1];
+                    const nextRect = nextCard.getBoundingClientRect();
+                    if (nextRect.top < window.innerHeight - 80) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      if (Date.now() - lastSnapTime >= 850) {
+                        transitionToCard(workActiveIndex + 1);
+                      }
+                      touchStartY = touchCurrentY;
+                      return;
+                    }
+                  } else {
+                    // Last card, check bottom of dropdown
+                    const dropdownRect = currentDropdown.getBoundingClientRect();
+                    if (dropdownRect.bottom < window.innerHeight - 80) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      if (Date.now() - lastSnapTime >= 850) {
+                        transitionToCard(workActiveIndex + 1);
+                      }
+                      touchStartY = touchCurrentY;
+                      return;
+                    }
+                  }
+                } else {
+                  // Scrolling up
+                  const currentCard = cards[workActiveIndex];
+                  if (currentCard) {
+                    const cardRect = currentCard.getBoundingClientRect();
+                    if (cardRect.bottom > 80) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      if (Date.now() - lastSnapTime >= 850) {
+                        transitionToCard(workActiveIndex); // snap back to card
+                      }
+                      touchStartY = touchCurrentY;
+                      return;
+                    }
+                  }
+                }
+              }
+              // Allow normal touch scroll inside the open dropdown!
+              return;
+            }
+          }
+
           e.preventDefault();
           e.stopPropagation();
 
@@ -1342,6 +1462,37 @@ export default function HomeClientLogic() {
         dropdownClickHandlers.push({ el: link, fn: handler });
       });
 
+      // Observe details dropdowns for 'open' class changes
+      let wasDropdownOpen = false;
+      const dropdowns = document.querySelectorAll('.card-details-dropdown');
+      const dropdownObserver = new MutationObserver(() => {
+        const hasOpenDropdown = document.querySelector('.card-details-dropdown.open') !== null;
+        if (wasDropdownOpen && !hasOpenDropdown) {
+          // A dropdown was just closed! Scroll back to the active card
+          if (workActiveIndex !== -1 && lenisRef.current) {
+            const cards = document.querySelectorAll('.fs-card');
+            if (cards[workActiveIndex]) {
+              lenisRef.current.start();
+              lenisRef.current.scrollTo(cards[workActiveIndex], {
+                duration: 0.6,
+                onComplete: () => {
+                  updateScrollLock();
+                }
+              });
+            }
+          } else {
+            updateScrollLock();
+          }
+        } else {
+          updateScrollLock();
+        }
+        wasDropdownOpen = hasOpenDropdown;
+      });
+
+      dropdowns.forEach(dropdown => {
+        dropdownObserver.observe(dropdown, { attributes: true, attributeFilter: ['class'] });
+      });
+
       // ── TESTIMONIALS CAROUSEL ──────────────────────────────────────────────────
       const carousel = document.getElementById('testimonialsCarousel');
       const btnPrev = document.getElementById('tPrev');
@@ -1525,6 +1676,9 @@ export default function HomeClientLogic() {
         }
         if (videoObserver) {
           videoObserver.disconnect();
+        }
+        if (dropdownObserver) {
+          dropdownObserver.disconnect();
         }
 
         dropdownClickHandlers.forEach(({ el, fn }) => {
