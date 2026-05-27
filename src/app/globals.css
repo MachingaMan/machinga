@@ -1139,6 +1139,7 @@ body {
     margin: 0;
     padding: 0 2rem;
     box-sizing: border-box;
+    background: #000000;
 }
 
 .fs-card:nth-of-type(1) {
