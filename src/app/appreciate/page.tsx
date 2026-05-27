@@ -35,6 +35,7 @@ export default function AppreciatePage() {
             <div className="cs-fs-hero-tags-row-sub">
               <span className="cs-fs-tag">Creator Discovery</span>
               <span className="cs-fs-tag">Ongoing Optimisation</span>
+              <span className="cs-fs-tag">AI Filmmaking</span>
             </div>
           </div>
         </div>
@@ -318,6 +319,7 @@ export default function AppreciatePage() {
                 <span style={{border: "1px solid #48484A", color: "#ffffff", padding: "14px 36px", borderRadius: "50px", fontSize: "1rem", whiteSpace: "nowrap"}}>Multi-format Production</span>
                 <span style={{border: "1px solid #48484A", color: "#ffffff", padding: "14px 36px", borderRadius: "50px", fontSize: "1rem", whiteSpace: "nowrap"}}>Creator Discovery</span>
                 <span style={{border: "1px solid #48484A", color: "#ffffff", padding: "14px 36px", borderRadius: "50px", fontSize: "1rem", whiteSpace: "nowrap"}}>Ongoing Optimisation</span>
+                <span style={{border: "1px solid #48484A", color: "#ffffff", padding: "14px 36px", borderRadius: "50px", fontSize: "1rem", whiteSpace: "nowrap"}}>AI Filmmaking</span>
             </div>
         </div>
     </section>

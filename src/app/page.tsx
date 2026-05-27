@@ -272,6 +272,7 @@ export default function Home() {
                     <div className="fs-card-tags-row-sub">
                         <span className="fs-tag">Creator Discovery</span>
                         <span className="fs-tag">Ongoing Optimisation</span>
+                        <span className="fs-tag">AI Filmmaking</span>
                     </div>
                 </div>
             </div>
@@ -354,6 +355,7 @@ export default function Home() {
                         <div className="fs-card-tags-row-sub" style={{ justifyContent: 'flex-start', gap: '8px' }}>
                             <span className="acc-tag">Creator Discovery</span>
                             <span className="acc-tag">Ongoing Optimisation</span>
+                            <span className="acc-tag">AI Filmmaking</span>
                         </div>
                     </div>
                 </div>
