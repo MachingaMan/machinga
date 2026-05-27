@@ -3,8 +3,10 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useLenis } from "lenis/react";
 
 export default function Header() {
+  const lenis = useLenis();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolledPast, setIsScrolledPast] = useState(false);
   const [isOverDark, setIsOverDark] = useState(false);
@@ -151,6 +153,28 @@ export default function Header() {
     };
   }, [pathname, isCaseStudy, isHomepage]);
 
+  const handleNavClick = (e: React.MouseEvent, target: string | number) => {
+    if (isHomepage && lenis) {
+      e.preventDefault();
+      if (typeof window !== 'undefined') {
+        window.__isProgrammaticScroll = true;
+        const clearFlag = () => {
+          window.__isProgrammaticScroll = false;
+          window.removeEventListener('wheel', clearFlag);
+          window.removeEventListener('touchstart', clearFlag);
+        };
+        window.addEventListener('wheel', clearFlag, { passive: true });
+        window.addEventListener('touchstart', clearFlag, { passive: true });
+
+        lenis.scrollTo(target, {
+          duration: 1.2,
+          onComplete: clearFlag
+        });
+      }
+    }
+    setIsOpen(false);
+  };
+
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: `
@@ -189,12 +213,7 @@ export default function Header() {
           color: isOverDark ? '#ffffff' : '#000000'
         }}
       >
-      <Link href="/" className="logo" onClick={(e) => {
-        if (typeof window !== 'undefined' && window.location.pathname === '/') {
-          e.preventDefault();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      }}>
+      <Link href="/" className="logo" onClick={(e) => handleNavClick(e, 0)}>
         <img
           src={`/assets/Machinga logo with text.png`}
           alt="Machinga"
@@ -218,11 +237,11 @@ export default function Header() {
         className={`desktop-nav ${isOpen ? "open" : ""}`}
         onMouseLeave={() => setIsOpen(false)}
       >
-        <Link href="/" onClick={() => setIsOpen(false)}>Home</Link>
-        <Link href="/#work" onClick={() => setIsOpen(false)}>Work</Link>
-        <Link href="/#statement" onClick={() => setIsOpen(false)}>How We Work</Link>
-        <Link href="/#about" onClick={() => setIsOpen(false)}>About</Link>
-        <Link href="/#contact" className="nav-contact" onClick={() => setIsOpen(false)}>Contact Us</Link>
+        <Link href="/" onClick={(e) => handleNavClick(e, 0)}>Home</Link>
+        <Link href="/#work" onClick={(e) => handleNavClick(e, '#work')}>Work</Link>
+        <Link href="/#statement" onClick={(e) => handleNavClick(e, '#statement')}>How We Work</Link>
+        <Link href="/#about" onClick={(e) => handleNavClick(e, '#about')}>About</Link>
+        <Link href="/#contact" className="nav-contact" onClick={(e) => handleNavClick(e, '#contact')}>Contact Us</Link>
       </nav>
     </header>
     </>

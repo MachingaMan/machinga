@@ -1000,6 +1000,9 @@ export default function HomeClientLogic() {
       let isSnappingToVideo = false;
 
       handleScrollRef.current = (e: any) => {
+        if (typeof window !== 'undefined' && window.__isProgrammaticScroll) {
+          return;
+        }
         const statementSec = document.getElementById('statement');
         if (!statementSec) return;
 
