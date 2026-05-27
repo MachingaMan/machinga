@@ -723,7 +723,7 @@ export default function HomeClientLogic() {
                   if (workActiveIndex < cards.length - 1) {
                     const nextCard = cards[workActiveIndex + 1];
                     const nextRect = nextCard.getBoundingClientRect();
-                    if (nextRect.top < window.innerHeight - 80) {
+                    if (nextRect.top < 300) {
                       e.preventDefault();
                       e.stopPropagation();
                       if (Date.now() - lastSnapTime >= 850) {
@@ -734,7 +734,7 @@ export default function HomeClientLogic() {
                   } else {
                     // Last card, check bottom of dropdown
                     const dropdownRect = currentDropdown.getBoundingClientRect();
-                    if (dropdownRect.bottom < window.innerHeight - 80) {
+                    if (dropdownRect.bottom < 300) {
                       e.preventDefault();
                       e.stopPropagation();
                       if (Date.now() - lastSnapTime >= 850) {
@@ -748,7 +748,7 @@ export default function HomeClientLogic() {
                   const currentCard = cards[workActiveIndex];
                   if (currentCard) {
                     const cardRect = currentCard.getBoundingClientRect();
-                    if (cardRect.bottom > 80) {
+                    if (cardRect.bottom > window.innerHeight - 300) {
                       e.preventDefault();
                       e.stopPropagation();
                       if (Date.now() - lastSnapTime >= 850) {
@@ -884,7 +884,7 @@ export default function HomeClientLogic() {
                   if (workActiveIndex < cards.length - 1) {
                     const nextCard = cards[workActiveIndex + 1];
                     const nextRect = nextCard.getBoundingClientRect();
-                    if (nextRect.top < window.innerHeight - 80) {
+                    if (nextRect.top < 300) {
                       e.preventDefault();
                       e.stopPropagation();
                       if (Date.now() - lastSnapTime >= 850) {
@@ -896,7 +896,7 @@ export default function HomeClientLogic() {
                   } else {
                     // Last card, check bottom of dropdown
                     const dropdownRect = currentDropdown.getBoundingClientRect();
-                    if (dropdownRect.bottom < window.innerHeight - 80) {
+                    if (dropdownRect.bottom < 300) {
                       e.preventDefault();
                       e.stopPropagation();
                       if (Date.now() - lastSnapTime >= 850) {
@@ -911,7 +911,7 @@ export default function HomeClientLogic() {
                   const currentCard = cards[workActiveIndex];
                   if (currentCard) {
                     const cardRect = currentCard.getBoundingClientRect();
-                    if (cardRect.bottom > 80) {
+                    if (cardRect.bottom > window.innerHeight - 300) {
                       e.preventDefault();
                       e.stopPropagation();
                       if (Date.now() - lastSnapTime >= 850) {
@@ -1175,7 +1175,9 @@ export default function HomeClientLogic() {
 
           if (lenisRef.current) {
             lenisRef.current.start();
-            lenisRef.current.scrollTo(cards[targetIndex], {
+            const workOffset = workSec.getBoundingClientRect().top + window.scrollY;
+            const targetScrollY = workOffset + targetIndex * window.innerHeight;
+            lenisRef.current.scrollTo(targetScrollY, {
               duration: 0.8,
               onComplete: () => {
                 isSnappingToCard = false;
@@ -1439,37 +1441,14 @@ export default function HomeClientLogic() {
 
       setupSweepObserver();
 
-      // ── CARD DETAILS DROPDOWN ──────────────────────────────────────────────────
-      const toggleLinks = document.querySelectorAll('.toggle-details');
-      const dropdownClickHandlers: { el: Element; fn: EventListener }[] = [];
-      toggleLinks.forEach(link => {
-        const handler = (e: Event) => {
-          e.preventDefault();
-          const targetId = link.getAttribute('data-target');
-          if (!targetId) return;
-          const targetEl = document.getElementById(targetId);
-
-          if (targetEl) {
-            const isOpen = targetEl.classList.toggle('open');
-            if (isOpen) {
-              setTimeout(() => {
-                targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }, 300);
-            }
-          }
-        };
-        link.addEventListener('click', handler);
-        dropdownClickHandlers.push({ el: link, fn: handler });
-      });
-
       // Observe details dropdowns for 'open' class changes
       let wasDropdownOpen = false;
       const dropdowns = document.querySelectorAll('.card-details-dropdown');
       const dropdownObserver = new MutationObserver(() => {
         const hasOpenDropdown = document.querySelector('.card-details-dropdown.open') !== null;
         if (wasDropdownOpen && !hasOpenDropdown) {
-          // A dropdown was just closed! Scroll back to the active card
-          if (workActiveIndex !== -1 && lenisRef.current) {
+          // A dropdown was just closed! Scroll back to the active card (only if not currently snapping to another card)
+          if (workActiveIndex !== -1 && lenisRef.current && !isSnappingToCard) {
             const cards = document.querySelectorAll('.fs-card');
             if (cards[workActiveIndex]) {
               lenisRef.current.start();
@@ -1681,9 +1660,6 @@ export default function HomeClientLogic() {
           dropdownObserver.disconnect();
         }
 
-        dropdownClickHandlers.forEach(({ el, fn }) => {
-          el.removeEventListener('click', fn);
-        });
 
         if (btnNext && handleNextClick) {
           btnNext.removeEventListener('click', handleNextClick);
