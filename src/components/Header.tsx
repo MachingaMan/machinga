@@ -10,6 +10,7 @@ export default function Header() {
   const [isOverDark, setIsOverDark] = useState(false);
   const [isOverHowWeWork, setIsOverHowWeWork] = useState(false);
   const [darkBgColor, setDarkBgColor] = useState('rgba(29, 29, 31, 0.95)');
+  const [isHidden, setIsHidden] = useState(false);
   const pathname = usePathname();
 
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -17,19 +18,23 @@ export default function Header() {
   // Normalize pathname to strip trailing slashes
   const normalizedPath = pathname.replace(/\/$/, "");
   const isCaseStudy = normalizedPath === '/appreciate' || normalizedPath === '/hamleys' || normalizedPath === '/contraband' || normalizedPath === '/aava';
+  const isHomepage = normalizedPath === "";
 
-  // On case study pages, the header background is transparent if we have not scrolled past the hero fold AND the menu is closed.
+  // The header background is transparent if we have not scrolled past the hero threshold AND the menu is closed.
   // Also transparent when scrolling over the homepage 'How We Work' video section.
-  const isTransparent = (isCaseStudy && !isScrolledPast && !isOpen) || (isOverHowWeWork && !isOpen);
+  const isTransparent = (!isScrolledPast && !isOpen) || (isOverHowWeWork && !isOpen);
 
   useEffect(() => {
     // Always reset states when pathname changes
     setIsScrolledPast(false);
     setIsOverDark(false);
     setIsOverHowWeWork(false);
+    setIsHidden(false);
+
+    let lastScroll = typeof window !== 'undefined' ? window.scrollY : 0;
 
     const handleScroll = () => {
-      const cur = window.scrollY;
+      const cur = Math.max(0, window.scrollY);
       
       if (isCaseStudy) {
         const threshold = window.innerHeight * 0.9;
@@ -38,9 +43,29 @@ export default function Header() {
         } else {
           setIsScrolledPast(cur > threshold);
         }
+      } else if (isHomepage) {
+        const threshold = window.innerHeight * 0.8;
+        if (cur <= 10) {
+          setIsScrolledPast(false);
+        } else {
+          setIsScrolledPast(cur > threshold);
+        }
       } else {
-        setIsScrolledPast(cur > 10);
+        setIsScrolledPast(cur > 50);
       }
+
+      // Hide / Show logic (site-wide)
+      const threshold = isCaseStudy 
+        ? window.innerHeight * 0.9 
+        : (isHomepage ? window.innerHeight * 0.8 : 50);
+
+      if (cur > threshold && cur > lastScroll) {
+        setIsHidden(true);
+      } else {
+        setIsHidden(false);
+      }
+      
+      lastScroll = cur;
 
       // Check if overlapping with the 'How We Work' video section
       const statementSec = document.getElementById('statement');
@@ -108,7 +133,7 @@ export default function Header() {
       clearTimeout(t2);
       clearTimeout(t3);
     };
-  }, [pathname, isCaseStudy]);
+  }, [pathname, isCaseStudy, isHomepage]);
 
   return (
     <>
@@ -119,13 +144,32 @@ export default function Header() {
         .site-header.header-dark .header-logo-img {
           filter: brightness(0) invert(1) !important;
         }
+        .site-header.header-dark .desktop-nav {
+          background: rgba(29, 29, 31, 0.94) !important;
+          border-color: rgba(255, 255, 255, 0.08) !important;
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 
+                      0 4px 12px rgba(0, 0, 0, 0.2),
+                      inset 0 1px 2px rgba(255, 255, 255, 0.1) !important;
+        }
+        .site-header.header-dark .desktop-nav a {
+          color: #e3e3e3 !important;
+        }
+        .site-header.header-dark .desktop-nav a:hover {
+          color: #ffffff !important;
+          background: rgba(255, 255, 255, 0.08) !important;
+        }
       `}} />
       <header 
-        className={`site-header header-transparent ${isOverDark ? "header-dark" : ""}`}
-        style={{
+        className={`site-header ${isTransparent ? "header-transparent" : ""} ${isOverDark ? "header-dark" : ""} ${isHidden ? "header-hidden" : ""}`}
+        style={isTransparent ? {
           background: 'transparent',
           backdropFilter: 'none',
           WebkitBackdropFilter: 'none',
+          color: isOverDark ? '#ffffff' : '#000000'
+        } : {
+          background: isOverDark ? darkBgColor : 'rgba(255, 255, 255, 0.95)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
           color: isOverDark ? '#ffffff' : '#000000'
         }}
       >

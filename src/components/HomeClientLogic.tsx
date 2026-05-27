@@ -300,19 +300,8 @@ export default function HomeClientLogic() {
         });
       };
 
-      // ── Header Scroll Handler ───────────────────────────────────────────────────
-      let lastScrollY = window.scrollY;
-      const handleHeaderScroll = () => {
-        if (!siteHeader) return;
-        const cur = window.scrollY;
-        const threshold = window.innerHeight * 0.8;
-        if (cur > threshold && cur > lastScrollY) {
-          siteHeader.classList.add('header-hidden');
-        } else {
-          siteHeader.classList.remove('header-hidden');
-        }
-        lastScrollY = cur;
-      };
+      // ── Header Scroll Handler (Moved to Header.tsx) ──────────────────────────────
+
 
       // ── Beliefs Scroll Handler ──────────────────────────────────────────────────
       const beliefItems = document.querySelectorAll('.belief-scroll-item');
@@ -913,7 +902,6 @@ export default function HomeClientLogic() {
       window.addEventListener('touchcancel', handleTouchEnd, { passive: true });
 
       window.addEventListener('mousemove', handleGlobalMouseMove, { passive: true });
-      window.addEventListener('scroll', handleHeaderScroll, { passive: true });
       window.addEventListener('scroll', handleBeliefScroll, { passive: true });
       window.addEventListener('scroll', handleFableScroll, { passive: true });
       setTimeout(handleFableScroll, 50);
@@ -1529,7 +1517,6 @@ export default function HomeClientLogic() {
         window.removeEventListener('touchend', handleTouchEnd);
         window.removeEventListener('touchcancel', handleTouchEnd);
         window.removeEventListener('mousemove', handleGlobalMouseMove);
-        window.removeEventListener('scroll', handleHeaderScroll);
         window.removeEventListener('scroll', handleBeliefScroll);
         window.removeEventListener('scroll', handleFableScroll);
 
