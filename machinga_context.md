@@ -77,6 +77,7 @@ This file contains the development context, recent changes, and project status f
 ### 7. About Fable Reveal & Beliefs Sticky Alignment (Today's Work - May 27, 2026)
 - **Fable Paragraph Word Reveal**: Dynamic `green-word` classes are only applied to the first 5 words of the third paragraph (`"A tiny coconut-fruit rolled in."`). In `HomeClientLogic.tsx`'s scroll handler, we transition their text color to green `#0FC823` in JavaScript upon reveal. The remaining words of the paragraph transition their opacity normally while maintaining their default black color.
 - **Sticky Beliefs Alignment**: Reverted all changes to the `.beliefs-left` layout container to restore the original sticky centering effect (`position: sticky`, `top: 50vh`, `height: 60px`, `transform: translateY(-50%)`, and `overflow: hidden`). This preserves the original visual scroll effects and vertical alignment shifts, living with the initial entry alignment offset.
+- **Navigation Programmatic Scroll Snap Bypass**: Integrated `useLenis` in [src/components/Header.tsx](file:///Users/anandnair/Machinga%20Website%20Antigravity/src/components/Header.tsx#L153) to smooth scroll to targets when navigation links or the logo are clicked. It sets `window.__isProgrammaticScroll = true` during these scrolls, which is intercepted in [src/components/HomeClientLogic.tsx](file:///Users/anandnair/Machinga%20Website%20Antigravity/src/components/HomeClientLogic.tsx#L1000) to bypass intermediate scroll-snapping triggers (such as the `#statement` video snapper).
 
 ---
 
