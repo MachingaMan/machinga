@@ -880,7 +880,7 @@ export default function Home() {
                                     return (
                                         <span key={wIndex}>
                                             <span 
-                                                className={`fable-word ${pIndex === 2 ? "green-word" : ""}`} 
+                                                className={`fable-word ${(pIndex === 2 && wIndex < 5) ? "green-word" : ""}`} 
                                                 data-index={index}
                                                 style={{ 
                                                     opacity: 0.15, 
