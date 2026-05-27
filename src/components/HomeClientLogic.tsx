@@ -944,11 +944,11 @@ export default function HomeClientLogic() {
         // Snap to statement section when scrolling into view
         if (lenisRef.current && !isLockedDuringAnimation && !isSnappingToVideo) {
           if (videoState === 'idle' && workActiveIndex === -1 && !isSnappingToCard) {
-            const triggerZoneDown = window.innerHeight * 0.85;
-            const triggerZoneUp = window.innerHeight * 0.15;
+            const triggerZoneDown = 150;
+            const triggerZoneUp = window.innerHeight - 150;
 
             // Scroll down enters from top, scroll up enters from bottom
-            if (isScrollingDown && rect.top < triggerZoneDown && rect.top > 50) {
+            if (isScrollingDown && rect.top < triggerZoneDown && rect.top > 10) {
               isSnappingToVideo = true;
               videoState = 'snapping';
               lenisRef.current.scrollTo(statementSec, {
@@ -964,7 +964,7 @@ export default function HomeClientLogic() {
                   }
                 }
               });
-            } else if (!isScrollingDown && rect.bottom > triggerZoneUp && rect.bottom < window.innerHeight - 50) {
+            } else if (!isScrollingDown && rect.bottom > triggerZoneUp && rect.bottom < window.innerHeight - 10) {
               isSnappingToVideo = true;
               videoState = 'snapping';
               lenisRef.current.scrollTo(statementSec, {

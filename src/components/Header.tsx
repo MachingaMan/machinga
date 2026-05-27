@@ -116,17 +116,16 @@ export default function Header() {
         .site-header.header-dark .menu-toggle span {
           background-color: #ffffff !important;
         }
+        .site-header.header-dark .header-logo-img {
+          filter: brightness(0) invert(1) !important;
+        }
       `}} />
       <header 
-        className={`site-header ${isTransparent ? "header-transparent" : ""} ${isOverDark ? "header-dark" : ""}`}
-        style={isTransparent ? {
+        className={`site-header header-transparent ${isOverDark ? "header-dark" : ""}`}
+        style={{
           background: 'transparent',
           backdropFilter: 'none',
-          WebkitBackdropFilter: 'none'
-        } : {
-          background: isOverDark ? darkBgColor : 'rgba(255, 255, 255, 0.95)',
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'none',
           color: isOverDark ? '#ffffff' : '#000000'
         }}
       >
