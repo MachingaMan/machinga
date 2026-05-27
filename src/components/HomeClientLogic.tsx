@@ -1374,7 +1374,7 @@ export default function HomeClientLogic() {
           }
         }
       };
-      document.addEventListener('click', handleGlobalAnchorClick);
+      document.addEventListener('click', handleGlobalAnchorClick, true);
 
       // ── Intersection Observer for Sweep Reveal Headlines ───────────────────────
       const setupSweepObserver = () => {
@@ -1591,7 +1591,7 @@ export default function HomeClientLogic() {
         if (checkFrameId) {
           cancelAnimationFrame(checkFrameId);
         }
-        document.removeEventListener('click', handleGlobalAnchorClick);
+        document.removeEventListener('click', handleGlobalAnchorClick, true);
 
         handleScrollRef.current = undefined;
 
