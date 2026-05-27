@@ -708,58 +708,33 @@ export default function HomeClientLogic() {
         }
 
         if (isLocked) {
-          // If a details dropdown is open for the active card, check if we should allow fluid scroll or transition
+          // If a details dropdown is open for the active card, trigger snap and collapse immediately on scroll
           if (workActiveIndex !== -1) {
             const currentDropdown = document.getElementById(`details-${workActiveIndex + 1}`);
             const isDropdownOpen = currentDropdown && currentDropdown.classList.contains('open');
             if (isDropdownOpen) {
-              const workSec = document.getElementById('work');
-              const cards = workSec ? workSec.querySelectorAll('.fs-card') : [];
               const deltaY = e.deltaY;
 
               if (Math.abs(deltaY) > 5) {
-                if (deltaY > 0) {
-                  // Scrolling down
-                  if (workActiveIndex < cards.length - 1) {
-                    const nextCard = cards[workActiveIndex + 1];
-                    const nextRect = nextCard.getBoundingClientRect();
-                    if (nextRect.top < 300) {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      if (Date.now() - lastSnapTime >= 850) {
-                        transitionToCard(workActiveIndex + 1);
-                      }
-                      return;
-                    }
+                e.preventDefault();
+                e.stopPropagation();
+
+                if (Date.now() - lastSnapTime >= 850) {
+                  const workSec = document.getElementById('work');
+                  const cards = workSec ? workSec.querySelectorAll('.fs-card') : [];
+                  const activeToggle = cards[workActiveIndex]?.querySelector('.toggle-details') as HTMLElement;
+
+                  if (deltaY > 0) {
+                    // Scrolling down: collapse and snap to next card/section
+                    if (activeToggle) activeToggle.click();
+                    transitionToCard(workActiveIndex + 1);
                   } else {
-                    // Last card, check bottom of dropdown
-                    const dropdownRect = currentDropdown.getBoundingClientRect();
-                    if (dropdownRect.bottom < 300) {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      if (Date.now() - lastSnapTime >= 850) {
-                        transitionToCard(workActiveIndex + 1);
-                      }
-                      return;
-                    }
-                  }
-                } else {
-                  // Scrolling up
-                  const currentCard = cards[workActiveIndex];
-                  if (currentCard) {
-                    const cardRect = currentCard.getBoundingClientRect();
-                    if (cardRect.bottom > window.innerHeight - 300) {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      if (Date.now() - lastSnapTime >= 850) {
-                        transitionToCard(workActiveIndex); // snap back to card
-                      }
-                      return;
-                    }
+                    // Scrolling up: collapse and snap back to current card
+                    if (activeToggle) activeToggle.click();
+                    transitionToCard(workActiveIndex);
                   }
                 }
               }
-              // Allow normal scroll inside the open dropdown!
               return;
             }
           }
@@ -868,62 +843,35 @@ export default function HomeClientLogic() {
         }
 
         if (isLocked && !isHeader) {
-          // If a details dropdown is open for the active card, check if we should allow fluid scroll or transition
+          // If a details dropdown is open for the active card, trigger snap and collapse immediately on touch drag
           if (workActiveIndex !== -1) {
             const currentDropdown = document.getElementById(`details-${workActiveIndex + 1}`);
             const isDropdownOpen = currentDropdown && currentDropdown.classList.contains('open');
             if (isDropdownOpen) {
               const touchCurrentY = e.touches[0].clientY;
               const diffY = touchStartY - touchCurrentY; // Positive when dragging finger up (scrolling down)
-              const workSec = document.getElementById('work');
-              const cards = workSec ? workSec.querySelectorAll('.fs-card') : [];
 
               if (Math.abs(diffY) > 30) {
-                if (diffY > 0) {
-                  // Scrolling down
-                  if (workActiveIndex < cards.length - 1) {
-                    const nextCard = cards[workActiveIndex + 1];
-                    const nextRect = nextCard.getBoundingClientRect();
-                    if (nextRect.top < 300) {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      if (Date.now() - lastSnapTime >= 850) {
-                        transitionToCard(workActiveIndex + 1);
-                      }
-                      touchStartY = touchCurrentY;
-                      return;
-                    }
+                e.preventDefault();
+                e.stopPropagation();
+
+                if (Date.now() - lastSnapTime >= 850) {
+                  const workSec = document.getElementById('work');
+                  const cards = workSec ? workSec.querySelectorAll('.fs-card') : [];
+                  const activeToggle = cards[workActiveIndex]?.querySelector('.toggle-details') as HTMLElement;
+
+                  if (diffY > 0) {
+                    // Scrolling down: collapse and snap to next card/section
+                    if (activeToggle) activeToggle.click();
+                    transitionToCard(workActiveIndex + 1);
                   } else {
-                    // Last card, check bottom of dropdown
-                    const dropdownRect = currentDropdown.getBoundingClientRect();
-                    if (dropdownRect.bottom < 300) {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      if (Date.now() - lastSnapTime >= 850) {
-                        transitionToCard(workActiveIndex + 1);
-                      }
-                      touchStartY = touchCurrentY;
-                      return;
-                    }
+                    // Scrolling up: collapse and snap back to current card
+                    if (activeToggle) activeToggle.click();
+                    transitionToCard(workActiveIndex);
                   }
-                } else {
-                  // Scrolling up
-                  const currentCard = cards[workActiveIndex];
-                  if (currentCard) {
-                    const cardRect = currentCard.getBoundingClientRect();
-                    if (cardRect.bottom > window.innerHeight - 300) {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      if (Date.now() - lastSnapTime >= 850) {
-                        transitionToCard(workActiveIndex); // snap back to card
-                      }
-                      touchStartY = touchCurrentY;
-                      return;
-                    }
-                  }
+                  touchStartY = touchCurrentY;
                 }
               }
-              // Allow normal touch scroll inside the open dropdown!
               return;
             }
           }
