@@ -929,16 +929,18 @@ export default function Home() {
                 <div className="beliefs-scroll-layout" style={{'display': 'flex', 'position': 'relative', 'marginTop': '3rem'}}>
                     {/*  Left Sticky Column  */}
                     <div className="beliefs-left"
-                        style={{'width': '350px', 'position': 'sticky', 'top': 'calc(47vh - 30px)', 'height': '60px', 'boxSizing': 'content-box', 'paddingTop': '3vh', 'display': 'flex', 'alignItems': 'flex-start', 'gap': '12px', 'overflow': 'hidden', 'fontSize': '40px', 'fontWeight': '800', 'color': '#999999', 'textTransform': 'uppercase'}}>
-                        <span style={{'height': '60px', 'lineHeight': '60px'}}>ON</span>
-                        <div id="dynamic-belief-words"
-                            style={{'display': 'flex', 'flexDirection': 'column', 'transition': 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)', 'marginTop': '0'}}>
-                            <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Strategy</span>
-                            <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Content</span>
-                            <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Briefs</span>
-                            <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Creative</span>
-                            <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Attention</span>
-                            <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Reality</span>
+                        style={{'width': '350px', 'position': 'sticky', 'top': 'calc(47vh - 30px)', 'paddingTop': '3vh', 'display': 'flex', 'alignItems': 'flex-start'}}>
+                        <div style={{'display': 'flex', 'alignItems': 'flex-start', 'gap': '12px', 'height': '60px', 'overflow': 'hidden', 'fontSize': '40px', 'fontWeight': '800', 'color': '#999999', 'textTransform': 'uppercase'}}>
+                            <span style={{'height': '60px', 'lineHeight': '60px'}}>ON</span>
+                            <div id="dynamic-belief-words"
+                                style={{'display': 'flex', 'flexDirection': 'column', 'transition': 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)', 'marginTop': '0'}}>
+                                <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Strategy</span>
+                                <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Content</span>
+                                <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Briefs</span>
+                                <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Creative</span>
+                                <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Attention</span>
+                                <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Reality</span>
+                            </div>
                         </div>
                     </div>
 
