@@ -1359,7 +1359,7 @@ export default function HomeClientLogic() {
         const target = (e.target as HTMLElement).closest('a');
         if (!target) return;
         const href = target.getAttribute('href');
-        if (href && (href.startsWith('#') || href.startsWith('/#'))) {
+        if (href && (href === '/' || href.startsWith('#') || href.startsWith('/#'))) {
           videoState = 'idle';
           workActiveIndex = -1;
           isLocked = false;
