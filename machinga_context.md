@@ -76,7 +76,7 @@ This file contains the development context, recent changes, and project status f
 
 ### 7. About Fable Reveal & Beliefs Sticky Alignment (Today's Work - May 27, 2026)
 - **Fable Paragraph Word Reveal**: Dynamic `green-word` classes are only applied to the first 5 words of the third paragraph (`"A tiny coconut-fruit rolled in."`). In `HomeClientLogic.tsx`'s scroll handler, we transition their text color to green `#0FC823` in JavaScript upon reveal. The remaining words of the paragraph transition their opacity normally while maintaining their default black color.
-- **Sticky Beliefs Alignment**: Split `.beliefs-left` into an outer `position: sticky` container with `paddingTop: 3vh` and an inner `height: 60px; overflow: hidden; position: relative` clipping container. This aligns the left dynamic label horizontally with the right text's first line on scroll entry, keeps scrolled-out items perfectly clipped in Blink/WebKit browsers by establishing a relative positioning context, and centers the text perfectly at `50vh` as it sticky-scrolls.
+- **Sticky Beliefs Alignment**: Reverted all changes to the `.beliefs-left` layout container to restore the original sticky centering effect (`position: sticky`, `top: 50vh`, `height: 60px`, `transform: translateY(-50%)`, and `overflow: hidden`). This preserves the original visual scroll effects and vertical alignment shifts, living with the initial entry alignment offset.
 
 ---
 
