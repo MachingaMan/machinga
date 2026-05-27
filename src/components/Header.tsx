@@ -71,59 +71,64 @@ export default function Header() {
 
       // Check if overlapping with the 'How We Work' video section
       const statementSec = document.getElementById('statement');
+      let overHowWeWork = false;
       if (statementSec) {
         const rect = statementSec.getBoundingClientRect();
-        setIsOverHowWeWork(rect.top <= 80 && rect.bottom >= 0);
-      } else {
-        setIsOverHowWeWork(false);
+        overHowWeWork = rect.top <= 80 && rect.bottom >= 0;
       }
+      setIsOverHowWeWork(overHowWeWork);
 
       // Check if overlapping with the '#work' case study cards section
       const workSec = document.getElementById('work');
+      let overWork = false;
       if (workSec) {
         const rect = workSec.getBoundingClientRect();
-        setIsOverWork(rect.top <= 80 && rect.bottom >= 0);
-      } else {
-        setIsOverWork(false);
+        overWork = rect.top <= 80 && rect.bottom >= 0;
       }
+      setIsOverWork(overWork);
 
       // Check if the header currently overlaps with any dark section
-      const sections = document.querySelectorAll('section, footer');
       let darkDetected = false;
       let detectedColor = 'rgba(29, 29, 31, 0.95)';
 
-      for (let i = 0; i < sections.length; i++) {
-        const sec = sections[i] as HTMLElement;
-        const rect = sec.getBoundingClientRect();
+      if (overWork || overHowWeWork) {
+        darkDetected = true;
+        detectedColor = 'rgba(29, 29, 31, 0.95)';
+      } else {
+        const sections = document.querySelectorAll('section, footer');
+        for (let i = 0; i < sections.length; i++) {
+          const sec = sections[i] as HTMLElement;
+          const rect = sec.getBoundingClientRect();
 
-        // Check if Y=40 (approx middle of header height) is within the section bounding box
-        if (rect.top <= 40 && rect.bottom >= 40) {
-          const computedStyle = window.getComputedStyle(sec);
-          const bgColor = computedStyle.backgroundColor;
+          // Check if Y=40 (approx middle of header height) is within the section bounding box
+          if (rect.top <= 40 && rect.bottom >= 40) {
+            const computedStyle = window.getComputedStyle(sec);
+            const bgColor = computedStyle.backgroundColor;
 
-          if (bgColor === 'transparent' || bgColor === 'rgba(0, 0, 0, 0)') {
-            continue;
-          }
-
-          // Parse RGB/RGBA values
-          const rgbMatch = bgColor.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?/);
-          if (rgbMatch) {
-            const r = parseInt(rgbMatch[1], 10);
-            const g = parseInt(rgbMatch[2], 10);
-            const b = parseInt(rgbMatch[3], 10);
-            const a = rgbMatch[4] !== undefined ? parseFloat(rgbMatch[4]) : 1;
-
-            if (a === 0) {
+            if (bgColor === 'transparent' || bgColor === 'rgba(0, 0, 0, 0)') {
               continue;
             }
 
-            const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-            if (brightness < 120) {
-              darkDetected = true;
-              detectedColor = `rgba(${r}, ${g}, ${b}, 0.95)`;
+            // Parse RGB/RGBA values
+            const rgbMatch = bgColor.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?/);
+            if (rgbMatch) {
+              const r = parseInt(rgbMatch[1], 10);
+              const g = parseInt(rgbMatch[2], 10);
+              const b = parseInt(rgbMatch[3], 10);
+              const a = rgbMatch[4] !== undefined ? parseFloat(rgbMatch[4]) : 1;
+
+              if (a === 0) {
+                continue;
+              }
+
+              const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+              if (brightness < 120) {
+                darkDetected = true;
+                detectedColor = `rgba(${r}, ${g}, ${b}, 0.95)`;
+              }
             }
+            break;
           }
-          break;
         }
       }
 
