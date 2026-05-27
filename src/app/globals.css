@@ -1542,6 +1542,10 @@ body {
     color: var(--green);
 }
 
+.fable-word.green-word.revealed {
+    color: var(--green) !important;
+}
+
 .definition {
     font-family: 'Inter', sans-serif;
     font-weight: 400;

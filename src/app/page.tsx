@@ -880,7 +880,7 @@ export default function Home() {
                                     return (
                                         <span key={wIndex}>
                                             <span 
-                                                className="fable-word" 
+                                                className={`fable-word ${pIndex === 2 ? "green-word" : ""}`} 
                                                 data-index={index}
                                                 style={{ 
                                                     opacity: 0.15, 
@@ -929,7 +929,7 @@ export default function Home() {
                 <div className="beliefs-scroll-layout" style={{'display': 'flex', 'position': 'relative', 'marginTop': '3rem'}}>
                     {/*  Left Sticky Column  */}
                     <div className="beliefs-left"
-                        style={{'width': '350px', 'position': 'sticky', 'top': '50vh', 'height': '60px', 'transform': 'translateY(-50%)', 'display': 'flex', 'alignItems': 'flex-start', 'gap': '12px', 'overflow': 'hidden', 'fontSize': '40px', 'fontWeight': '800', 'color': '#999999', 'textTransform': 'uppercase'}}>
+                        style={{'width': '350px', 'position': 'sticky', 'top': 'calc(47vh - 30px)', 'height': '60px', 'boxSizing': 'content-box', 'paddingTop': '3vh', 'display': 'flex', 'alignItems': 'flex-start', 'gap': '12px', 'overflow': 'hidden', 'fontSize': '40px', 'fontWeight': '800', 'color': '#999999', 'textTransform': 'uppercase'}}>
                         <span style={{'height': '60px', 'lineHeight': '60px'}}>ON</span>
                         <div id="dynamic-belief-words"
                             style={{'display': 'flex', 'flexDirection': 'column', 'transition': 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)', 'marginTop': '0'}}>

@@ -369,6 +369,15 @@ export default function HomeClientLogic() {
           if (diff > 0) {
             const windowSize = 0.035; 
             opacity = 0.15 + (0.85 * Math.min(diff / windowSize, 1));
+            word.classList.add('revealed');
+            if (word.classList.contains('green-word')) {
+              (word as HTMLElement).style.color = '#0FC823';
+            }
+          } else {
+            word.classList.remove('revealed');
+            if (word.classList.contains('green-word')) {
+              (word as HTMLElement).style.color = '';
+            }
           }
           (word as HTMLElement).style.opacity = opacity.toString();
         });
