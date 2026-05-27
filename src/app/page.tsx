@@ -707,10 +707,6 @@ export default function Home() {
                     <li>Performance optimisation</li>
                 </ul>
                 <Link href="/appreciate" className="pricing-case-link">LIKE APPRECIATE →</Link>
-                <div className="price-box">
-                    <span className="label">Starting at</span>
-                    <span className="price">₹4L<span>/month</span></span>
-                </div>
             </div>
             <div className="pricing-card">
                 <h3>CREATIVE<br />STRATEGY</h3>
@@ -724,10 +720,6 @@ export default function Home() {
                     <li>Ongoing strategic counsel</li>
                 </ul>
                 <Link href="/hamleys" className="pricing-case-link">LIKE HAMLEYS →</Link>
-                <div className="price-box">
-                    <span className="label">Starting at</span>
-                    <span className="price">₹1.5L<span>/month</span></span>
-                </div>
             </div>
             <div className="pricing-card highlight-card">
                 <h3>CAMPAIGN /<br />PROJECT</h3>
@@ -741,10 +733,6 @@ export default function Home() {
                     <li>Full production</li>
                 </ul>
                 <Link href="/contraband" className="pricing-case-link">LIKE CONTRABAND →</Link>
-                <div className="price-box">
-                    <span className="label">Starting at</span>
-                    <span className="price">₹5L</span>
-                </div>
             </div>
         </div>
     </section>
