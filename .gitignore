@@ -48,3 +48,5 @@ next-env.d.ts
 /public/assets/*.png
 !/public/assets/pencil_bomb_reversed_4k.mp4
 !/public/assets/machinga_logos_backup.png
+/notebook.md
+
