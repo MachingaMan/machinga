@@ -714,7 +714,7 @@ export default function Home() {
                 <h3>CREATIVE<br />STRATEGY</h3>
                 <h4>We Think. You make. We guide</h4>
                 <p className="desc">Strategic direction without full execution. We develop your content strategy, create
-                    concepts and scripts, and provide creative oversight—you or your team handles production. Get our
+                    concepts and scripts, and provide creative oversight while your team handles production. Get our
                     thinking without our production costs.</p>
                 <ul className="features">
                     <li>Content strategy & concept</li>
@@ -726,9 +726,9 @@ export default function Home() {
             <div className="pricing-card highlight-card">
                 <h3>CAMPAIGN /<br />PROJECT</h3>
                 <h4>Think. Make. Ship.</h4>
-                <p className="desc">One-off creative work. Campaign concepts, brand films, launch content,
-                    repositioning—defined scope, clear deliverables, fixed timeline. When you need something specific
-                    done well.</p>
+                <p className="desc">One-off creative work including campaign concepts, brand films, launch content,
+                    and repositioning. We operate with a defined scope, clear deliverables, and a fixed timeline when
+                    you need something specific done well.</p>
                 <ul className="features">
                     <li>Defined scope & timeline</li>
                     <li>Creative development</li>
