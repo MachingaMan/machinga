@@ -953,7 +953,6 @@ export default function HomeClientLogic() {
               videoState = 'snapping';
               lenisRef.current.scrollTo(statementSec, {
                 duration: 0.8,
-                easing: (t) => t === 1 ? 1 : 1 - Math.pow(2, -10 * t), // easeOutExpo
                 onComplete: () => {
                   isSnappingToVideo = false;
                   videoState = 'snapped_closed';
@@ -970,7 +969,6 @@ export default function HomeClientLogic() {
               videoState = 'snapping';
               lenisRef.current.scrollTo(statementSec, {
                 duration: 0.8,
-                easing: (t) => t === 1 ? 1 : 1 - Math.pow(2, -10 * t), // easeOutExpo
                 onComplete: () => {
                   isSnappingToVideo = false;
                   videoState = 'snapped_closed';
@@ -1094,8 +1092,7 @@ export default function HomeClientLogic() {
 
           if (lenisRef.current) {
             lenisRef.current.start();
-            const curScroll = lenisRef.current.scroll || window.scrollY;
-            lenisRef.current.scrollTo(curScroll - window.innerHeight * 0.9, {
+            lenisRef.current.scrollTo(0, {
               duration: 0.8,
               onComplete: () => {
                 isSnappingToCard = false;
@@ -1156,7 +1153,7 @@ export default function HomeClientLogic() {
           if (lenisRef.current) {
             lenisRef.current.start();
             const curScroll = lenisRef.current.scroll || window.scrollY;
-            lenisRef.current.scrollTo(curScroll - 350, { duration: 0.5 });
+            lenisRef.current.scrollTo(curScroll - 350, { duration: 0.8 });
           }
         } else if (videoState === 'snapped_expanded') {
           wantsRewind = 'up';
@@ -1268,8 +1265,7 @@ export default function HomeClientLogic() {
                 if (pricingSec && lenisRef.current) {
                   lenisRef.current.start();
                   lenisRef.current.scrollTo(pricingSec, {
-                    duration: 0.8,
-                    easing: (t) => t === 1 ? 1 : 1 - Math.pow(2, -10 * t)
+                    duration: 0.8
                   });
                 }
               } else {
