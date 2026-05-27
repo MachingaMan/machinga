@@ -61,18 +61,21 @@ export default function HomeClientLogic() {
       let releaseTimeout: NodeJS.Timeout | null = null;
       let isPulling = false;
       let isLockedDuringAnimation = false;
-      let videoScrollLockActive = false;
-      let lastScrollTime = 0;
-      let videoCompleted = false;
-      let isSnappingToVideo = false;
-      let scrubFrameId: number;
-      let accumulatedScroll = 0;
+      let isLocked = false;
+      let videoState: 'idle' | 'snapping' | 'snapped_closed' | 'playing_expand' | 'snapped_expanded' | 'playing_contract' | 'playing_contract_up' | 'finished' = 'idle';
+      let checkFrameId: number | null = null;
+      let lastTime = 0;
+      let wantsRewind: 'down' | 'up' | null = null;
+      let breathDirection: 'forward' | 'backward' = 'forward';
+      let workActiveIndex = -1;
+      let isSnappingToCard = false;
+      let lastSnapTime = 0;
       const heroContainer = document.querySelector('.hero-bubble-container') as HTMLElement;
 
       const updateScrollLock = () => {
         const isCollapsed = heroSection.classList.contains('collapsed');
         const isVideoPlaying = heroSection.classList.contains('video-playing');
-        if (isCollapsed || isVideoPlaying || isLockedDuringAnimation || videoScrollLockActive) {
+        if (isCollapsed || isVideoPlaying || isLockedDuringAnimation || isLocked) {
           document.body.style.overflow = 'hidden';
           document.documentElement.style.overflow = 'hidden';
           if (lenisRef.current) {
@@ -705,31 +708,42 @@ export default function HomeClientLogic() {
       };
 
       const handleScrollAttempt = (e: WheelEvent) => {
-        if (isLockedDuringAnimation || isSnappingToVideo) {
+        if (isLockedDuringAnimation || videoState === 'snapping' || isSnappingToCard) {
           e.preventDefault();
           e.stopPropagation();
           return;
         }
 
-        if (videoScrollLockActive) {
+        if (isLocked) {
           e.preventDefault();
           e.stopPropagation();
-          const pageVideoEl = document.getElementById('how-we-work-page-video') as HTMLVideoElement;
-          if (pageVideoEl && e.deltaY < 0 && pageVideoEl.currentTime < 1.0) {
-            videoScrollLockActive = false;
-            hasSnappedToVideo = false; // Reset snap flag on escape!
-            updateScrollLock();
-            const curScroll = lenisRef.current ? lenisRef.current.scroll : window.scrollY;
-            if (lenisRef.current) {
-              lenisRef.current.scrollTo(curScroll - 150, { duration: 0.5 });
+
+          if (workActiveIndex !== -1) {
+            if (Date.now() - lastSnapTime < 850) {
+              return;
+            }
+            const deltaY = e.deltaY;
+            if (Math.abs(deltaY) > 5) {
+              if (deltaY > 0) {
+                transitionToCard(workActiveIndex + 1);
+              } else {
+                transitionToCard(workActiveIndex - 1);
+              }
             }
             return;
           }
-          // Accumulate scroll down for responsive gas-pedal acceleration
-          if (e.deltaY > 0) {
-            accumulatedScroll += e.deltaY;
+
+          const pageVideo = document.getElementById('how-we-work-page-video') as HTMLVideoElement;
+          if (!pageVideo) return;
+
+          const deltaY = e.deltaY;
+          if (Math.abs(deltaY) > 5) {
+            if (deltaY > 0) {
+              handleUserScrollDown(pageVideo);
+            } else {
+              handleUserScrollUp(pageVideo);
+            }
           }
-          lastScrollTime = Date.now();
           return;
         }
 
@@ -785,7 +799,7 @@ export default function HomeClientLogic() {
       let touchStartY = 0;
       const handleTouchStart = (e: TouchEvent) => {
         const isHeader = (e.target as HTMLElement).closest('.site-header');
-        if ((isLockedDuringAnimation || isSnappingToVideo || videoScrollLockActive) && !isHeader) {
+        if ((isLockedDuringAnimation || videoState === 'snapping' || isLocked) && !isHeader) {
           e.stopPropagation();
         }
 
@@ -797,38 +811,47 @@ export default function HomeClientLogic() {
       };
 
       const handleTouchMove = (e: TouchEvent) => {
-        if (isLockedDuringAnimation || isSnappingToVideo) {
+        const isHeader = (e.target as HTMLElement).closest('.site-header');
+        if ((isLockedDuringAnimation || videoState === 'snapping' || isSnappingToCard) && !isHeader) {
           e.preventDefault();
           e.stopPropagation();
           return;
         }
 
-        if (videoScrollLockActive) {
+        if (isLocked && !isHeader) {
           e.preventDefault();
           e.stopPropagation();
-          const pageVideoEl = document.getElementById('how-we-work-page-video') as HTMLVideoElement;
-          if (pageVideoEl) {
-            const touchCurrentY = e.touches[0].clientY;
-            const isScrollingUp = touchCurrentY > touchStartY; // Dragging down means scrolling up
-            if (isScrollingUp && pageVideoEl.currentTime < 1.0) {
-              videoScrollLockActive = false;
-              hasSnappedToVideo = false; // Reset snap flag on escape!
-              updateScrollLock();
-              const curScroll = lenisRef.current ? lenisRef.current.scroll : window.scrollY;
-              if (lenisRef.current) {
-                lenisRef.current.scrollTo(curScroll - 150, { duration: 0.5 });
-              }
+
+          if (workActiveIndex !== -1) {
+            if (Date.now() - lastSnapTime < 850) {
               return;
             }
-            
-            // Accumulate touch drag speed for responsive gas-pedal acceleration
+            const touchCurrentY = e.touches[0].clientY;
             const diffY = touchStartY - touchCurrentY; // Positive when dragging finger up (scrolling down)
-            if (diffY > 0) {
-              accumulatedScroll += diffY * 2.0;
+            if (Math.abs(diffY) > 30) {
+              if (diffY > 0) {
+                transitionToCard(workActiveIndex + 1);
+              } else {
+                transitionToCard(workActiveIndex - 1);
+              }
+              touchStartY = touchCurrentY;
             }
-            touchStartY = touchCurrentY; // Update for continuous relative delta tracking
+            return;
           }
-          lastScrollTime = Date.now();
+
+          const pageVideo = document.getElementById('how-we-work-page-video') as HTMLVideoElement;
+          if (pageVideo) {
+            const touchCurrentY = e.touches[0].clientY;
+            const diffY = touchStartY - touchCurrentY; // Positive when dragging finger up (scrolling down)
+            if (Math.abs(diffY) > 5) {
+              if (diffY > 0) {
+                handleUserScrollDown(pageVideo);
+              } else {
+                handleUserScrollUp(pageVideo);
+              }
+              touchStartY = touchCurrentY;
+            }
+          }
           return;
         }
 
@@ -908,6 +931,385 @@ export default function HomeClientLogic() {
         video.addEventListener('timeupdate', handleVideoTimeUpdate);
       }
 
+      // ── Scroller & Snapper for How We Work Video Snapping ───────────────────────
+      let isSnappingToVideo = false;
+
+      handleScrollRef.current = (e: any) => {
+        const statementSec = document.getElementById('statement');
+        if (!statementSec) return;
+
+        const rect = statementSec.getBoundingClientRect();
+        const isScrollingDown = e.direction === 1;
+
+        // Snap to statement section when scrolling into view
+        if (lenisRef.current && !isLockedDuringAnimation && !isSnappingToVideo) {
+          if (videoState === 'idle' && workActiveIndex === -1 && !isSnappingToCard) {
+            const triggerZoneDown = window.innerHeight * 0.85;
+            const triggerZoneUp = window.innerHeight * 0.15;
+
+            // Scroll down enters from top, scroll up enters from bottom
+            if (isScrollingDown && rect.top < triggerZoneDown && rect.top > 50) {
+              isSnappingToVideo = true;
+              videoState = 'snapping';
+              lenisRef.current.scrollTo(statementSec, {
+                duration: 0.8,
+                easing: (t) => t === 1 ? 1 : 1 - Math.pow(2, -10 * t), // easeOutExpo
+                onComplete: () => {
+                  isSnappingToVideo = false;
+                  videoState = 'snapped_closed';
+                  isLocked = true;
+                  updateScrollLock();
+                  if (resolvedPageVideo) {
+                    resolvedPageVideo.currentTime = 0;
+                    resolvedPageVideo.pause();
+                  }
+                }
+              });
+            } else if (!isScrollingDown && rect.bottom > triggerZoneUp && rect.bottom < window.innerHeight - 50) {
+              isSnappingToVideo = true;
+              videoState = 'snapping';
+              lenisRef.current.scrollTo(statementSec, {
+                duration: 0.8,
+                easing: (t) => t === 1 ? 1 : 1 - Math.pow(2, -10 * t), // easeOutExpo
+                onComplete: () => {
+                  isSnappingToVideo = false;
+                  videoState = 'snapped_closed';
+                  isLocked = true;
+                  updateScrollLock();
+                  if (resolvedPageVideo) {
+                    resolvedPageVideo.currentTime = 0;
+                    resolvedPageVideo.pause();
+                  }
+                }
+              });
+            }
+          }
+        }
+
+        // Direct navigation check (clicked a link, scrolled instantly)
+        if (videoState === 'idle' && Math.abs(rect.top) < 5) {
+          videoState = 'snapped_closed';
+          isLocked = true;
+          updateScrollLock();
+          if (resolvedPageVideo) {
+            resolvedPageVideo.currentTime = 0;
+            resolvedPageVideo.pause();
+          }
+        }
+
+        // Reset to idle if scrolled far out of view
+        if (videoState === 'finished' || videoState === 'snapped_closed' || videoState === 'snapped_expanded') {
+          if (rect.bottom < -200 || rect.top > window.innerHeight + 200) {
+            videoState = 'idle';
+            isLocked = false;
+            wantsRewind = null;
+            updateScrollLock();
+            if (resolvedPageVideo) {
+              resolvedPageVideo.currentTime = 0;
+              resolvedPageVideo.pause();
+            }
+          }
+        }
+
+        // Case study snapping (Entrance snapping)
+        const workSec = document.getElementById('work');
+        if (workSec && !isLocked && !isLockedDuringAnimation && !isSnappingToVideo && !isSnappingToCard && videoState !== 'snapping') {
+          const workRect = workSec.getBoundingClientRect();
+          const cards = workSec.querySelectorAll('.fs-card');
+
+          if (workActiveIndex === -1 && cards.length > 0) {
+            // Scrolling down from Hero to Work: snap to Card 0
+            if (isScrollingDown && workRect.top < window.innerHeight * 0.85 && workRect.top > 50) {
+              isSnappingToCard = true;
+              lastSnapTime = Date.now();
+              lenisRef.current?.scrollTo(cards[0], {
+                duration: 0.8,
+                onComplete: () => {
+                  isSnappingToCard = false;
+                  workActiveIndex = 0;
+                  isLocked = true;
+                  updateScrollLock();
+                }
+              });
+            }
+            // Scrolling up from How We Work to Work: snap to Card 3 (last card)
+            else if (!isScrollingDown && workRect.bottom > 50 && workRect.bottom < window.innerHeight - 50) {
+              isSnappingToCard = true;
+              lastSnapTime = Date.now();
+              lenisRef.current?.scrollTo(cards[cards.length - 1], {
+                duration: 0.8,
+                onComplete: () => {
+                  isSnappingToCard = false;
+                  workActiveIndex = cards.length - 1;
+                  isLocked = true;
+                  updateScrollLock();
+                }
+              });
+            }
+            // Direct navigation click to #work
+            else if (Math.abs(workRect.top) < 5) {
+              workActiveIndex = 0;
+              isLocked = true;
+              updateScrollLock();
+            }
+          }
+        }
+      };
+
+      const transitionToCard = (targetIndex: number) => {
+        const workSec = document.getElementById('work');
+        if (!workSec) return;
+        const cards = workSec.querySelectorAll('.fs-card');
+
+        if (targetIndex >= 0 && targetIndex < cards.length) {
+          isSnappingToCard = true;
+          lastSnapTime = Date.now();
+          isLocked = false;
+          updateScrollLock(); // Unlock temporarily to allow Lenis scrollTo to run
+
+          if (lenisRef.current) {
+            lenisRef.current.start();
+            lenisRef.current.scrollTo(cards[targetIndex], {
+              duration: 0.8,
+              onComplete: () => {
+                isSnappingToCard = false;
+                workActiveIndex = targetIndex;
+                isLocked = true;
+                updateScrollLock(); // Re-lock scroll at the target card
+              }
+            });
+          } else {
+            isSnappingToCard = false;
+            workActiveIndex = targetIndex;
+            isLocked = true;
+            updateScrollLock();
+          }
+        } else if (targetIndex < 0) {
+          // Scroll up and escape out of the work section (back to Hero)
+          isSnappingToCard = true;
+          lastSnapTime = Date.now();
+          isLocked = false;
+          updateScrollLock();
+          workActiveIndex = -1;
+
+          if (lenisRef.current) {
+            lenisRef.current.start();
+            const curScroll = lenisRef.current.scroll || window.scrollY;
+            lenisRef.current.scrollTo(curScroll - window.innerHeight * 0.9, {
+              duration: 0.8,
+              onComplete: () => {
+                isSnappingToCard = false;
+              }
+            });
+          } else {
+            isSnappingToCard = false;
+          }
+        } else if (targetIndex >= cards.length) {
+          // Scroll down and escape out of the work section (down to How We Work)
+          isSnappingToCard = true;
+          lastSnapTime = Date.now();
+          isLocked = false;
+          updateScrollLock();
+          workActiveIndex = -1;
+
+          if (lenisRef.current) {
+            lenisRef.current.start();
+            const curScroll = lenisRef.current.scroll || window.scrollY;
+            lenisRef.current.scrollTo(curScroll + window.innerHeight * 0.9, {
+              duration: 0.8,
+              onComplete: () => {
+                isSnappingToCard = false;
+              }
+            });
+          } else {
+            isSnappingToCard = false;
+          }
+        }
+      };
+
+      const handleUserScrollDown = (pageVideo: HTMLVideoElement) => {
+        if (videoState === 'snapped_closed') {
+          videoState = 'playing_expand';
+          wantsRewind = null;
+          pageVideo.play().catch(err => console.log("Failed to play video:", err));
+        } else if (videoState === 'snapped_expanded') {
+          wantsRewind = 'down';
+        }
+      };
+
+      const handleUserScrollUp = (pageVideo: HTMLVideoElement) => {
+        if (videoState === 'snapped_closed') {
+          videoState = 'idle';
+          wantsRewind = null;
+          isLocked = false;
+          updateScrollLock();
+          // Scroll up directly to Card 3 (last card)
+          const workSec = document.getElementById('work');
+          if (workSec) {
+            const cards = workSec.querySelectorAll('.fs-card');
+            if (cards.length > 0) {
+              transitionToCard(cards.length - 1);
+              return;
+            }
+          }
+          // Fallback if no cards found
+          if (lenisRef.current) {
+            lenisRef.current.start();
+            const curScroll = lenisRef.current.scroll || window.scrollY;
+            lenisRef.current.scrollTo(curScroll - 350, { duration: 0.5 });
+          }
+        } else if (videoState === 'snapped_expanded') {
+          wantsRewind = 'up';
+        }
+      };
+
+      const runVideoTransitionLoop = () => {
+        if (!active) return;
+        const pageVideo = resolvedPageVideo || (document.getElementById('how-we-work-page-video') as HTMLVideoElement);
+        if (pageVideo) {
+          if (!resolvedPageVideo) {
+            resolvedPageVideo = pageVideo;
+          }
+          const t = pageVideo.currentTime;
+          const duration = pageVideo.duration || 8.0;
+          const loopStart = duration - 1.0;
+
+          if (videoState === 'playing_expand') {
+            if (pageVideo.ended || t >= duration - 0.1 || (pageVideo.paused && t > 0.95 * duration)) {
+              videoState = 'snapped_expanded';
+              breathDirection = 'backward'; // start by breathing backward (inwards) from the end
+              wantsRewind = null;
+              pageVideo.pause();
+              lastTime = performance.now();
+            }
+          } else if (videoState === 'snapped_expanded') {
+            if (wantsRewind) {
+              if (breathDirection === 'backward') {
+                // If already breathing backward, continue the backward motion directly to rewind!
+                if (wantsRewind === 'down') {
+                  videoState = 'playing_contract';
+                } else {
+                  videoState = 'playing_contract_up';
+                }
+                wantsRewind = null;
+                lastTime = performance.now();
+              } else {
+                // If breathing forward, wait to reach the end frame (duration) before rewinding
+                if (t >= duration - 0.05 || pageVideo.ended) {
+                  pageVideo.pause();
+                  pageVideo.currentTime = duration;
+                  if (wantsRewind === 'down') {
+                    videoState = 'playing_contract';
+                  } else {
+                    videoState = 'playing_contract_up';
+                  }
+                  wantsRewind = null;
+                  lastTime = performance.now();
+                } else if (pageVideo.paused) {
+                  pageVideo.play().catch(err => console.log("Breathing forward play resume failed:", err));
+                }
+              }
+            } else {
+              // Boomerang Breathing Loop (never gets static, plays back-and-forth)
+              if (breathDirection === 'forward') {
+                if (t >= duration - 0.05 || pageVideo.ended) {
+                  breathDirection = 'backward';
+                  pageVideo.pause();
+                  lastTime = performance.now();
+                } else if (pageVideo.paused) {
+                  pageVideo.play().catch(err => console.log("Breathing forward play resume failed:", err));
+                }
+              } else {
+                // Breath backward (manually decrementing time towards loopStart)
+                if (pageVideo.seeking) {
+                  // Wait for the seek to complete, do not update lastTime so we accumulate delta
+                  checkFrameId = requestAnimationFrame(runVideoTransitionLoop);
+                  return;
+                }
+
+                const now = performance.now();
+                const delta = (now - lastTime) / 1000;
+                lastTime = now;
+
+                // Breathe backward at a gentle, slow pace (0.5x speed)
+                let nextTime = pageVideo.currentTime - delta * 0.5;
+                if (nextTime <= loopStart) {
+                  nextTime = loopStart;
+                  pageVideo.currentTime = loopStart;
+                  breathDirection = 'forward';
+                  pageVideo.play().catch(err => console.log("Breathing forward play failed:", err));
+                } else {
+                  pageVideo.currentTime = nextTime;
+                }
+              }
+            }
+          } else if (videoState === 'playing_contract' || videoState === 'playing_contract_up') {
+            if (pageVideo.seeking) {
+              // Wait for the previous seek to complete, do not update lastTime so we accumulate delta
+              checkFrameId = requestAnimationFrame(runVideoTransitionLoop);
+              return;
+            }
+
+            const now = performance.now();
+            const delta = (now - lastTime) / 1000;
+            lastTime = now;
+
+            // Rewind by delta * 2.0 speed (snappy, matches implementation plan)
+            let nextTime = pageVideo.currentTime - delta * 2.0;
+            if (nextTime <= 0) {
+              nextTime = 0;
+              pageVideo.currentTime = 0;
+              
+              if (videoState === 'playing_contract') {
+                videoState = 'finished';
+                isLocked = false;
+                updateScrollLock();
+                const pricingSec = document.getElementById('pricing');
+                if (pricingSec && lenisRef.current) {
+                  lenisRef.current.start();
+                  lenisRef.current.scrollTo(pricingSec, {
+                    duration: 0.8,
+                    easing: (t) => t === 1 ? 1 : 1 - Math.pow(2, -10 * t)
+                  });
+                }
+              } else {
+                videoState = 'snapped_closed';
+              }
+            } else {
+              pageVideo.currentTime = nextTime;
+            }
+          }
+        }
+
+        lastTime = performance.now();
+        checkFrameId = requestAnimationFrame(runVideoTransitionLoop);
+      };
+
+      // Start the frame loop
+      runVideoTransitionLoop();
+
+      // Global anchor click listener to reset lock
+      const handleGlobalAnchorClick = (e: MouseEvent) => {
+        const target = (e.target as HTMLElement).closest('a');
+        if (!target) return;
+        const href = target.getAttribute('href');
+        if (href && (href.startsWith('#') || href.startsWith('/#'))) {
+          videoState = 'idle';
+          workActiveIndex = -1;
+          isLocked = false;
+          wantsRewind = null;
+          updateScrollLock();
+          if (resolvedPageVideo) {
+            resolvedPageVideo.pause();
+            resolvedPageVideo.currentTime = 0;
+          }
+          if (lenisRef.current) {
+            lenisRef.current.start();
+          }
+        }
+      };
+      document.addEventListener('click', handleGlobalAnchorClick);
+
       // ── Intersection Observer for Sweep Reveal Headlines ───────────────────────
       const setupSweepObserver = () => {
         if (!active) return;
@@ -931,165 +1333,7 @@ export default function HomeClientLogic() {
         });
       };
 
-      // ── Scroller & Snapper for How We Work Video snapping ───────────────────────
-      let hasSnappedToVideo = false;
-
-      handleScrollRef.current = (e: any) => {
-        const statementSec = document.getElementById('statement');
-        if (!statementSec) return;
-
-        const rect = statementSec.getBoundingClientRect();
-        
-        const curScrollY = e.scroll;
-        const startY = curScrollY + rect.top; // Absolute top of the statement section
-        const isScrollingDown = e.direction === 1;
-
-        // Snap to top when scrolling down and entering the snap zone
-        if (lenisRef.current && !isLockedDuringAnimation && !isSnappingToVideo) {
-          const triggerZone = window.innerHeight * 0.85; // Snaps much sooner when scrolled into view
-          if (isScrollingDown && rect.top < triggerZone && rect.bottom > 200 && !hasSnappedToVideo && !videoCompleted) {
-            hasSnappedToVideo = true;
-            isSnappingToVideo = true;
-            lenisRef.current.scrollTo(statementSec, { 
-              duration: 0.6,
-              easing: (t) => t === 1 ? 1 : 1 - Math.pow(2, -10 * t), // smooth easeOutExpo
-              onComplete: () => {
-                isSnappingToVideo = false;
-                videoScrollLockActive = true;
-                updateScrollLock();
-                if (resolvedPageVideo) {
-                  resolvedPageVideo.currentTime = 0;
-                  resolvedPageVideo.play().catch(err => console.log("Failed to play video:", err));
-                }
-              }
-            });
-          }
-        }
-
-        // Reset snap flag and video states if we scroll outside the section bounds
-        if (curScrollY < startY - 200 && !isSnappingToVideo) {
-          if (hasSnappedToVideo && !videoCompleted) {
-            // Reset state if video was not completed (e.g. user scrolled up via escape hatch)
-            hasSnappedToVideo = false;
-            videoScrollLockActive = false;
-            accumulatedScroll = 0;
-            updateScrollLock();
-            if (resolvedPageVideo) {
-              resolvedPageVideo.currentTime = 0;
-              resolvedPageVideo.playbackRate = 1.0;
-              resolvedPageVideo.pause();
-            }
-          } else if (videoCompleted) {
-            // If the video was already completed, keep videoCompleted as true permanently.
-            // Reset the temporary snap flag so it doesn't get stuck in snapping state,
-            // but do not reset the video position or snap settings.
-            hasSnappedToVideo = false;
-            videoScrollLockActive = false;
-            updateScrollLock();
-          }
-        } else if (curScrollY > startY + window.innerHeight + 200) {
-          hasSnappedToVideo = false;
-        }
-      };
-
-      // ── Stages and Reading Windows for Responsive Gas-Pedal Acceleration ─────
-      const milestoneWindows = [
-        { start: 10.5, end: 13.0 }, // THINK
-        { start: 19.5, end: 22.0 }, // MAKE
-        { start: 28.5, end: 31.0 }, // RUN
-        { start: 36.5, end: 39.0 }  // TAGLINE / END
-      ];
-
-      const updateVideoStateFrame = () => {
-        if (!active) return;
-
-        const vid = resolvedPageVideo;
-        if (vid) {
-          const t = vid.currentTime;
-
-          // Always clamp the video to 39.0s max to prevent showing the trimmed tail frame
-          if (t >= 39.0) {
-            vid.pause();
-            vid.currentTime = 39.0;
-            if (videoScrollLockActive) {
-              videoScrollLockActive = false;
-              videoCompleted = true;
-              updateScrollLock();
-
-
-            }
-          }
-
-          if (videoScrollLockActive) {
-            // Auto-play if paused
-            if (vid.paused && t < 39.0) {
-              vid.play().catch(err => console.log("Failed to play page video in frame:", err));
-            }
-
-            // Decay the accumulated scroll speed smoothly (exponential decay)
-            accumulatedScroll = accumulatedScroll * 0.90;
-            if (accumulatedScroll < 1) accumulatedScroll = 0;
-
-            // Check if we are inside any milestone reading window
-            let isInsideMilestone = false;
-            for (const window of milestoneWindows) {
-              if (t >= window.start && t < window.end) {
-                isInsideMilestone = true;
-                break;
-              }
-            }
-
-            let targetRate = 1.0;
-            if (isInsideMilestone) {
-              // Revert/clamp to 1x speed during text milestones
-              targetRate = 1.0;
-            } else if (accumulatedScroll > 0) {
-              // Dynamically map accumulatedScroll activity to a responsive speed [1.0x - 3.0x]
-              targetRate = 1.0 + Math.min(2.0, accumulatedScroll * 0.015);
-            }
-
-            // Smoothly interpolate (lerp) playbackRate to feel tactile and prevent stutters
-            const currentRate = vid.playbackRate;
-            const newRate = currentRate + (targetRate - currentRate) * 0.15;
-            vid.playbackRate = Number(newRate.toFixed(2));
-          }
-        }
-
-        scrubFrameId = requestAnimationFrame(updateVideoStateFrame);
-      };
-
-      // ── Intersection Observer for How We Work Page Video ───────────────────────
-      const setupVideoObserverAndListener = () => {
-        if (!active) return;
-        const pageVideoEl = document.getElementById('how-we-work-page-video') as HTMLVideoElement;
-        if (!pageVideoEl) {
-          videoTimeout = setTimeout(setupVideoObserverAndListener, 100);
-          return;
-        }
-
-        resolvedPageVideo = pageVideoEl;
-
-        videoObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const vid = entry.target as HTMLVideoElement;
-              vid.currentTime = 0;
-              vid.play().catch(err => console.log("Failed to play in-view video:", err));
-              videoObserver?.unobserve(vid);
-            }
-          });
-        }, { threshold: 0.1 });
-
-        videoObserver.observe(pageVideoEl);
-
-        // Start the frame loop update function
-        updateVideoStateFrame();
-
-
-      };
-
       setupSweepObserver();
-      setupVideoObserverAndListener();
 
       // ── CARD DETAILS DROPDOWN ──────────────────────────────────────────────────
       const toggleLinks = document.querySelectorAll('.toggle-details');
@@ -1270,9 +1514,10 @@ export default function HomeClientLogic() {
         if (sweepTimeout) clearTimeout(sweepTimeout);
         if (videoTimeout) clearTimeout(videoTimeout);
 
-        if (scrubFrameId) {
-          cancelAnimationFrame(scrubFrameId);
+        if (checkFrameId) {
+          cancelAnimationFrame(checkFrameId);
         }
+        document.removeEventListener('click', handleGlobalAnchorClick);
 
         handleScrollRef.current = undefined;
 

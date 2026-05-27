@@ -81,7 +81,7 @@ export default function Home() {
   useEffect(() => {
     // Force all loop/background videos to play, excluding the scroll-locked hero video and how-we-work-video.
     // Next.js router cache sometimes suspends videos on navigation.
-    const videos = document.querySelectorAll('video:not(#hero-video):not(#how-we-work-video)');
+    const videos = document.querySelectorAll('video:not(#hero-video):not(#how-we-work-video):not(#how-we-work-page-video)');
     videos.forEach((vid) => {
       // Re-trigger play safely
       (vid as HTMLVideoElement).play().catch((err: any) => console.log('Autoplay prevented:', err));
@@ -675,7 +675,7 @@ export default function Home() {
         <div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden', backgroundColor: '#ffffff', position: 'relative' }}>
             <video 
                 id="how-we-work-page-video"
-                src={`/assets/Machinga_Full_Sequence_v11_4K.mp4`}
+                src={`/assets/pencil_bomb_reversed_4k.mp4`}
                 muted 
                 playsInline
                 style={{ width: '100%', height: '100%', objectFit: 'contain', backgroundColor: '#ffffff' }}
