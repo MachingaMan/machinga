@@ -16,8 +16,7 @@ export default function HamleysPage() {
         <video 
           className="cs-fs-hero-bg" 
           src={`/assets/hamleys.mp4`}
-          autoPlay loop muted playsInline
-        ></video>
+          autoPlay loop muted playsInline preload="metadata"></video>
         <div className="cs-fs-hero-content">
           <h1 className="cs-fs-hero-title">HAMLEYS</h1>
           <p className="cs-fs-hero-sub">How a 265-year-old toy store solved Valentine’s for Gen Z.</p>
@@ -81,7 +80,7 @@ export default function HamleysPage() {
 
             <div className="cs-hero-image" style={{marginTop: "4rem", display: "flex", justifyContent: "center"}}>
                 <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                    <video src={`/assets/hamelys videos/Hamleys Vday Video 25  (1).mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
+                    <video src={`/assets/hamelys videos/Hamleys Vday Video 25  (1).mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="metadata"></video>
                 </div>
             </div>
         </div>
@@ -101,7 +100,7 @@ export default function HamleysPage() {
 
             <div className="cs-image-center" style={{marginTop: "4rem", display: "flex", justifyContent: "center"}}>
                 <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                    <video src={`/assets/hamelys videos/Hamleys_meme_revised_cut.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
+                    <video src={`/assets/hamelys videos/Hamleys_meme_revised_cut.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="metadata"></video>
                 </div>
             </div>
 
@@ -121,7 +120,7 @@ export default function HamleysPage() {
 
             <div className="cs-image-center" style={{marginTop: "4rem", display: "flex", justifyContent: "center"}}>
                 <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                    <video src={`/assets/hamelys videos/30 seconder_first_cut.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
+                    <video src={`/assets/hamelys videos/30 seconder_first_cut.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="metadata"></video>
                 </div>
             </div>
 
@@ -171,7 +170,7 @@ export default function HamleysPage() {
             <div className="cs-split-grid reverse">
                 <div className="cs-split-image" style={{display: "flex", justifyContent: "center"}}>
                     <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                        <video src={`/assets/hamelys videos/Hamleys_1min_first_cut.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
+                        <video src={`/assets/hamelys videos/Hamleys_1min_first_cut.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="metadata"></video>
                     </div>
                 </div>
                 <div style={{paddingRight: "3rem"}}>

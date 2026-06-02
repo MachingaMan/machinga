@@ -15,8 +15,7 @@ export default function AavaPage() {
         <video 
           className="cs-fs-hero-bg" 
           src={`/assets/aava.mp4`}
-          autoPlay loop muted playsInline
-        ></video>
+          autoPlay loop muted playsInline preload="metadata"></video>
         <div className="cs-fs-hero-content">
           <h1 className="cs-fs-hero-title">AAVA</h1>
           <p className="cs-fs-hero-sub">How the OG water brand won a category flooded with imposters.</p>
@@ -158,7 +157,7 @@ export default function AavaPage() {
 
             <div className="cs-image-center" style={{marginTop: "4rem", display: "flex", justifyContent: "center"}}>
                 <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                    <video src={`/assets/AAva videos/1777466446827621.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
+                    <video src={`/assets/AAva videos/1777466446827621.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="metadata"></video>
                 </div>
             </div>
         </div>
@@ -174,13 +173,13 @@ export default function AavaPage() {
 
             <div className="cs-three-screens" style={{marginBottom: "4rem"}}>
                 <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", margin: "0 auto", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                    <video src={`/assets/AAva videos/Happy_Accident_Portrait_For CC.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
+                    <video src={`/assets/AAva videos/Happy_Accident_Portrait_For CC.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="metadata"></video>
                 </div>
                 <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", margin: "0 auto", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                    <video src={`/assets/AAva videos/Sip test_Portrait_CC_SUBS (1).mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
+                    <video src={`/assets/AAva videos/Sip test_Portrait_CC_SUBS (1).mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="metadata"></video>
                 </div>
                 <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", margin: "0 auto", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                    <video src={`/assets/AAva videos/1777466243541432.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
+                    <video src={`/assets/AAva videos/1777466243541432.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="metadata"></video>
                 </div>
             </div>
 
@@ -214,7 +213,7 @@ export default function AavaPage() {
             <div className="cs-split-grid reverse">
                 <div className="cs-split-image" style={{display: "flex", justifyContent: "center"}}>
                     <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                        <video src={`/assets/AAva videos/Happy_Accident_Portrait_For CC.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}}></video>
+                        <video src={`/assets/AAva videos/Happy_Accident_Portrait_For CC.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="metadata"></video>
                     </div>
                 </div>
                 <div style={{paddingRight: "3rem"}}>

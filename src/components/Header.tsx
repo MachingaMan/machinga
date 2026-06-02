@@ -24,8 +24,8 @@ export default function Header() {
   const isHomepage = normalizedPath === "";
 
   // The header background is transparent if we have not scrolled past the hero threshold AND the menu is closed.
-  // Also transparent when scrolling over the homepage 'How We Work' video section or the case study cards section (#work).
-  const isTransparent = (!isScrolledPast && !isOpen) || (isOverHowWeWork && !isOpen) || (isOverWork && !isOpen);
+  // Also transparent when scrolling over the homepage 'How We Work' video section, the case study cards section (#work), or any dark section.
+  const isTransparent = (!isScrolledPast && !isOpen) || (isOverHowWeWork && !isOpen) || (isOverWork && !isOpen) || (isOverDark && !isOpen);
 
   useEffect(() => {
     // Always reset states when pathname changes
@@ -63,8 +63,12 @@ export default function Header() {
         ? window.innerHeight * 0.9 
         : (isHomepage ? window.innerHeight * 0.8 : 50);
 
-      if (cur > threshold && cur > lastScroll) {
-        setIsHidden(true);
+      if (cur > threshold) {
+        if (cur > lastScroll) {
+          setIsHidden(true);
+        } else {
+          setIsHidden(false);
+        }
       } else {
         setIsHidden(false);
       }
@@ -157,9 +161,9 @@ export default function Header() {
     if (isHomepage && lenis) {
       e.preventDefault();
       if (typeof window !== 'undefined') {
-        window.__isProgrammaticScroll = true;
+        (window as any).__isProgrammaticScroll = true;
         const clearFlag = () => {
-          window.__isProgrammaticScroll = false;
+          (window as any).__isProgrammaticScroll = false;
           window.removeEventListener('wheel', clearFlag);
           window.removeEventListener('touchstart', clearFlag);
         };

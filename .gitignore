@@ -49,4 +49,9 @@ next-env.d.ts
 !/public/assets/pencil_bomb_reversed_4k.mp4
 !/public/assets/machinga_logos_backup.png
 /notebook.md
+/blog-creative-effectiveness.html
 
+# ignore contraband_gdrive raw materials and unused videos
+/public/assets/contraband_gdrive/**/*.mp4
+/public/assets/contraband_gdrive/**/*.mov
+!/public/assets/contraband_gdrive/Summer Chase/MP4/Summer Chase_Shortie_  VR.mp4

@@ -443,6 +443,12 @@ export default function HomeClientLogic() {
           video.style.height = '100%';
           video.style.objectFit = 'cover';
           video.currentTime = playheadTime; // Sync playhead!
+          
+          // Apply crop zoom for Contraband video to hide letterboxing seamlessly
+          if (videoSrc.includes('Contraband.MP4') || videoSrc.includes('summer_chase_hero.mp4') || videoSrc.includes('contraband page video 1.mp4')) {
+            video.classList.add('contraband-video');
+          }
+          
           overlay.appendChild(video);
         }
         
@@ -1000,7 +1006,7 @@ export default function HomeClientLogic() {
       let isSnappingToVideo = false;
 
       handleScrollRef.current = (e: any) => {
-        if (typeof window !== 'undefined' && window.__isProgrammaticScroll) {
+        if (typeof window !== 'undefined' && (window as any).__isProgrammaticScroll) {
           return;
         }
         const statementSec = document.getElementById('statement');

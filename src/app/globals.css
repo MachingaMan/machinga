@@ -3448,16 +3448,1080 @@ html.lenis, html.lenis body {
     white-space: nowrap;
 }
 
-.acc-tag-dark {
-    background: #1a1a1a !important;
-    background-color: #1a1a1a !important;
-    color: #ffffff !important;
-    border: 1px solid #1a1a1a !important;
-    font-weight: 600 !important;
-}
-
 /* Zoom contraband video to crop hardcoded letterbox black bars */
 .contraband-video {
     transform: scale(1.33) !important;
     transform-origin: center center !important;
+}
+
+/* ───────────────────────────────────────────────────────────── */
+/* ── Contraband Case Study Custom Premium Visual Additions ── */
+/* ───────────────────────────────────────────────────────────── */
+
+/* ── Interactive TV Stack Layout ── */
+.cs-hero-image-wrapper {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.cs-tv-stack-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 3rem 0;
+}
+
+.cs-tv-stack {
+    position: relative;
+    width: 100%;
+    height: 600px;
+}
+
+/* Base Oval Shadow/Platform */
+.cs-tv-base-platform {
+    position: absolute;
+    bottom: -15px;
+    left: 10%;
+    width: 80%;
+    height: 40px;
+    background: radial-gradient(ellipse, rgba(0, 80, 255, 0.4) 0%, rgba(0, 0, 0, 0) 70%);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.cs-tv {
+    position: absolute;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cs-tv:hover {
+    transform: scale(1.03) translateY(-5px);
+    z-index: 10 !important;
+}
+
+.cs-tv-frame {
+    position: relative;
+    background: #111113;
+    border: 8px solid #070708;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 2px 5px rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* Wood Grain Finish TV */
+.cs-tv-frame.cs-tv-wood {
+    background: #3e2211;
+    background-image: linear-gradient(135deg, #4d2d18 25%, #3e2211 25%, #3e2211 50%, #4d2d18 50%, #4d2d18 75%, #3e2211 75%, #3e2211 100%);
+    background-size: 40px 40px;
+    border: 10px solid #241207;
+    border-radius: 16px;
+    padding-right: 50px; /* Side panel room */
+}
+
+.cs-tv-screen-content {
+    position: relative;
+    flex-grow: 1;
+    height: 100%;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.cs-tv-screen-content video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+}
+
+/* Retro CRT Gradients */
+.cs-tv-scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 6px 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* TV Controls Panels */
+.cs-tv-side-panel {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50px;
+    height: 100%;
+    background: #180b04;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 15px 0;
+    box-sizing: border-box;
+    border-left: 4px solid #241207;
+}
+
+.cs-tv-dial {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #8e8e93 30%, #3a3a3c 70%);
+    border: 2px solid #1a1a1a;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.cs-tv-grille {
+    width: 30px;
+    height: 60px;
+    background: repeating-linear-gradient(to bottom, #111 0px, #111 2px, #3e2211 2px, #3e2211 4px);
+    border-radius: 3px;
+}
+
+.cs-tv-side-panel-vertical {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    bottom: 20px;
+    width: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.cs-tv-knob {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #2c2c2e;
+    border: 2px solid #48484a;
+}
+
+/* Tripod Stand Removed to prevent screen dial overlap */
+/*
+.cs-tv-stand {
+    position: absolute;
+    bottom: -60px;
+    left: 20%;
+    width: 60%;
+    height: 60px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.cs-tv-leg {
+    position: absolute;
+    width: 8px;
+    height: 70px;
+    background: #2c2c2e;
+    border-radius: 4px;
+    transform-origin: top center;
+}
+
+.cs-tv-leg.left-leg {
+    left: 20%;
+    transform: rotate(20deg);
+}
+
+.cs-tv-leg.right-leg {
+    right: 20%;
+    transform: rotate(-20deg);
+}
+*/
+
+/* TV Positions */
+.cs-tv-top-left {
+    top: 20px;
+    left: 8%;
+    width: 33%;
+    height: 240px;
+    z-index: 2;
+}
+
+.cs-tv-top-right {
+    top: 0;
+    left: 37%;
+    width: 49%;
+    height: 290px;
+    z-index: 4;
+}
+
+.cs-tv-bottom-left {
+    top: 235px;
+    left: 1%;
+    width: 40%;
+    height: 270px;
+    z-index: 5;
+}
+
+.cs-tv-bottom-right {
+    top: 260px;
+    left: 45%;
+    width: 46%;
+    height: 260px;
+    z-index: 3;
+}
+
+/* ── Thumbnail Play Cues ── */
+.cs-video-thumbnail-container {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.4s ease;
+}
+
+.cs-video-thumbnail-container:hover {
+    transform: scale(1.01);
+}
+
+.cs-video-play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    transition: background 0.3s ease;
+}
+
+.cs-video-thumbnail-container:hover .cs-video-play-overlay {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.cs-play-button-glass {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cs-video-thumbnail-container:hover .cs-play-button-glass {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.cs-play-button-glass.micro {
+    width: 60px;
+    height: 60px;
+}
+
+.cs-play-arrow {
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 20px solid #ffffff;
+    margin-left: 6px;
+}
+
+.cs-play-button-glass.micro .cs-play-arrow {
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    border-left: 15px solid #ffffff;
+    margin-left: 4px;
+}
+
+.cs-play-overlay-text {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+}
+
+.cs-video-thumbnail-container:hover .cs-play-overlay-text {
+    opacity: 1;
+}
+
+.cs-play-overlay-text.text-small {
+    font-size: 0.75rem;
+}
+
+/* ── Dark Treatment overrides for Section 05 ── */
+.cs-snackable-dark-section {
+    background-color: #0c0c0e !important;
+    color: #ffffff !important;
+}
+
+/* ── Visual Craft Archive Gallery (New Vault Grid) ── */
+.cs-vault-header-grid {
+    display: grid;
+    grid-template-columns: 1fr 2.8fr;
+    gap: 32px;
+}
+
+@media (max-width: 1024px) {
+    .cs-vault-header-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+.cs-carousel-stage {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    height: 480px;
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    overflow: visible;
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+}
+
+.cs-carousel-stage:active {
+    cursor: grabbing;
+}
+
+.cs-carousel-stage.dragging .cs-carousel-card {
+    transition: none !important;
+}
+
+.cs-carousel-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+}
+
+.cs-carousel-card {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 48px;
+    overflow: hidden;
+    background: #111115;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    box-sizing: border-box;
+    
+    transform: translate3d(calc(var(--offset) * 160px), 0, calc(var(--abs-offset) * -150px)) 
+               rotateY(calc(var(--offset) * -25deg)) 
+               scale(calc(1 - var(--abs-offset) * 0.12));
+               
+    opacity: calc(1 - var(--abs-offset) * 0.3);
+    z-index: var(--z-index, calc(10 - var(--abs-offset)));
+    
+    transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), 
+                opacity 0.7s ease, 
+                z-index 0.7s ease;
+    
+    pointer-events: auto;
+}
+
+.cs-carousel-card.active {
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7),
+                0 0 30px rgba(0, 255, 100, 0.1);
+}
+
+.cs-carousel-card:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+.cs-collage-card {
+    position: relative;
+    background: #111115;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                box-shadow 0.5s ease, 
+                border-color 0.5s ease,
+                z-index 0s;
+    will-change: transform;
+    z-index: 1;
+}
+
+/* Interactive Hover Trigger */
+.cs-collage-card:hover {
+    transform: scale(1.04) !important;
+    z-index: 15 !important;
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 
+                0 0 25px rgba(0, 255, 100, 0.1) !important;
+}
+
+.cs-gallery-video-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+}
+
+.cs-gallery-video-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+
+.cs-gallery-card:hover .cs-gallery-video-wrapper video {
+    transform: scale(1.04);
+}
+
+/* Hover overlay for grid cells */
+.cs-gallery-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.4s ease, background 0.4s ease;
+    z-index: 6;
+}
+
+.cs-gallery-card:hover .cs-gallery-card-overlay {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+/* Play Button style in overlay */
+.cs-play-icon-circle {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.cs-gallery-card:hover .cs-play-icon-circle {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.cs-play-arrow-small {
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 10px solid #ffffff;
+    margin-left: 2px;
+}
+
+/* Permanent Video Labels (Minimalist Overlay) */
+.cs-vault-video-label-permanent {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 5;
+    font-family: var(--font-inter), sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.cs-gallery-card:hover .cs-vault-video-label-permanent {
+    opacity: 0;
+}
+
+/* Active card info details below the carousel */
+.cs-carousel-info {
+    margin-top: 3rem;
+    text-align: center;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    pointer-events: none;
+}
+
+.cs-carousel-info-sub {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--green);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: fadeInCarouselInfo 0.5s ease;
+}
+
+.cs-carousel-info-title {
+    font-family: var(--font-manrope), sans-serif;
+    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: -0.5px;
+    animation: fadeInCarouselInfo 0.5s ease;
+}
+
+@keyframes fadeInCarouselInfo {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Indicators dots */
+.cs-carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 2rem;
+}
+
+.cs-carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+}
+
+.cs-carousel-dot:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.cs-carousel-dot.active {
+    background: var(--green);
+    border-color: var(--green);
+    transform: scale(1.3);
+    box-shadow: 0 0 10px rgba(0, 255, 100, 0.3);
+}
+
+/* Responsive adjustments for 3D Carousel */
+@media (max-width: 1024px) {
+    .cs-carousel-stage {
+        max-width: 100%;
+        height: 420px;
+    }
+    
+    .cs-carousel-card {
+        width: 280px;
+        height: 280px;
+        border-radius: 40px;
+        transform: translate3d(calc(var(--offset) * 120px), 0, calc(var(--abs-offset) * -120px)) 
+                   rotateY(calc(var(--offset) * -20deg)) 
+                   scale(calc(1 - var(--abs-offset) * 0.12));
+    }
+}
+
+@media (max-width: 768px) {
+    .cs-carousel-stage {
+        height: 340px;
+    }
+    
+    .cs-carousel-card {
+        width: 220px;
+        height: 220px;
+        border-radius: 32px;
+        transform: translate3d(calc(var(--offset) * 90px), 0, calc(var(--abs-offset) * -100px)) 
+                   rotateY(calc(var(--offset) * -18deg)) 
+                   scale(calc(1 - var(--abs-offset) * 0.12));
+    }
+}
+
+/* ── Fullscreen Overlay Video Player ── */
+.cs-fullscreen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(4, 4, 6, 0.95);
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.cs-fullscreen-player-container {
+    position: relative;
+    max-width: 90%;
+    max-height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+}
+
+.cs-fullscreen-player-container.landscape {
+    width: 1100px;
+    aspect-ratio: 16/9;
+}
+
+.cs-fullscreen-player-container.portrait {
+    height: 80vh;
+    aspect-ratio: 9/16;
+}
+
+.cs-fullscreen-player-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+}
+
+/* Custom Controls Bar */
+.cs-player-controls-bar {
+    position: absolute;
+    bottom: 20px;
+    left: 5%;
+    width: 90%;
+    height: 54px;
+    background: rgba(20, 20, 25, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 27px;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+    gap: 15px;
+    z-index: 10;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.cs-fullscreen-player-container:hover .cs-player-controls-bar {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cs-player-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.cs-player-btn:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
+.cs-player-progress-container {
+    flex-grow: 1;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cs-player-progress-bg {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cs-player-progress-fill {
+    height: 100%;
+    background: var(--green);
+    border-radius: 3px;
+    width: 0;
+}
+
+.cs-player-time {
+    font-size: 0.8rem;
+    font-family: monospace;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.cs-player-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s ease, transform 0.3s ease;
+    z-index: 10;
+}
+
+.cs-player-close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05) rotate(90deg);
+}
+
+/* ── Responsive Viewport Scaling ── */
+@media (max-width: 900px) {
+    .cs-tv-stack {
+        height: 480px;
+    }
+    .cs-tv-top-left {
+        height: 180px;
+    }
+    .cs-tv-top-right {
+        height: 220px;
+    }
+    .cs-tv-bottom-left {
+        top: 200px;
+        height: 200px;
+    }
+    .cs-tv-bottom-right {
+        top: 220px;
+        height: 200px;
+    }
+    /*
+    .cs-tv-stand {
+        bottom: -40px;
+        height: 40px;
+    }
+    .cs-tv-leg {
+        height: 45px;
+    }
+    */
+    
+    /* Responsive Gallery Swiper Reset */
+    .cs-gallery-cluster {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        height: auto !important;
+        padding: 3rem 0 !important;
+        gap: 2rem !important;
+        border: none !important;
+        background: transparent !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Hide scrollbar for Firefox */
+    }
+    
+    .cs-gallery-cluster::-webkit-scrollbar {
+        display: none; /* Hide scrollbar for Safari/Chrome */
+    }
+    
+    .cs-gallery-card {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        grid-column: auto !important;
+        grid-row: auto !important;
+        width: 300px !important;
+        height: 400px !important;
+        flex-shrink: 0 !important;
+        scroll-snap-align: center !important;
+        transform: none !important;
+        aspect-ratio: auto !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 8px !important;
+    }
+    
+    .cs-gallery-card-overlay {
+        opacity: 1 !important;
+        background: rgba(0, 0, 0, 0.35) !important;
+    }
+    
+    .cs-vault-text-card {
+        display: none !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .cs-tv-stack {
+        height: 320px;
+    }
+    .cs-tv-top-left {
+        height: 120px;
+    }
+    .cs-tv-top-right {
+        height: 140px;
+    }
+    .cs-tv-bottom-left {
+        top: 140px;
+        height: 130px;
+    }
+    .cs-tv-bottom-right {
+        top: 150px;
+        height: 130px;
+    }
+    
+    .cs-gallery-card {
+        width: 250px !important;
+        height: 350px !important;
+    }
+}
+
+/* Custom Inline Player Fullscreen Styles */
+.cs-inline-player-container:fullscreen {
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cs-inline-player-container:-webkit-full-screen {
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cs-inline-player-container:fullscreen video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+}
+
+.cs-inline-player-container:-webkit-full-screen video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+}
+
+.cs-inline-player-container:fullscreen .cs-player-controls-bar {
+    bottom: 40px;
+    width: 80%;
+    left: 10%;
+}
+
+.cs-inline-player-container:-webkit-full-screen .cs-player-controls-bar {
+    bottom: 40px;
+    width: 80%;
+    left: 10%;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Section 04 Pinned Scroll-Track & Card Stack Layout
+   ══════════════════════════════════════════════════════════════ */
+.cs-loops-pinned-track {
+    position: relative;
+    width: 100%;
+    height: 650vh;
+    background-color: #0c0c0e;
+}
+
+.cs-loops-sticky-viewport {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-color: #0c0c0e;
+}
+
+.cs-loops-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 4rem;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.cs-loops-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.cs-loops-captions-container {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    margin-top: 1.5rem;
+}
+
+.cs-loops-caption-card {
+    border-left: 3px solid var(--green);
+    padding-left: 1.5rem;
+}
+
+.cs-loops-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 580px;
+}
+
+.cs-card-stack-wrapper {
+    position: relative;
+    width: 310px;
+    height: 550px;
+}
+
+.phone-frame.dark-bezel {
+    border: 12px solid #1c1c1e;
+    border-radius: 44px;
+    background: #000;
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Indicator dot pulsing glow */
+.cs-loops-progress-dots div {
+    box-shadow: 0 0 0 rgba(15, 200, 35, 0);
+}
+
+/* Mobile Fallback - reset back to standard swipe carousel or vertical scroll */
+@media (max-width: 768px) {
+    .cs-loops-pinned-track {
+        height: auto !important;
+        background-color: #0c0c0e;
+        padding: 4rem 0;
+    }
+    
+    .cs-loops-sticky-viewport {
+        position: relative !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+    
+    .cs-loops-container {
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 0 2rem !important;
+        gap: 3rem !important;
+    }
+    
+    .cs-loops-left {
+        width: 100% !important;
+    }
+    
+    .cs-loops-captions-container {
+        display: none !important;
+    }
+    
+    .cs-loops-progress-dots {
+        display: none !important;
+    }
+    
+    .cs-loops-right {
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
+    }
+    
+    .cs-card-stack-wrapper {
+        width: 100% !important;
+        height: auto !important;
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        gap: 1.5rem !important;
+        padding: 1rem 0 !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    
+    .cs-card-stack-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .cs-stack-card {
+        position: relative !important;
+        transform: none !important;
+        opacity: 1 !important;
+        width: 260px !important;
+        height: 480px !important;
+        flex-shrink: 0 !important;
+        scroll-snap-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    
+    .cs-loops-mobile-caption {
+        display: block !important;
+        margin-top: 1rem;
+        text-align: center;
+        width: 100%;
+    }
 }

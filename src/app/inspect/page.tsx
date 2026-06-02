@@ -108,8 +108,7 @@ export default function InspectPage() {
             src="/assets/Machinga_Compact_10s_Landscape_4K.mp4"
             style={{ width: '100%', height: '100%', objectFit: 'contain' }}
             playsInline
-            muted
-          />
+            muted preload="metadata" />
         </div>
 
         {/* Scrubber and Timing controls */}
