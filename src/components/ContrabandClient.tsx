@@ -49,43 +49,57 @@ const vaultItems = [
     id: 'have_it_all_16x9',
     title: 'Have It All',
     sub: '01 / SKU FILM',
-    previewSrc: '/assets/conntraband assets/cluster_have_it_all.mp4'
+    previewSrc: '/assets/conntraband assets/cluster_have_it_all.mp4',
+    overlaySrc: '/assets/contraband_gdrive/Have It All/Compressed/Have it all__Non Linear_16x9.mp4',
+    aspect: 'landscape' as const
   },
   {
     id: 'popsicle',
     title: 'Popsicle SKU',
     sub: '02 / SKU FILM',
-    previewSrc: '/assets/conntraband assets/cluster_popsicle.mp4'
+    previewSrc: '/assets/conntraband assets/cluster_popsicle.mp4',
+    overlaySrc: '/assets/contraband_gdrive/Popsicle/Contraband_Popsicle_1X1.mov',
+    aspect: 'portrait' as const
   },
   {
     id: 'candy',
     title: 'Candy SKU',
     sub: '03 / SKU FILM',
-    previewSrc: '/assets/conntraband assets/cluster_candy.mp4'
+    previewSrc: '/assets/conntraband assets/cluster_candy.mp4',
+    overlaySrc: '/assets/contraband_gdrive/Candy - Have It All/Contraband candy_HD.mov',
+    aspect: 'landscape' as const
   },
   {
     id: 'sugarcube',
     title: 'SugarCube SKU',
     sub: '04 / SKU FILM',
-    previewSrc: '/assets/conntraband assets/cluster_sugarcube.mp4'
+    previewSrc: '/assets/conntraband assets/cluster_sugarcube.mp4',
+    overlaySrc: '/assets/contraband_gdrive/SugarCube Sumer Chase/CONTRABAND_Sugarcube_HD.mov',
+    aspect: 'landscape' as const
   },
   {
     id: 'have_it_all_shortie_16x9',
     title: 'Have It All — Shortie',
     sub: '05 / SKU FILM',
-    previewSrc: '/assets/conntraband assets/cluster_shortie.mp4'
+    previewSrc: '/assets/conntraband assets/cluster_shortie.mp4',
+    overlaySrc: '/assets/contraband_gdrive/Have It All/Compressed/Have it all_Shortie_16x9.mp4',
+    aspect: 'landscape' as const
   },
   {
     id: 'fossil',
     title: 'Fossil SKU',
     sub: '06 / SKU FILM',
-    previewSrc: '/assets/conntraband assets/cluster_fossil.mp4'
+    previewSrc: '/assets/conntraband assets/cluster_fossil.mp4',
+    overlaySrc: '/assets/contraband_gdrive/Hands off AI .mp4',
+    aspect: 'portrait' as const
   },
   {
     id: 'projection',
     title: 'Light Projection',
     sub: '07 / SKU FILM',
-    previewSrc: '/assets/conntraband assets/cluster_projection.mp4'
+    previewSrc: '/assets/conntraband assets/cluster_projection.mp4',
+    overlaySrc: '/assets/contraband_gdrive/You Again Video .mp4',
+    aspect: 'portrait' as const
   }
 ];
 
@@ -1148,7 +1162,9 @@ export default function ContrabandClient() {
                     } as React.CSSProperties}
                     onClick={() => {
                       if (hasDragged) return;
-                      if (!isActive) {
+                      if (isActive) {
+                        handleOpenVideo(item.overlaySrc, item.aspect);
+                      } else {
                         setCarouselActiveIndex(idx);
                       }
                     }}
@@ -1159,6 +1175,13 @@ export default function ContrabandClient() {
                         isActive={isActive}
                         onTimeUpdate={handlePreviewTimeUpdate(item.id)}
                       />
+                      <div className="cs-gallery-card-overlay" style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        {isActive && (
+                          <div className="cs-play-icon-circle" style={{ alignSelf: 'center' }}>
+                            <span className="cs-play-arrow-small"></span>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 );
