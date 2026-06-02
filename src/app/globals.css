@@ -3448,6 +3448,15 @@ html.lenis, html.lenis body {
     white-space: nowrap;
 }
 
+/* Dark Background Accordion Tags */
+.acc-tag-dark {
+    background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+    border: 1px solid #1a1a1a !important;
+    font-weight: 600 !important;
+}
+
 /* Zoom contraband video to crop hardcoded letterbox black bars */
 .contraband-video {
     transform: scale(1.33) !important;
