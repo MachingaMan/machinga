@@ -4,8 +4,22 @@ import Link from 'next/link';
 
 export const metadata = {
   title: "Hamleys Case Study | Machinga",
-  description: "How a 250-year-old toy store helped Gen Z defuse a time bomb on Valentine's Day. Machinga's campaign strategy for Hamleys India.",
-  alternates: { canonical: "https://studiomachinga.com/hamleys" }
+  description: "How a 265-year-old toy store solved Valentine's for Gen Z. Machinga's campaign strategy for Hamleys India.",
+  alternates: { canonical: "https://www.studiomachinga.com/hamleys/" },
+  openGraph: {
+    title: "Hamleys Case Study | Machinga",
+    description: "How a 265-year-old toy store solved Valentine's for Gen Z. Machinga's campaign strategy for Hamleys India.",
+    url: "https://www.studiomachinga.com/hamleys/",
+    siteName: "Machinga",
+    type: "article",
+    images: [{ url: "/og/hamleys.jpg", width: 1200, height: 630, alt: "Hamleys Case Study | Machinga" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hamleys Case Study | Machinga",
+    description: "How a 265-year-old toy store solved Valentine's for Gen Z. Machinga's campaign strategy for Hamleys India.",
+    images: ["/og/hamleys.jpg"],
+  },
 };
 
 export default function HamleysPage() {
@@ -80,7 +94,7 @@ export default function HamleysPage() {
 
             <div className="cs-hero-image" style={{marginTop: "4rem", display: "flex", justifyContent: "center"}}>
                 <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                    <video src={`/assets/hamelys videos/Hamleys Vday Video 25  (1).mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="metadata"></video>
+                    <video src={`/assets/hamelys videos/Hamleys Vday Video 25  (1).mp4`} data-autoplay="" poster="/posters/hamleys-vday-video-25-1-6065e6.jpg" loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="none"></video>
                 </div>
             </div>
         </div>
@@ -100,7 +114,7 @@ export default function HamleysPage() {
 
             <div className="cs-image-center" style={{marginTop: "4rem", display: "flex", justifyContent: "center"}}>
                 <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                    <video src={`/assets/hamelys videos/Hamleys_meme_revised_cut.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="metadata"></video>
+                    <video src={`/assets/hamelys videos/Hamleys_meme_revised_cut.mp4`} data-autoplay="" poster="/posters/hamleys-meme-revised-cut-67be45.jpg" loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="none"></video>
                 </div>
             </div>
 
@@ -120,7 +134,7 @@ export default function HamleysPage() {
 
             <div className="cs-image-center" style={{marginTop: "4rem", display: "flex", justifyContent: "center"}}>
                 <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                    <video src={`/assets/hamelys videos/30 seconder_first_cut.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="metadata"></video>
+                    <video src={`/assets/hamelys videos/30 seconder_first_cut.mp4`} data-autoplay="" poster="/posters/30-seconder-first-cut-bc8d5e.jpg" loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="none"></video>
                 </div>
             </div>
 
@@ -170,7 +184,7 @@ export default function HamleysPage() {
             <div className="cs-split-grid reverse">
                 <div className="cs-split-image" style={{display: "flex", justifyContent: "center"}}>
                     <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                        <video src={`/assets/hamelys videos/Hamleys_1min_first_cut.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="metadata"></video>
+                        <video src={`/assets/hamelys videos/Hamleys_1min_first_cut.mp4`} data-autoplay="" poster="/posters/hamleys-1min-first-cut-1da09d.jpg" loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="none"></video>
                     </div>
                 </div>
                 <div style={{paddingRight: "3rem"}}>

@@ -2,14 +2,30 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import { sendForm } from "@/lib/forms";
 
 export default function Footer() {
   const [isSubscribed, setIsSubscribed] = useState(false);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const [isSending, setIsSending] = useState(false);
+  const [hasError, setHasError] = useState(false);
+
+  const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubscribed(true);
+    const email = String(new FormData(e.currentTarget).get("email") || "").trim();
+    if (!email) return;
+    setIsSending(true);
+    setHasError(false);
+    try {
+      // Lands in the same sheet as contact enquiries, marked as a newsletter signup.
+      await sendForm({ name: "Newsletter signup", email, message: "Newsletter signup from the site footer." });
+      setIsSubscribed(true);
+    } catch (error) {
+      console.error("Newsletter signup error:", error);
+      setHasError(true);
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -63,9 +79,12 @@ export default function Footer() {
               <p>Get our monthly take on what&apos;s working in content.</p>
               <p className="small-text">Unsubscribe at any time.</p>
               <form className="newsletter-form" onSubmit={handleSubscribe}>
-                <input type="email" placeholder="Email" required />
-                <button type="submit" className="btn-gradient">Send It</button>
+                <input type="email" name="email" placeholder="Email" aria-label="Email for the newsletter" autoComplete="email" required />
+                <button type="submit" className="btn-gradient" disabled={isSending}>{isSending ? "Sending..." : "Send It"}</button>
               </form>
+              {hasError && (
+                <p className="form-error form-error--dark" role="alert">That didn&apos;t go through. Please try again.</p>
+              )}
             </div>
           ) : (
             <div id="newsletter-success-message" className="success-message footer-success">

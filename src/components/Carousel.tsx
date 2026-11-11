@@ -9,7 +9,7 @@ const projects = [
     title: 'Appreciate', 
     headline: 'How a fintech compounds interest', 
     subheadline: '0 → 124K followers in 18 months.', 
-    img: '/assets/APPRECIATE1.png', 
+    img: '/assets/APPRECIATE1.jpg', 
     video: '/assets/Appreciate.MP4' 
   },
   { 
@@ -17,7 +17,7 @@ const projects = [
     title: 'Aava', 
     headline: 'How the OG water brand won a category flooded with imposters.', 
     subheadline: 'Two words. Uncopyable by design.', 
-    img: '/assets/AAVA3.png', 
+    img: '/assets/AAVA3.jpg', 
     video: '/assets/aava.mp4' 
   },
   { 
@@ -25,7 +25,7 @@ const projects = [
     title: 'Contraband', 
     headline: "How a stain did what a celebrity couldn't.", 
     subheadline: '88M+ views in 2 weeks.', 
-    img: '/assets/CONTRABAND2.png', 
+    img: '/assets/CONTRABAND2.jpg', 
     video: '/assets/Contraband.MP4' 
   },
   { 
@@ -33,7 +33,7 @@ const projects = [
     title: 'Hamleys', 
     headline: 'How a 265-year-old toy store solved Valentine’s for Gen Z.', 
     subheadline: '5M+ organic views in one week. Recommissioned year two.', 
-    img: '/assets/HAMLEYS4.png', 
+    img: '/assets/HAMLEYS4.jpg', 
     video: '/assets/hamleys.mp4' 
   },
 ];
@@ -202,12 +202,11 @@ export default function Carousel({ currentProject }: { currentProject: string })
                 <video 
                   src={p.video}
                   poster={p.img}
-                  preload="metadata"
+                  preload="none"
                   loop 
                   muted 
                   playsInline 
-                  autoPlay
-                  style={{ 
+                  data-autoplay="" style={{ 
                     width: '100%', 
                     height: '100%', 
                     objectFit: 'cover', 

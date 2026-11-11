@@ -4534,3 +4534,85 @@ html.lenis, html.lenis body {
         width: 100%;
     }
 }
+/* ══════════════════════════════════════════════════════════════
+   Refinements (same look and behaviour, tightened)
+   ══════════════════════════════════════════════════════════════ */
+
+/* Form errors */
+.form-error {
+    margin: 0.75rem 0 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #b3261e;
+}
+.form-error a { color: inherit; text-decoration: underline; }
+.form-error--dark { color: #ff9b93; }
+
+/* Work cards: a light veil keeps white text readable over bright footage */
+.fs-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.22);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Work cards on phones: everything has to fit one screen, title included */
+@media (max-width: 768px) {
+    .fs-card {
+        padding: 0 1.25rem;
+    }
+    .fs-card-content {
+        padding-top: 70px;
+        padding-bottom: 80px;
+    }
+    .fs-card-title {
+        font-size: clamp(2.6rem, 13.5vw, 5rem);
+        margin-bottom: 12px;
+    }
+    .fs-card-sub {
+        font-size: 1.15rem;
+        line-height: 1.3;
+        max-width: 100%;
+    }
+    .fs-card-text {
+        font-size: 0.95rem;
+        margin-bottom: 18px;
+    }
+    .fs-card .fs-card-tags-container {
+        gap: 7px;
+        margin-bottom: 0;
+    }
+    .fs-card .fs-card-tags-row-engagement,
+    .fs-card .fs-card-tags-row-sub {
+        gap: 6px;
+    }
+    .fs-card .fs-tag {
+        font-size: 0.78rem;
+        padding: 3px 12px;
+    }
+}
+
+/* Visible keyboard focus everywhere */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid #0FC823;
+    outline-offset: 3px;
+}
+
+/* Visitors who ask their device for less motion get a still page */
+@media (prefers-reduced-motion: reduce) {
+    .project-bubble,
+    .marquee-content,
+    .tiny-sphere-pulse,
+    .logo-btn-ring,
+    .scroll-down-indicator .arrow {
+        animation: none !important;
+    }
+    .sweep-reveal-text {
+        transition: none !important;
+    }
+}

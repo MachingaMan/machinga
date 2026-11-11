@@ -5,12 +5,14 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLenis } from 'lenis/react';
 import HomeClientLogic from '@/components/HomeClientLogic';
+import { sendForm } from '@/lib/forms';
 
 export default function Home() {
   // Add state/refs for dropdowns and animations
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formError, setFormError] = useState(false);
   const lenis = useLenis();
   
   // Set to true to show the testimonials section on the website
@@ -53,23 +55,21 @@ export default function Home() {
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+    setFormError(false);
+
     const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
+    const data = Object.fromEntries(formData.entries()) as Record<string, string>;
 
     try {
-      // Sending as text/plain avoids CORS preflight errors with Google Apps Script
-      await fetch('https://script.google.com/macros/s/AKfycbwnJS-rSkg6w1dFoU-c2zCA6Kts52nmLnc0Z1w38-uJbGjANCbgRcQVVXIcE6cq2dzfXQ/exec', {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(data)
-      });
+      await sendForm(data);
+      setIsFormSubmitted(true);
     } catch (error) {
+      // Keep what they typed and say so, instead of thanking them for a message we never got.
       console.error("Submission error:", error);
+      setFormError(true);
+    } finally {
+      setIsSubmitting(false);
     }
-    
-    setIsSubmitting(false);
-    setIsFormSubmitted(true);
   };
 
   const toggleDropdown = (id: string, e: React.MouseEvent) => {
@@ -81,7 +81,7 @@ export default function Home() {
   useEffect(() => {
     // Force all loop/background videos to play, excluding the scroll-locked hero video and how-we-work-video.
     // Next.js router cache sometimes suspends videos on navigation.
-    const videos = document.querySelectorAll('video:not(#hero-video):not(#how-we-work-video):not(#how-we-work-page-video)');
+    const videos = document.querySelectorAll('video:not(#hero-video):not(#how-we-work-video):not(#how-we-work-page-video):not([data-autoplay])');
     videos.forEach((vid) => {
       // Re-trigger play safely
       (vid as HTMLVideoElement).play().catch((err: any) => console.log('Autoplay prevented:', err));
@@ -255,7 +255,7 @@ export default function Home() {
     {/*  Work Section  */}
     <section className="fs-cards-section" id="work">
         <div className="fs-card">
-            <video className="fs-card-bg" src={`/assets/Appreciate.MP4`} loop muted playsInline autoPlay preload="metadata"></video>
+            <video className="fs-card-bg" src={`/assets/Appreciate.MP4`} loop muted playsInline data-autoplay="" poster="/posters/appreciate-26b7b9.jpg" preload="none"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">APPRECIATE</h2>
                 <p className="fs-card-sub">How a fintech compounds interest</p>
@@ -363,7 +363,7 @@ export default function Home() {
         </div>
 
         <div className="fs-card">
-            <video className="fs-card-bg contraband-video" src={`/assets/Contraband.MP4`} loop muted playsInline autoPlay preload="metadata"></video>
+            <video className="fs-card-bg contraband-video" src={`/assets/Contraband.MP4`} loop muted playsInline data-autoplay="" poster="/posters/contraband-702610.jpg" preload="none"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">CONTRABAND</h2>
                 <p className="fs-card-sub">How a stain did what a celebrity couldn't.</p>
@@ -453,7 +453,7 @@ export default function Home() {
         </div>
 
         <div className="fs-card">
-            <video className="fs-card-bg" src={`/assets/aava.mp4`} loop muted playsInline autoPlay preload="metadata"></video>
+            <video className="fs-card-bg" src={`/assets/aava.mp4`} loop muted playsInline data-autoplay="" poster="/posters/aava-69d831.jpg" preload="none"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">AAVA</h2>
                 <p className="fs-card-sub">How the OG water brand won a category flooded with imposters.</p>
@@ -547,7 +547,7 @@ export default function Home() {
         </div>
 
         <div className="fs-card">
-            <video className="fs-card-bg" src={`/assets/hamleys.mp4`} loop muted playsInline autoPlay preload="metadata"></video>
+            <video className="fs-card-bg" src={`/assets/hamleys.mp4`} loop muted playsInline data-autoplay="" poster="/posters/hamleys-39dd53.jpg" preload="none"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">HAMLEYS</h2>
                 <p className="fs-card-sub">How a 265-year-old toy store solved Valentine’s for Gen Z.</p>
@@ -1003,17 +1003,23 @@ export default function Home() {
                     {!isFormSubmitted ? (
                         <form className="contact-form" id="contact-us-form" onSubmit={handleFormSubmit}>
                             <div className="form-field">
-                                <input type="text" name="name" placeholder="Name" required />
+                                <input type="text" name="name" placeholder="Name" aria-label="Name" autoComplete="name" required />
                             </div>
                             <div className="form-field">
-                                <input type="email" name="email" placeholder="Email" required />
+                                <input type="email" name="email" placeholder="Email" aria-label="Email" autoComplete="email" required />
                             </div>
                             <div className="form-field form-field--textarea">
-                                <textarea name="message" placeholder="Brief / Message" rows={4} required></textarea>
+                                <textarea name="message" placeholder="Brief / Message" aria-label="Brief or message" rows={4} required></textarea>
                             </div>
                             <button type="submit" className="btn-gradient" disabled={isSubmitting}>
                                 {isSubmitting ? 'Sending...' : 'Let’s talk.'}
                             </button>
+                            {formError && (
+                                <p className="form-error" role="alert">
+                                    That didn’t go through. Please try again, or email us at{' '}
+                                    <a href="mailto:hello@studiomachinga.com">hello@studiomachinga.com</a>.
+                                </p>
+                            )}
                         </form>
                     ) : (
                         <div id="contact-success-message" className="success-message" style={{ display: 'block' }}>
