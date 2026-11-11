@@ -2,7 +2,7 @@
 // It adds a row to the leads sheet and emails hello@studiomachinga.com.
 // Sending as text/plain avoids a CORS preflight, which Apps Script does not answer.
 const FORM_ENDPOINT =
-  'https://script.google.com/macros/s/AKfycbxbK1j0dRfF8Or5lgflvnaFNsotB158NUz5qWNrWqJTjk8NUW7TDCLOfzJ3NsOnKKlS/exec';
+  'https://script.google.com/macros/s/AKfycbzqK_1UWqf1KXQCnpam-LHCAk4rQEzoTVaM5CHSNXey7uRZjNS3Ku0TQ9TDW-oWeOzX/exec';
 
 export async function sendForm(data: Record<string, string>): Promise<void> {
   // fetch() rejects when the request cannot be delivered, so callers can show a real error.

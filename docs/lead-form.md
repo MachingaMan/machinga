@@ -7,9 +7,10 @@ hello@studiomachinga.com with reply-to set to the enquirer.
 - Sheet: "Machinga Website Leads"
   https://docs.google.com/spreadsheets/d/1byGRCR_JjRpp0euYQLgNGP9wgjMAh4EPyGL9CIwRxIk/edit
 - Script: bound to that sheet (Extensions → Apps Script), project "Machinga Website Leads"
-- Deployment: Web app, version 1, deployed 11 Nov 2026 15:17 IST
+- Deployment: Web app, "Machinga Website Leads v2", deployed 11 Nov 2026
+  (the first deployment, ID ending `OnKKlS`, refused anonymous requests and is unused)
   - Execute as: the sheet owner. Who has access: Anyone.
-  - Deployment ID: `AKfycbxbK1j0dRfF8Or5lgflvnaFNsotB158NUz5qWNrWqJTjk8NUW7TDCLOfzJ3NsOnKKlS`
+  - Deployment ID: `AKfycbzqK_1UWqf1KXQCnpam-LHCAk4rQEzoTVaM5CHSNXey7uRZjNS3Ku0TQ9TDW-oWeOzX`
   - URL: `https://script.google.com/macros/s/<deployment ID>/exec`
 
 To change the script, edit it in Apps Script, then Deploy → Manage deployments →
