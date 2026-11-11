@@ -5,7 +5,21 @@ import Link from 'next/link';
 export const metadata = {
   title: "Aava Case Study | Machinga",
   description: "How two words made a 20-year-old water brand uncopyable. Brand positioning and campaign strategy for Aava.",
-  alternates: { canonical: "https://studiomachinga.com/aava" }
+  alternates: { canonical: "https://www.studiomachinga.com/aava/" },
+  openGraph: {
+    title: "Aava Case Study | Machinga",
+    description: "How two words made a 20-year-old water brand uncopyable. Brand positioning and campaign strategy for Aava.",
+    url: "https://www.studiomachinga.com/aava/",
+    siteName: "Machinga",
+    type: "article",
+    images: [{ url: "/og/aava.jpg", width: 1200, height: 630, alt: "Aava Case Study | Machinga" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Aava Case Study | Machinga",
+    description: "How two words made a 20-year-old water brand uncopyable. Brand positioning and campaign strategy for Aava.",
+    images: ["/og/aava.jpg"],
+  },
 };
 
 export default function AavaPage() {
@@ -78,7 +92,7 @@ export default function AavaPage() {
             </div>
 
             <div className="cs-hero-image" style={{marginBottom: "6rem"}}>
-                <img src={`/assets/AAva videos/hero section.png`} alt="Aava Hero Image"
+                <img src={`/assets/AAva videos/hero section.jpg`} alt="Aava Hero Image"
                     style={{width: "100%", borderRadius: "20px", display: "block", margin: "0 auto", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}} />
             </div>
         </div>
@@ -157,7 +171,7 @@ export default function AavaPage() {
 
             <div className="cs-image-center" style={{marginTop: "4rem", display: "flex", justifyContent: "center"}}>
                 <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                    <video src={`/assets/AAva videos/1777466446827621.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="metadata"></video>
+                    <video src={`/assets/AAva videos/1777466446827621.mp4`} data-autoplay="" poster="/posters/1777466446827621-a39780.jpg" loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="none"></video>
                 </div>
             </div>
         </div>
@@ -173,13 +187,13 @@ export default function AavaPage() {
 
             <div className="cs-three-screens" style={{marginBottom: "4rem"}}>
                 <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", margin: "0 auto", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                    <video src={`/assets/AAva videos/Happy_Accident_Portrait_For CC.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="metadata"></video>
+                    <video src={`/assets/AAva videos/Happy_Accident_Portrait_For CC.mp4`} data-autoplay="" poster="/posters/happy-accident-portrait-for-cc-baf75b.jpg" loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="none"></video>
                 </div>
                 <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", margin: "0 auto", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                    <video src={`/assets/AAva videos/Sip test_Portrait_CC_SUBS (1).mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="metadata"></video>
+                    <video src={`/assets/AAva videos/Sip test_Portrait_CC_SUBS (1).mp4`} data-autoplay="" poster="/posters/sip-test-portrait-cc-subs-1-468a2a.jpg" loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="none"></video>
                 </div>
                 <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", margin: "0 auto", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                    <video src={`/assets/AAva videos/1777466243541432.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="metadata"></video>
+                    <video src={`/assets/AAva videos/1777466243541432.mp4`} data-autoplay="" poster="/posters/1777466243541432-f09e11.jpg" loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="none"></video>
                 </div>
             </div>
 
@@ -213,7 +227,7 @@ export default function AavaPage() {
             <div className="cs-split-grid reverse">
                 <div className="cs-split-image" style={{display: "flex", justifyContent: "center"}}>
                     <div style={{width: "220px", height: "486px", maxWidth: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", display: "flex", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}}>
-                        <video src={`/assets/AAva videos/Happy_Accident_Portrait_For CC.mp4`} autoPlay loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="metadata"></video>
+                        <video src={`/assets/AAva videos/Happy_Accident_Portrait_For CC.mp4`} data-autoplay="" poster="/posters/happy-accident-portrait-for-cc-baf75b.jpg" loop muted playsInline style={{width: "100%", height: "100%", objectFit: "cover", borderRadius: "32px"}} preload="none"></video>
                     </div>
                 </div>
                 <div style={{paddingRight: "3rem"}}>

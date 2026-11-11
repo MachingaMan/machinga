@@ -4,31 +4,31 @@ export const dynamic = 'force-static';
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: 'https://studiomachinga.com',
+      url: 'https://www.studiomachinga.com/',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1,
     },
     {
-      url: 'https://studiomachinga.com/hamleys',
+      url: 'https://www.studiomachinga.com/hamleys/',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://studiomachinga.com/aava',
+      url: 'https://www.studiomachinga.com/aava/',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://studiomachinga.com/contraband',
+      url: 'https://www.studiomachinga.com/contraband/',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://studiomachinga.com/appreciate',
+      url: 'https://www.studiomachinga.com/appreciate/',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,

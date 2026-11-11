@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FadeObserver from "@/components/FadeObserver";
 import LenisProvider from "@/components/LenisProvider";
+import LazyVideos from "@/components/LazyVideos";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,20 +22,21 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.studiomachinga.com"),
   title: "Machinga | We build creative systems & solutions",
   description: "Think clearly. Make decisively. Run smart. Machinga helps you move from scattered idea to running system. We are a creative digital agency building engaging content and campaigns.",
   keywords: ["Digital Agency", "Creative Agency", "Content Strategy", "Campaigns", "Machinga", "Marketing", "Brand Strategy"],
   openGraph: {
     title: "Machinga | We build creative systems & solutions",
     description: "Think clearly. Make decisively. Run smart. Machinga helps you move from scattered idea to running system.",
-    url: "https://studiomachinga.com/",
+    url: "https://www.studiomachinga.com/",
     siteName: "Machinga",
     images: [
       {
-        url: "https://studiomachinga.com/assets/machinga_logos.png",
+        url: "/og/machinga.jpg",
         width: 1200,
         height: 630,
-        alt: "Machinga Logo",
+        alt: "Machinga. Think. Make. Run.",
       },
     ],
     locale: "en_US",
@@ -44,10 +46,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Machinga | We build creative systems & solutions",
     description: "Think clearly. Make decisively. Run smart. Machinga helps you move from scattered idea to running system.",
-    images: ["https://studiomachinga.com/assets/machinga_logos.png"],
+    images: ["/og/machinga.jpg"],
   },
   alternates: {
-    canonical: "https://studiomachinga.com/",
+    canonical: "https://www.studiomachinga.com/",
   },
   robots: {
     index: true,
@@ -68,6 +70,7 @@ export default function RootLayout({
       <body>
         <LenisProvider>
           <FadeObserver />
+          <LazyVideos />
           <Header />
           {children}
           <Footer />

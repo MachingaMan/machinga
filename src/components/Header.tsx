@@ -229,7 +229,8 @@ export default function Header() {
 
       <button
         className={`menu-toggle ${isOpen ? "open" : ""}`}
-        aria-label="Toggle Menu"
+        aria-label={isOpen ? "Close menu" : "Open menu"}
+        aria-expanded={isOpen}
         onClick={toggleMenu}
       >
         <span></span>

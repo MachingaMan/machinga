@@ -675,11 +675,12 @@ export default function ContrabandClient() {
 
           {/* Blinking Eyes GIF Hero */}
           <div className="cs-hero-image" style={{ marginBottom: "4rem" }}>
-            <img 
-              src="/assets/contraband_gdrive/contraband_tv_blinking.gif" 
-              alt="Contraband Blinking Hero" 
+            <video
+              src="/assets/conntraband assets/contraband_tv_blinking.mp4"
+              data-autoplay="" poster="/posters/contraband-tv-blinking.jpg" loop muted playsInline preload="none"
+              aria-label="A television screen showing blinking eyes"
               style={{ width: "100%", maxWidth: "800px", display: "block", margin: "0 auto" }}
-            />
+            ></video>
           </div>
         </div>
       </section>
@@ -1030,7 +1031,7 @@ export default function ContrabandClient() {
           </div>
 
           <div className="cs-image-center" style={{ marginTop: "0", marginBottom: "4rem" }}>
-            <video src="/assets/conntraband assets/contraband page video 1.mp4" autoPlay loop muted playsInline style={{ width: "100%", borderRadius: "20px", objectFit: "cover", display: "block", maxHeight: "600px" }} preload="metadata"></video>
+            <video src="/assets/conntraband assets/contraband page video 1.mp4" data-autoplay="" poster="/posters/contraband-page-video-1-2e11f4.jpg" loop muted playsInline style={{ width: "100%", borderRadius: "20px", objectFit: "cover", display: "block", maxHeight: "600px" }} preload="none"></video>
           </div>
 
           <div className="cs-content-narrow">
@@ -1065,7 +1066,7 @@ export default function ContrabandClient() {
                 }}
                 onClick={() => handleOpenVideo('/assets/contraband_gdrive/Summer Chase/MP4/Summer Chase_Shortie_  VR.mp4', 'portrait')}
               >
-                <video src="/assets/conntraband assets/summer_chase_teapot.mp4" autoPlay loop muted playsInline style={{ width: "100%", height: "100%", objectFit: "cover" }} preload="metadata"></video>
+                <video src="/assets/conntraband assets/summer_chase_teapot.mp4" data-autoplay="" poster="/posters/summer-chase-teapot-ceef24.jpg" loop muted playsInline style={{ width: "100%", height: "100%", objectFit: "cover" }} preload="none"></video>
                 <div className="cs-video-play-overlay">
                   <div className="cs-play-button-glass">
                     <span className="cs-play-arrow"></span>

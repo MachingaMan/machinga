@@ -6,7 +6,21 @@ import CreatorDiscoveryChart from '@/components/CreatorDiscoveryChart';
 export const metadata = {
   title: "Appreciate Case Study | Machinga",
   description: "How a fintech compounds interest. Content strategy and multi-format production for Appreciate.",
-  alternates: { canonical: "https://studiomachinga.com/appreciate" }
+  alternates: { canonical: "https://www.studiomachinga.com/appreciate/" },
+  openGraph: {
+    title: "Appreciate Case Study | Machinga",
+    description: "How a fintech compounds interest. Content strategy and multi-format production for Appreciate.",
+    url: "https://www.studiomachinga.com/appreciate/",
+    siteName: "Machinga",
+    type: "article",
+    images: [{ url: "/og/appreciate.jpg", width: 1200, height: 630, alt: "Appreciate Case Study | Machinga" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Appreciate Case Study | Machinga",
+    description: "How a fintech compounds interest. Content strategy and multi-format production for Appreciate.",
+    images: ["/og/appreciate.jpg"],
+  },
 };
 
 export default function AppreciatePage() {
@@ -83,9 +97,10 @@ export default function AppreciatePage() {
             </div>
 
             <div className="cs-hero-image" style={{ marginBottom: "4rem" }}>
-                <img src={`/assets/Appreciate case studies assets/Appreciate_hero.gif`}
-                    alt="A Fintech With Knack Hero Image"
-                    style={{width: "100%", borderRadius: "12px", maxWidth: "800px", display: "block", margin: "0 auto"}} />
+                <video src={`/assets/Appreciate case studies assets/Appreciate_hero.mp4`}
+                    data-autoplay="" poster="/posters/appreciate-hero.jpg" loop muted playsInline preload="none"
+                    aria-label="Animated illustration from the Appreciate content engine"
+                    style={{width: "100%", borderRadius: "12px", maxWidth: "800px", display: "block", margin: "0 auto"}}></video>
             </div>
         </div>
       </section>
@@ -154,7 +169,7 @@ export default function AppreciatePage() {
         <div className="cs-container">
             <div className="cs-dark-grid">
                 <div>
-                    <video src={`/assets/Appreciate case studies assets/Sab_karte_hai_GlobalInvesting_AppreciateGlobal_Investing_Podcast_episode_3Disclaimer-_Inves.mp4`} autoPlay loop muted playsInline style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 20px 40px rgba(0,0,0,0.5)"}} preload="metadata"></video>
+                    <video src={`/assets/Appreciate case studies assets/Sab_karte_hai_GlobalInvesting_AppreciateGlobal_Investing_Podcast_episode_3Disclaimer-_Inves.mp4`} data-autoplay="" poster="/posters/sab-karte-hai-globalinvesting-appreciate-d4d496.jpg" loop muted playsInline style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 20px 40px rgba(0,0,0,0.5)"}} preload="none"></video>
                 </div>
                 <div>
                     <span className="cs-section-label" style={{color: "#888"}}>04 — The Virality Lab</span>
@@ -177,20 +192,20 @@ export default function AppreciatePage() {
             <div className="cs-four-screens">
                 <video
                     src={`/assets/Appreciate case studies assets/Global_Investing_Podcast_-_Episode_2_What_is_फ़क_यू_Money_Artwork_by_aviditstudiosLike_-_Commen.mp4`}
-                    autoPlay loop muted playsInline
-                    style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}} preload="metadata"></video>
+                    data-autoplay="" poster="/posters/global-investing-podcast-episode-2-what--844941.jpg" loop muted playsInline
+                    style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}} preload="none"></video>
                 <video
                     src={`/assets/Appreciate case studies assets/Once_upon_a_time_there_was_a_kingfisher_bird...Welcome_to_Appreciate_Podcast_EP05Note-_All_char.mp4`}
-                    autoPlay loop muted playsInline
-                    style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}} preload="metadata"></video>
+                    data-autoplay="" poster="/posters/once-upon-a-time-there-was-a-kingfisher--bdf2c4.jpg" loop muted playsInline
+                    style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}} preload="none"></video>
                 <video
                     src={`/assets/Appreciate case studies assets/Par_woh_Tusla_ka_market_shareWith_aviditstudiospodcasts_stockmarket_ev_uscompanies_usstock.mp4`}
-                    autoPlay loop muted playsInline
-                    style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}} preload="metadata"></video>
+                    data-autoplay="" poster="/posters/par-woh-tusla-ka-market-sharewith-avidit-a15dcd.jpg" loop muted playsInline
+                    style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}} preload="none"></video>
                 <video
                     src={`/assets/Appreciate case studies assets/What_is_F.I.R.E_Appreciate_Podcast_EP04_-_Deploying_Inherited_Capital_for_Global_Investing_ap.mp4`}
-                    autoPlay loop muted playsInline
-                    style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}} preload="metadata"></video>
+                    data-autoplay="" poster="/posters/what-is-f-i-r-e-appreciate-podcast-ep04--7f0bda.jpg" loop muted playsInline
+                    style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}} preload="none"></video>
             </div>
         </div>
     </section>
@@ -200,8 +215,8 @@ export default function AppreciatePage() {
         <div className="cs-container">
             <div className="cs-split-grid reverse">
                 <div className="cs-split-image">
-                    <video src={`/assets/Appreciate case studies assets/Apun_hi_Shareholder._Apun_hi_Owner...Disclaimer-_Investments_in_securities_markets_are_subject_t.mp4`} autoPlay loop muted playsInline
-                        style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", objectFit: "cover"}} preload="metadata"></video>
+                    <video src={`/assets/Appreciate case studies assets/Apun_hi_Shareholder._Apun_hi_Owner...Disclaimer-_Investments_in_securities_markets_are_subject_t.mp4`} data-autoplay="" poster="/posters/apun-hi-shareholder-apun-hi-owner-discla-6cc867.jpg" loop muted playsInline
+                        style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", objectFit: "cover"}} preload="none"></video>
                 </div>
                 <div style={{paddingRight: "3rem"}}>
                     <span className="cs-section-label">05 — High-Conviction</span>
@@ -224,16 +239,16 @@ export default function AppreciatePage() {
             <div className="cs-three-screens">
                 <video
                     src={`/assets/Appreciate case studies assets/American_Keeda_hai_toh_hai_Appreciate_investing_stocks_stockmarket.mp4`}
-                    autoPlay loop muted playsInline
-                    style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}} preload="metadata"></video>
+                    data-autoplay="" poster="/posters/american-keeda-hai-toh-hai-appreciate-in-c471c5.jpg" loop muted playsInline
+                    style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}} preload="none"></video>
                 <video
                     src={`/assets/Appreciate case studies assets/American_Keeda_ka_kuch_nahi_ho_sakta_Appreciate_americankeeda_USStocks_GlobalInvesting_.mp4`}
-                    autoPlay loop muted playsInline
-                    style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}} preload="metadata"></video>
+                    data-autoplay="" poster="/posters/american-keeda-ka-kuch-nahi-ho-sakta-app-780020.jpg" loop muted playsInline
+                    style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}} preload="none"></video>
                 <video
                     src={`/assets/Appreciate case studies assets/American_Keeda_3_Appreciate.mp4`}
-                    autoPlay loop muted playsInline
-                    style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}} preload="metadata"></video>
+                    data-autoplay="" poster="/posters/american-keeda-3-appreciate-c3eb09.jpg" loop muted playsInline
+                    style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}} preload="none"></video>
             </div>
         </div>
     </section>
@@ -246,8 +261,8 @@ export default function AppreciatePage() {
         <div className="cs-container">
             <div className="cs-split-grid">
                 <div className="cs-split-image">
-                    <video src={`/assets/Appreciate case studies assets/export_22.mp4`} autoPlay loop muted playsInline
-                        style={{width: "100%", borderRadius: "16px", objectFit: "cover"}} preload="metadata"></video>
+                    <video src={`/assets/Appreciate case studies assets/export_22.mp4`} data-autoplay="" poster="/posters/export-22-c6cd6f.jpg" loop muted playsInline
+                        style={{width: "100%", borderRadius: "16px", objectFit: "cover"}} preload="none"></video>
                 </div>
                 <div style={{paddingLeft: "3rem"}}>
                     <span className="cs-section-label">05 — The AI Frontier</span>

@@ -31,7 +31,6 @@ export default function HomeClientLogic() {
   }, [lenis]);
 
   useEffect(() => {
-    console.log("Machinga Client Logic Init: Mounting...");
     
     let active = true;
     let cleanupFn: (() => void) | null = null;
@@ -125,7 +124,6 @@ export default function HomeClientLogic() {
       }
       updateScrollLock();
 
-      console.log("Machinga Client Logic: DOM elements ready, binding listeners.");
 
       // ── Typewriter Reveal on Load ──────────────────────────────────────────────
       const headline = document.getElementById('hero-headline');
@@ -144,11 +142,15 @@ export default function HomeClientLogic() {
         setTimeout(() => {
           if (!active) return;
           logoBtn.classList.remove('logo-intro-hidden');
-        }, 2400); // 2400ms after mount (shortly after the scroll cue is fully visible)
+        }, 1600); // shortly after the headline has finished revealing
       }
 
       // ── Central Logo Button: Magnetic Effect & Collapse Toggle ──────────────────
       let logoMouseActive = false;
+      let lastExpandAt = 0;
+      let visitorHasActed = false;
+      const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      const markActed = () => { visitorHasActed = true; };
       let btnX = 0;
       let btnY = 0;
 
@@ -160,6 +162,9 @@ export default function HomeClientLogic() {
         // Expand bubbles on hover (mouseenter)
         const isVideoPlaying = heroSection.classList.contains('video-playing');
         if (!isVideoPlaying) {
+          if (heroSection.classList.contains('collapsed')) {
+            lastExpandAt = Date.now();
+          }
           heroSection.classList.remove('collapsed');
           const headlineEl = document.getElementById('hero-headline');
           if (headlineEl && window.innerWidth > 768) {
@@ -235,6 +240,12 @@ export default function HomeClientLogic() {
         } else {
           // Normal behavior
           const isCollapsed = heroSection.classList.contains('collapsed');
+          // With a mouse, hovering already opened the bubbles, so a click would only close them again.
+          // On touch, a tap fires mouseenter and then click, which opened and instantly closed them.
+          if (!isCollapsed && (canHover || Date.now() - lastExpandAt < 800)) {
+            return;
+          }
+          if (isCollapsed) lastExpandAt = Date.now();
           heroSection.classList.toggle('collapsed');
           updateScrollLock();
           
@@ -385,6 +396,18 @@ export default function HomeClientLogic() {
 
       // Bind Listeners
       setupBubbleVideoAutoCropping();
+
+      ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach((evt) => {
+        window.addEventListener(evt, markActed, { passive: true, once: true });
+      });
+      const idleExpandTimeout = setTimeout(() => {
+        if (!active || visitorHasActed || logoMouseActive) return;
+        if (heroSection.classList.contains('collapsed') && !heroSection.classList.contains('video-playing')) {
+          handleLogoMouseEnter();
+          btnX = 0;
+          btnY = 0;
+        }
+      }, 6500);
 
       logoBtn.addEventListener('mouseenter', handleLogoMouseEnter);
       logoBtn.addEventListener('mousemove', handleLogoMouseMove);
@@ -1591,6 +1614,7 @@ export default function HomeClientLogic() {
         if (video) {
           video.removeEventListener('timeupdate', handleVideoTimeUpdate);
         }
+        clearTimeout(idleExpandTimeout);
         if (sweepTimeout) clearTimeout(sweepTimeout);
         if (videoTimeout) clearTimeout(videoTimeout);
 
