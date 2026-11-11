@@ -50,7 +50,7 @@ const vaultItems = [
     title: 'Have It All',
     sub: '01 / SKU FILM',
     previewSrc: '/assets/conntraband assets/cluster_have_it_all.mp4',
-    overlaySrc: '/assets/contraband_gdrive/Have It All/Compressed/Have it all__Non Linear_16x9.mp4',
+    overlaySrc: '/assets/contraband_films/have-it-all.mp4',
     aspect: 'landscape' as const
   },
   {
@@ -58,7 +58,7 @@ const vaultItems = [
     title: 'Popsicle SKU',
     sub: '02 / SKU FILM',
     previewSrc: '/assets/conntraband assets/cluster_popsicle.mp4',
-    overlaySrc: '/assets/contraband_gdrive/Popsicle/Contraband_Popsicle_1X1.mov',
+    overlaySrc: '/assets/contraband_films/popsicle.mp4',
     aspect: 'portrait' as const
   },
   {
@@ -66,7 +66,7 @@ const vaultItems = [
     title: 'Candy SKU',
     sub: '03 / SKU FILM',
     previewSrc: '/assets/conntraband assets/cluster_candy.mp4',
-    overlaySrc: '/assets/contraband_gdrive/Candy - Have It All/Contraband candy_HD.mov',
+    overlaySrc: '/assets/contraband_films/candy.mp4',
     aspect: 'landscape' as const
   },
   {
@@ -74,7 +74,7 @@ const vaultItems = [
     title: 'SugarCube SKU',
     sub: '04 / SKU FILM',
     previewSrc: '/assets/conntraband assets/cluster_sugarcube.mp4',
-    overlaySrc: '/assets/contraband_gdrive/SugarCube Sumer Chase/CONTRABAND_Sugarcube_HD.mov',
+    overlaySrc: '/assets/contraband_films/sugarcube.mp4',
     aspect: 'landscape' as const
   },
   {
@@ -82,7 +82,7 @@ const vaultItems = [
     title: 'Have It All — Shortie',
     sub: '05 / SKU FILM',
     previewSrc: '/assets/conntraband assets/cluster_shortie.mp4',
-    overlaySrc: '/assets/contraband_gdrive/Have It All/Compressed/Have it all_Shortie_16x9.mp4',
+    overlaySrc: '/assets/contraband_films/have-it-all-shortie.mp4',
     aspect: 'landscape' as const
   },
   {
@@ -90,7 +90,7 @@ const vaultItems = [
     title: 'Fossil SKU',
     sub: '06 / SKU FILM',
     previewSrc: '/assets/conntraband assets/cluster_fossil.mp4',
-    overlaySrc: '/assets/contraband_gdrive/Hands off AI .mp4',
+    overlaySrc: '/assets/contraband_films/hands-off.mp4',
     aspect: 'portrait' as const
   },
   {
@@ -98,7 +98,7 @@ const vaultItems = [
     title: 'Light Projection',
     sub: '07 / SKU FILM',
     previewSrc: '/assets/conntraband assets/cluster_projection.mp4',
-    overlaySrc: '/assets/contraband_gdrive/You Again Video .mp4',
+    overlaySrc: '/assets/contraband_films/you-again.mp4',
     aspect: 'portrait' as const
   }
 ];
@@ -479,6 +479,19 @@ export default function ContrabandClient() {
     };
   }, [activeVideo, lenis]);
 
+  // Close the film player with the Escape key
+  useEffect(() => {
+    if (!activeVideo) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        videoRef.current?.pause();
+        setActiveVideo(null);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [activeVideo]);
+
   // Handle time update in the video player
   const handleTimeUpdate = () => {
     if (videoRef.current) {
@@ -576,7 +589,8 @@ export default function ContrabandClient() {
     setDragStartX(e.clientX);
     setDragOffset(0);
     setHasDragged(false);
-    e.currentTarget.setPointerCapture(e.pointerId);
+    // Capture is taken only once a drag starts (see handlePointerMove). Capturing here
+    // would redirect the click to the stage, so tapping a card would never open its film.
   };
 
   const handlePointerMove = (e: React.PointerEvent) => {
@@ -585,6 +599,9 @@ export default function ContrabandClient() {
     setDragOffset(deltaX);
     if (Math.abs(deltaX) > 10) {
       setHasDragged(true);
+      if (!e.currentTarget.hasPointerCapture(e.pointerId)) {
+        e.currentTarget.setPointerCapture(e.pointerId);
+      }
     }
   };
 
@@ -602,7 +619,9 @@ export default function ContrabandClient() {
     setTimeout(() => {
       setHasDragged(false);
     }, 50);
-    e.currentTarget.releasePointerCapture(e.pointerId);
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    }
   };
 
   return (
